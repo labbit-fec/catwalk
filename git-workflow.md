@@ -7,10 +7,13 @@ The `main` branch of [this](https://github.com/labbit-fec/limitless) remote repo
 
 ## Cloning the repository
 Your first step will be cloning our remote repository. Navigate to the appropriate folder on your local machine and execute the following command:
-    `git clone https://github.com/labbit-fec/limitless.git <desired_folder_name>`
+    git clone https://github.com/labbit-fec/limitless.git <desired_folder_name>`
 
 Then change into your newly created directory, with the following command:
-    `cd <desired_folder_name>`
+    cd <desired_folder_name>
 
 Confirm that you are configured with the correct remote repository, with the following command:
-    `git remote -v`
+    git remote -v
+
+### Renaming your remote repository
+    git remote rename <current_name> <new_name>
