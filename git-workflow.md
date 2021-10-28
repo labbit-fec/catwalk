@@ -34,7 +34,7 @@ origin  https://github.com/<your_github_username>/limitless.git (fetch)
 origin  https://github.com/<your_github_username>/limitless.git (push)
 ...
 ```
-If that is the case, you should first remove that connection to your personal repository, assuming it is named `origin`. If it was called something else, you can replace `origin` with the name of the remote connection.
+If that is the case, you should first remove that connection to your personal repository, as follows, assuming it was called `origin`. If it was called something else, you can replace `origin` with the name of the remote connection to your personal GitHub respository.
 ```
 git remote remove origin
 ```
@@ -55,7 +55,7 @@ origin  https://github.com/<your_github_username>/limitless.git (push)
 ## Working on a feature
 > No work should be done on the `main` branch.
 
-All work should be done on a **'feature' branch**; that is, an existing or newly created branch designated to the feature on which you are working.
+All work should be done on a **feature branch**; that is, an existing or newly created branch designated to the feature on which you are working.
 
 Whether you already have a branch that you are revisting, or are creating a new branch, your first step is to `pull` down the latest from the **source of truth**, the `main` branch.
 
@@ -71,7 +71,7 @@ git pull origin
 
 Follow the steps under **either** A **or** B below, depending on if you are **revisting** or **creating a new** branch.
 
-> One important goal of our git workflow is to avoid encountering merge conflicts in your pull requests in GitHub. This can be avoided by always rebasing your feature branch to the latest `origin/main` branch immediately before pushing your branch up, resolving merge conflicts locally, as described below.
+> One important goal of our git workflow is to avoid encountering merge conflicts in your pull requests in GitHub. This can be avoided by always rebasing your feature branch to the latest `origin/main` branch immediately before working on your branch, and immediately before pushing your branch up, resolving merge conflicts in both cases locally, as described below.
 
 ### A. Revisting an existing branch
 Checkout your existing feature branch:
@@ -95,6 +95,7 @@ From the `main` branch, create and checkout a new branch:
 ```
 git checkout -b <new_feature_branch_name>
 ```
+*You do not need to `rebase` in this case, since you are creating a branch based on the latest `main` branch that you have pulled down.
 
 ### Implementing changes to your feature
 Implement the changes to your feature's code, making frequent, small commits as follows:
@@ -108,7 +109,7 @@ git commit -m "implement click event handler on checkout button"
 ```
 In order to **avoid substaintial merge conflicts**, while working on your feature branch, aim to regularly `rebase` your branch to the latest `main` branch on the remote repository (`origin`).
 
-Switch back to the `main` branch on your local machine:
+Commit your latest changes to your feature branch, and then switch back to the `main` branch on your local machine:
 ```
 git checkout main
 ```
@@ -137,7 +138,7 @@ After making your last commit, but before pushing your changes to the remote rep
 ```
 git checkout main
 ```
-`pull` down the latest version the `main` branch at the `origin`
+`pull` down the latest version the `main` branch at the `origin`:
 ```
 git pull origin
 ```
@@ -145,7 +146,7 @@ Switch back to your feature branch:
 ```
 git checkout <feature_branch_name>
 ```
-Rebase your feature branch based on the latest `main` branch that you have pulled down
+Rebase your feature branch based on the latest `main` branch that you have pulled down:
 ```
 git rebase main
 ```
@@ -155,7 +156,7 @@ git rebase --continue
 ```
 *You do **not** need to commit any work as you are resolving the conflicts in a `rebase`.*
 
-Then, `push` your feature branch to the remote repository. If it is your first time pushing this branch to the remote repository, include the `-u` flag to set the upstream branch
+Then, `push` your feature branch to the remote repository. If it is your first time pushing this branch to the remote repository, include the `-u` flag to set the upstream branch:
 ```
 git push -u origin <your_feature_branch_name>
 ```
@@ -165,7 +166,7 @@ git push
 ```
 ### Incorporating your updates into the `main` branch
 Once you have pushed your feature branch to its upstream branch at the `origin`:
-1. Go to your feature branch on the GitHub `origin` repository
+1. Go to your feature branch on the `origin` GitHub repository
 2. Create a **pull request** from your feature branch to the `main` branch
 3. In the **title** of the pull request: reference the name of the corresponding Trello ticket
 4. In the **comments**: describe your changes and any details that will be helpful for the reviewer
