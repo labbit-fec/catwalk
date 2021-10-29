@@ -25,6 +25,8 @@
         "prettier/prettier": "error",
         "no-unused-vars": "warn",
         "no-console": "warn",
-        "func-names": "off"
+        "func-names": "off",
+        "object-shorthand": "off",
+        "class-methods-use-this": "warn"
     }
 }
