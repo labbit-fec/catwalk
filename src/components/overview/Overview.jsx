@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Overview = () => (
-  <h1>Hello world</h1>
+  <h1>Overview</h1>
 );
 
 export default Overview;
