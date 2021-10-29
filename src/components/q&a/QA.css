@@ -1,0 +1,6 @@
+.container {
+  display: flex;
+  border: 3px solid purple;
+  color: purple;
+  font-weight: bold;
+}

@@ -1,5 +1,6 @@
 import React from 'react';
+import styles from './Overview.css';
 
-const Overview = () => <h1>Overview</h1>;
+const Overview = () => <div className={styles.container}>Product Overview</div>;
 
 export default Overview;

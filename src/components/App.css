@@ -1,0 +1,24 @@
+.container {
+  border: 3px solid red;
+  color: red;
+  padding: 1em;
+  font-weight: bold;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  max-width: 1366px;
+  margin: 1em auto;
+  border: 3px solid blue;
+  color: blue;
+  font-weight: bold;
+  padding: 1em;
+}
+
+.content > div {
+  margin: 1em;
+  min-height: 200px;
+}

@@ -1,5 +1,6 @@
 import React from 'react';
+import styles from './Ratings.css';
 
-const Ratings = () => <h1>Ratings</h1>;
+const Ratings = () => <div className={styles.container}>Ratings</div>;
 
 export default Ratings;
