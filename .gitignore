@@ -118,3 +118,6 @@ dist
 .pnp.*
 
 /linter_testing.js
+
+# Webpack dist folder
+dist/
