@@ -1,8 +1,8 @@
 import React from 'react';
-import Overview from './overview/Overview.jsx';
-import QA from './q&a/QA.jsx';
-import Ratings from './ratings/Ratings.jsx';
-import Related from './related/Related.jsx';
+import Overview from './overview/Overview';
+import QA from './q&a/QA';
+import Ratings from './ratings/Ratings';
+import Related from './related/Related';
 
 const App = () => (
   <div>
