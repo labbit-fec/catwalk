@@ -1,6 +1,10 @@
 .container {
   display: flex;
-  border: 3px solid black;
-  color: black;
+
+  /* Placeholder CSS for illustrative layout only */
+  border: 3px solid indigo;
+  color: indigo;
   font-weight: bold;
+  justify-content: center;
+  align-items: center;
 }

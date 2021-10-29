@@ -1,6 +1,10 @@
 .container {
   display: flex;
-  border: 3px solid orange;
-  color: orange;
+
+  /* Placeholder CSS for illustrative layout only */
+  border: 3px solid black;
+  color: black;
   font-weight: bold;
+  justify-content: center;
+  align-items: center;
 }
