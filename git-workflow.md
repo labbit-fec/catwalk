@@ -113,6 +113,7 @@ npm install // to install the latest dependencies on the main branch
 ```
 
 Please see [below](#resolving-lockfile-conflicts) regarding resolving potential lockfile conflicts created by `npm install`
+
 _You do **not** need to commit any work as you are resolving the conflicts in a `rebase`._
 
 ### B. Creating a new branch
@@ -123,7 +124,7 @@ From the `main` branch, create and checkout a new branch:
 git checkout -b <new_feature_branch_name>
 ```
 
-\*You do not need to `rebase` in this case, since you are creating a branch based on the latest `main` branch that you have pulled down.
+You do not need to `rebase` in this case, since you are creating a branch based on the latest `main` branch that you have pulled down.
 
 ### Implementing changes to your feature
 
@@ -174,6 +175,7 @@ npm install
 ```
 
 Please see [below](#resolving-lockfile-conflicts) regarding resolving potential lockfile conflicts created by `npm install`
+
 _You do **not** need to commit any work as you are resolving the conflicts in a `rebase`._
 
 ### Pushing your changes to the remote repository
@@ -210,6 +212,7 @@ npm install
 ```
 
 Please see [below](#resolving-lockfile-conflicts) regarding resolving potential lockfile conflicts created by `npm install`
+
 _You do **not** need to commit any work as you are resolving the conflicts in a `rebase`._
 
 Then, `push` your feature branch to the remote repository. If it is your first time pushing this branch to the remote repository, include the `-u` flag to set the upstream branch:
