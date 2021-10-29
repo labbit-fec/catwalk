@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const postcssPresetEnv = require('postcss-preset-env');
 
 module.exports = {
   entry: {
@@ -33,20 +34,36 @@ module.exports = {
           },
         },
       },
-      // Images
       {
-        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
-        type: 'asset/resource',
+        // For pure CSS - /\.css$/i,
+        // For Sass/SCSS - /\.((c|sa|sc)ss)$/i,
+        // For Less - /\.((c|le)ss)$/i,
+        test: /\.((c|sa|sc)ss)$/i,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              // Run `postcss-loader` on each CSS `@import` and CSS modules/ICSS imports, do not forget that `sass-loader` compile non CSS `@import`'s into a single file
+              // If you need run `sass-loader` and `postcss-loader` on each CSS `@import` please set it to `2`
+              importLoaders: 1,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: { plugins: () => [postcssPresetEnv({ stage: 0 })] },
+          },
+          // Can be `less-loader`
+          {
+            loader: 'sass-loader',
+          },
+        ],
       },
-      // Fonts and SVGs
+      // For webpack v5
       {
-        test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
-        type: 'asset/inline',
-      },
-      // CSS, PostCSS, and Sass
-      {
-        test: /\.(scss|css)$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+        test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/i,
+        // More information here https://webpack.js.org/guides/asset-modules/
+        type: 'asset',
       },
     ],
   },

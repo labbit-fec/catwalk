@@ -5,7 +5,7 @@ import Ratings from './ratings/Ratings';
 import Related from './related/Related';
 
 const App = () => (
-  <div>
+  <div className="container">
     <Overview />
     <QA />
     <Ratings />
