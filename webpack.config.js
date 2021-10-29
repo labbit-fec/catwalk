@@ -21,13 +21,14 @@ module.exports = {
     rules: [
       // JavaScript
       {
-        test: /\.(js||jsx)$/,
+        test: /\.js$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-react', '@babel/preset-env']
+            presets: ['@babel/preset-env', '@babel/preset-react']
           }
+        }
       },
       // Images
       {
@@ -44,6 +45,6 @@ module.exports = {
         test: /\.(scss|css)$/,
         use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
       }
-    ],
-  },
+    ]
+  }
 }
