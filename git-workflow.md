@@ -66,7 +66,7 @@ git checkout main
 
 Then, `pull` down the latest master branch:
 ```
-git pull origin
+git pull origin main
 ```
 
 Follow the steps under **either** A **or** B below, depending on if you are **revisting** or **creating a new** branch.
@@ -116,7 +116,7 @@ git checkout main
 
 `pull` down the latest version of the `main` branch at the `origin`:
 ```
-git pull origin
+git pull origin main
 ```
 Switch back to your feature branch:
 ```
@@ -140,7 +140,7 @@ git checkout main
 ```
 `pull` down the latest version the `main` branch at the `origin`:
 ```
-git pull origin
+git pull origin main
 ```
 Switch back to your feature branch:
 ```
