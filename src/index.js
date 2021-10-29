@@ -1,5 +1,8 @@
-const heading = document.createElement('h1');
-heading.textContent = 'Interesting!';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './components/App.jsx';
 
-const app = document.querySelector('#root');
-app.append(heading);
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+)
