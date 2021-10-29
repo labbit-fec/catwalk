@@ -112,7 +112,7 @@ git rebase --continue
 npm install // to install the latest dependencies on the main branch
 ```
 
-Please see [below](#resolving-lockfile-conflicts) regarding resolving potential lockfile conflicts created by `npm install`
+Please see [below](#resolving-lockfile-conflicts) regarding resolving potential lockfile conflicts created by `npm install`.
 
 _You do **not** need to commit any work as you are resolving the conflicts in a `rebase`._
 
@@ -174,7 +174,7 @@ git rebase --continue
 npm install
 ```
 
-Please see [below](#resolving-lockfile-conflicts) regarding resolving potential lockfile conflicts created by `npm install`
+Please see [below](#resolving-lockfile-conflicts) regarding resolving potential lockfile conflicts created by `npm install`.
 
 _You do **not** need to commit any work as you are resolving the conflicts in a `rebase`._
 
@@ -211,7 +211,7 @@ git rebase --continue
 npm install
 ```
 
-Please see [below](#resolving-lockfile-conflicts) regarding resolving potential lockfile conflicts created by `npm install`
+Please see [below](#resolving-lockfile-conflicts) regarding resolving potential lockfile conflicts created by `npm install`.
 
 _You do **not** need to commit any work as you are resolving the conflicts in a `rebase`._
 
