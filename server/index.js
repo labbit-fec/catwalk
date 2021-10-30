@@ -9,7 +9,7 @@ app.use(express.static(path.join(__dirname, '../dist')));
 app.use(express.json());
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`Example app listening at http://localhost:${port}`);
 });
 
 // app.get('/', (req, res) => {
