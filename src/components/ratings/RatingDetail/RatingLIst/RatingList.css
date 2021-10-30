@@ -1,10 +1,8 @@
-.container {
-  border: 1px solid blue;
+.content {
   display: flex;
   flex-direction: column;
 }
 
-.content {
-  display: flex;
-  flex-direction: column;
+.content > div {
+  margin-top: 2em;
 }
