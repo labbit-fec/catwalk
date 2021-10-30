@@ -1,10 +1,18 @@
 .container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
+  flex-direction: column;
 
   /* Placeholder CSS for illustrative layout only */
   border: 3px solid green;
-  color: green;
-  font-weight: bold;
-  justify-content: center;
-  align-items: center;
+  color: black;
+  padding: 1em;
+  /* justify-content: center;
+  align-items: center; */
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
