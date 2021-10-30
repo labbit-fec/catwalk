@@ -1,3 +1,22 @@
 .container {
-  border: 1px solid green;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.ratingHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.content > div {
+  margin: 0.5em 0;
+}
+
+.response {
+  background-color: rgba(235, 235, 235, 1);
+  padding: 1em;
 }
