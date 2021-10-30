@@ -27,6 +27,7 @@
         "no-console": "warn",
         "func-names": "off",
         "object-shorthand": "off",
-        "class-methods-use-this": "warn"
+        "class-methods-use-this": "warn",
+        "no-debugger": "warn"
     }
 }
