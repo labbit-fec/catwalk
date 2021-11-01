@@ -7,8 +7,10 @@ const QA = function () {
   return (
     <div className={styles.container}>
       <h3>Questions & Answers</h3>
-      <Search />
-      <QuestionsList />
+      <div className={styles.content}>
+        <Search />
+        <QuestionsList />
+      </div>
     </div>
   );
 };
