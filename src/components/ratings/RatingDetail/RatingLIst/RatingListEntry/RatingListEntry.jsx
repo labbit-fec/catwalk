@@ -39,7 +39,7 @@ export default function RatingListEntry() {
           <button type="button" className={styles.btnHelpful}>
             Yes
           </button>
-          &nbsp;(10)
+          (10)
         </div>
         <div>
           <button
