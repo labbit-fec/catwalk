@@ -1,18 +1,13 @@
 import React from 'react';
 import { VscStarEmpty, VscStarFull, VscStarHalf } from 'react-icons/vsc';
 import styles from './RatingListEntry.css';
+import Stars from '../../../RatingSummary/Stars/Stars';
 
 export default function RatingListEntry() {
   return (
     <div className={styles.content}>
       <div className={styles.ratingHeader}>
-        <div>
-          <VscStarFull />
-          <VscStarFull />
-          <VscStarFull />
-          <VscStarHalf />
-          <VscStarEmpty />
-        </div>
+        <Stars stars={4.5} />
         <div>User1234, January 1, 2019</div>
       </div>
       <div className={styles.ratingTitle}>Donut chocolate bar pudding.</div>
