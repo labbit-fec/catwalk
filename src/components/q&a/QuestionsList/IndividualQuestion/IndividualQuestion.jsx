@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const IndividualQuestion = function () {
+const IndividualQuestion = function (props) {
   return (
     <div className="individual_question">
-      <h5 className="question">Q: SOMETHING</h5>
+      <h6 className="question">Q: Some question about product?</h6>
     </div>
   );
 };
