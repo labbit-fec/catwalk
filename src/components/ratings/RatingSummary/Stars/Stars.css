@@ -1,3 +1,10 @@
 .container {
-  border: 1px solid red;
+  display: flex;
+  flex-direction: row;
+}
+
+.starCount {
+  font-weight: bold;
+  font-size: 3em;
+  margin-right: 0.25em;
 }
