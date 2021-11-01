@@ -4,7 +4,7 @@ import styles from './Recommendations.css';
 export default function Recommendations() {
   return (
     <div className={styles.container}>
-      <h3>Recommendations</h3>
+      <div>100% of reviews recommend this product</div>
     </div>
   );
 }
