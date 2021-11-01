@@ -3,6 +3,7 @@ import styles from './RatingSummary.css';
 import Stars from './Stars/Stars';
 import Recommendations from './Recommendations/Recommendations';
 import Bars from './Bars/Bars';
+import Sliders from './Sliders/Sliders';
 
 export default function RatingSummary() {
   return (
@@ -10,6 +11,7 @@ export default function RatingSummary() {
       <Stars />
       <Recommendations />
       <Bars />
+      <Sliders />
     </div>
   );
 }
