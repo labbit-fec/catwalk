@@ -72,4 +72,5 @@ module.exports = {
       },
     ],
   },
+  mode: 'development',
 };
