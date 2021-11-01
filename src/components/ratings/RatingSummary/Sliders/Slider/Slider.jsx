@@ -9,7 +9,7 @@ export default function Slider({ characteristic, average }) {
       <div className={styles.sliderTitle}>{characteristic}</div>
       <div className={styles.thirds}>
         <div
-          style={{ left: `calc(1em + ${100 * ((average - 1) / (5 - 1))}%)` }}
+          style={{ left: `calc(${100 * ((average - 1) / 4)}% - 0.5em)` }}
           className={styles.arrow}
         >
           <VscTriangleDown />
