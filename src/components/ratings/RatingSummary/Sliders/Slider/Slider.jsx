@@ -2,13 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Slider.css';
 
-export default function Slider({ shaded }) {
+export default function Slider({ stars, shaded }) {
   return (
     <div className={styles.container}>
-      <div style={{ flex: 2 }}>5 stars:</div>
-      <div className={styles.slider}>
-        <div style={{ flex: `${shaded}` }} className={styles.shaded} />
-        <div style={{ flex: `${100 - shaded}` }} className={styles.unshaded} />
+      <div style={{ flex: 2 }}>{`${stars} stars:`}</div>
+      <div style={{ flex: 8 }} className={styles.slider}>
+        <div style={{ flex: shaded }} className={styles.shaded} />
+        <div style={{ flex: 1 - shaded }} className={styles.unshaded} />
+      </div>
+      <div style={{ flex: 1, textAlign: 'right' }}>
+        {Math.floor(Math.random() * (40 - 1) + 1)}
       </div>
     </div>
   );
@@ -16,4 +19,5 @@ export default function Slider({ shaded }) {
 
 Slider.propTypes = {
   shaded: PropTypes.number.isRequired,
+  stars: PropTypes.number.isRequired,
 };
