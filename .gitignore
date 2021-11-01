@@ -121,3 +121,5 @@ dist
 
 # Webpack dist folder
 dist/
+
+server/config.js
