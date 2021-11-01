@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2em;
+}
+
+.labels {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.thirds {
+  display: flex;
+  flex-direction: row;
+  height: 0.5em;
+  line-height: 1em;
+  justify-content: space-between;
+  position: relative;
+  /* margin: 0.5em 0; */
+}
+
+.third {
+  background-color: rgba(235, 235, 235, 1);
+  width: 33%;
+}
+
+.arrow {
+  /* position: relative; */
+  position: absolute;
+  align-self: center;
+  color: green;
+}

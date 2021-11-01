@@ -1,0 +1,61 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid rgba(35, 35, 35, 0.5);
+  padding-bottom: 0.75em;
+}
+
+.ratingHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.content > div {
+  margin: 0.5em 0;
+}
+
+.response {
+  background-color: rgba(235, 235, 235, 1);
+  padding: 1em;
+  border-radius: 0.1em;
+}
+
+.helpful {
+  font-size: 0.75em;
+  display: flex;
+  flex-direction: row;
+}
+
+.helpful > div {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+.btnHelpful {
+  background: none;
+  color: inherit;
+  border: none;
+  padding-top: 0;
+  padding-bottom: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  text-decoration: underline;
+}
+
+.report {
+  border-left: 1px solid rgba(35, 35, 35, 0.5);
+  padding-left: 1em;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+}
+
+.check svg {
+  margin-right: 0.5em;
+  stroke-width: 1;
+  color: rgba(0, 0, 0, 0.5);
+}

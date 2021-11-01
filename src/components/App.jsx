@@ -11,9 +11,9 @@ const App = () => (
     <div className={styles.content}>
       Main Content
       <Overview />
-      <Ratings />
-      <QA />
       <Related />
+      <QA />
+      <Ratings />
     </div>
   </div>
 );
