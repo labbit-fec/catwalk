@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from './Sliders.css';
-import Slider from './Slider/Slider';
+import styles from './Bars.css';
+import Slider from './Bar/Bar';
 
 export default function Sliders() {
   const shaded = {
