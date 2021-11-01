@@ -40,13 +40,14 @@ app.get('/api/reviews/stars', (req, res) => {
     .then((response) => {
       const { ratings } = response.data;
       const count = Object.keys(ratings).reduce(
-        (previous, current) => previous + ratings[current],
+        (previous, current) => previous + parseFloat(ratings[current]),
         0
       );
       const sum = Object.keys(ratings).reduce(
-        (previous, current) => previous + current * ratings[current],
+        (previous, current) =>
+          previous + parseFloat(current) * parseFloat(ratings[current]),
         0
       );
-      res.status(200).json({ stars: 3 });
+      res.status(200).json({ stars: sum / count });
     });
 });

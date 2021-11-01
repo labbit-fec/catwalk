@@ -15,17 +15,14 @@ export default function Stars() {
   }
 
   useEffect(() => {
-    getStars()
-      .then((response) => {
-        setStars(response.data.stars);
-        console.log(response.data.stars);
-      })
-      .catch((err) => console.log(err));
+    getStars().then((response) => {
+      setStars(response.data.stars);
+    });
   });
 
   return (
     <div className={styles.container}>
-      <div className={styles.starCount}>{stars}</div>
+      <div className={styles.starCount}>{stars.toFixed(1)}</div>
       <StarGraphic stars={stars} />
     </div>
   );
