@@ -1,4 +1,6 @@
 import React from 'react';
+import { VscCheck } from 'react-icons/vsc';
+import { IconContext } from 'react-icons';
 import styles from './RatingListEntry.css';
 import StarGraphic from '../../../RatingSummary/Stars/StarGraphic/StarGraphic';
 
@@ -18,7 +20,9 @@ export default function RatingListEntry() {
         Pellentesque habitant morbi tristique senectus et netus et malesuada
         fames ac turpis egestas.
       </div>
-      <div className={styles.recommend}>✓ I recommend this product</div>
+      <div className={styles.check}>
+        <VscCheck /> I recommend this product
+      </div>
       <div className={styles.response}>
         <strong>Response:</strong>
         <p>
