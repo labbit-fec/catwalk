@@ -42,7 +42,10 @@ export default function RatingListEntry() {
           &nbsp;(10)
         </div>
         <div>
-          <button type="button" className={styles.btnHelpful}>
+          <button
+            type="button"
+            className={`${styles.btnHelpful} ${styles.report}`}
+          >
             Report
           </button>
         </div>
