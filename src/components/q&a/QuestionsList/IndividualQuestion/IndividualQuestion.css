@@ -11,6 +11,7 @@
 
 .question_text{
   flex: 4;
+  margin-left: 15px;
 }
 
 .question_buttons{
