@@ -94,6 +94,10 @@ router.get('/meta/characteristics', (req, res) => {
     .then((response) => {
       const { characteristics } = response.data;
 
+      Object.keys(characteristics).forEach((key) => {
+        characteristics[key].value = Number(characteristics[key].value);
+      });
+
       res.status(200).json({ characteristics });
     });
 });
