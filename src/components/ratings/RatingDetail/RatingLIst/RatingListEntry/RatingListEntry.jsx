@@ -12,32 +12,26 @@ export default function RatingListEntry({ review }) {
         <StarGraphic stars={review.rating} />
         <div>{`${review.reviewer_name}, ${review.date}`}</div>
       </div>
-      <div className={styles.ratingTitle}>Donut chocolate bar pudding.</div>
-      <div className={styles.ratingBody}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu dolor
-        nibh. Curabitur non vestibulum massa. Curabitur erat purus, consequat
-        sit amet sem laoreet, lacinia gravida dolor. Pellentesque faucibus odio
-        ut ex facilisis rutrum. Quisque sed arcu a massa suscipit euismod.
-        Pellentesque habitant morbi tristique senectus et netus et malesuada
-        fames ac turpis egestas.
-      </div>
-      <div className={styles.check}>
-        <VscCheck /> I recommend this product
-      </div>
-      <div className={styles.response}>
-        <strong>Response:</strong>
-        <p>
-          Marzipan danish jelly beans gummi bears apple pie cheesecake topping
-          biscuit sesame snaps.
-        </p>
-      </div>
+      <div className={styles.ratingTitle}>{review.summary}</div>
+      <div className={styles.ratingBody}>{review.body}</div>
+      {review.recommend && (
+        <div className={styles.check}>
+          <VscCheck /> I recommend this product
+        </div>
+      )}
+      {review.response.length > 0 && (
+        <div className={styles.response}>
+          <strong>Response:</strong>
+          <p>{review.response}</p>
+        </div>
+      )}
       <div className={styles.helpful}>
         <div>Helpful?</div>
         <div>
           <button type="button" className={styles.btnHelpful}>
             Yes
           </button>
-          (10)
+          ({review.helpfulness})
         </div>
         <div>
           <button
