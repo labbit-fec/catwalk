@@ -9,6 +9,9 @@ const Search = function () {
         type="text"
         placeholder="Search Questions & Answers"
       />
+      <button type="submit" className={styles.button}>
+        Search
+      </button>
     </div>
   );
 };

@@ -8,7 +8,12 @@ const Answer = function () {
       <span className={styles.answer_text}>
         <h4 className={styles.A}>A: </h4>
         <span className={styles.answer_body}>
-          Something pretty soft but I can&apos;t be sure.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu
+          dolor nibh. Curabitur non vestibulum massa. Curabitur erat purus,
+          consequat sit amet sem laoreet, lacinia gravida dolor. Pellentesque
+          faucibus odio ut ex facilisis rutrum. Quisque sed arcu a massa
+          suscipit euismod. Pellentesque habitant morbi tristique senectus et
+          netus et malesuada fames ac turpis egestas.
         </span>
       </span>
       <Images />

@@ -13,10 +13,13 @@
 
 .A{
   width: 20px;
+  margin-top: 15px;
 }
 
 .answer_body{
-  align-self: center;
+  margin-top: 15px;
+  margin-left: 5px;
+  margin-bottom: 10px;
 }
 
 .answer_bar{
@@ -24,6 +27,9 @@
   flex-direction: row;
   align-content: center;
   font-size: 10px;
+  margin-left: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .info{
