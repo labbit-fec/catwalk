@@ -73,3 +73,21 @@ app.get('/api/reviews/meta/recommended', (req, res) => {
       res.status(200).json({ recommended: recoPercent });
     });
 });
+
+app.get('/api/reviews/meta/characteristics', (req, res) => {
+  const { productId } = req.query;
+  axios
+    .get(`${server.baseUrl}/reviews/meta`, {
+      params: {
+        product_id: productId,
+      },
+      headers: {
+        Authorization: server.authorization,
+      },
+    })
+    .then((response) => {
+      const { characteristics } = response.data;
+
+      res.status(200).json({ characteristics });
+    });
+});

@@ -1,16 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
 import Slider from './Slider/Slider';
 import styles from './Sliders.css';
+import { ProductIdContext } from '../../../context/ProductIdContext';
 
 export default function Sliders() {
+  const [characteristics, setCharacteristics] = useState({});
+  const { productId } = useContext(ProductIdContext);
+
+  function getCharacteristics() {
+    return axios.get('/api/reviews/meta/characteristics', {
+      params: {
+        productId: productId,
+      },
+    });
+  }
+
+  useEffect(() => {
+    getCharacteristics().then((response) => {
+      setCharacteristics(response.data.characteristics);
+    });
+  });
+
   return (
     <div className={styles.container}>
-      <Slider characteristic="Size" average={1} />
-      <Slider characteristic="Width" average={2} />
-      <Slider characteristic="Comfort" average={3} />
-      <Slider characteristic="Quality" average={4} />
-      <Slider characteristic="Length" average={5} />
-      <Slider characteristic="Fit" average={1} />
+      {Object.keys(characteristics).map((characteristic) => (
+        <Slider
+          characteristic={characteristic}
+          average={characteristics[characteristic].value}
+        />
+      ))}
     </div>
   );
 }
