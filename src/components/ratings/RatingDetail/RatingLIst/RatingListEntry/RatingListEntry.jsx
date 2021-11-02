@@ -1,10 +1,11 @@
 import React from 'react';
 import { VscCheck } from 'react-icons/vsc';
 import { IconContext } from 'react-icons';
+import PropTypes from 'prop-types';
 import styles from './RatingListEntry.css';
 import StarGraphic from '../../../RatingSummary/Stars/StarGraphic/StarGraphic';
 
-export default function RatingListEntry() {
+export default function RatingListEntry({ review }) {
   return (
     <div className={styles.content}>
       <div className={styles.ratingHeader}>
@@ -50,3 +51,18 @@ export default function RatingListEntry() {
     </div>
   );
 }
+
+RatingListEntry.propTypes = {
+  review: PropTypes.shape.({
+    review_id: PropTypes.number.isRequired,
+    rating: PropTypes.number.isRequired,
+    summary: PropTypes.string.isRequired,
+    recommend:PropTypes.bool.isRequired,
+    response: PropTypes.string.isRequired,
+    body:PropTypes.string.isRequired,
+    date:PropTypes.string.isRequired,
+    reviewer_name:PropTypes.string.isRequired,
+    helpfulness:PropTypes.number.isRequired,
+    photos:PropTypes.array.isRequired,
+  }),
+};
