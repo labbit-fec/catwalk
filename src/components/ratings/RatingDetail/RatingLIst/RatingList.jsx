@@ -1,16 +1,16 @@
 import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
+
 import styles from './RatingList.css';
 import RatingListEntry from './RatingListEntry/RatingListEntry';
 import { ProductIdContext } from '../../../context/ProductIdContext';
 
 export default function RatingList() {
   const [reviewList, setReviewList] = useState([]);
-  const productId = useContext(ProductIdContext);
+  const { productId } = useContext(ProductIdContext);
 
   function getFirstTwoReviews() {
-    return axios.get('/reviews/firstTwoReviews', {
+    return axios.get('/api/reviews/firstTwoReviews', {
       params: {
         productId,
       },
@@ -19,7 +19,7 @@ export default function RatingList() {
 
   useEffect(() => {
     getFirstTwoReviews().then((response) => {
-      setReviewList(response.reviews);
+      setReviewList(response.data.reviews);
     });
   }, []);
 

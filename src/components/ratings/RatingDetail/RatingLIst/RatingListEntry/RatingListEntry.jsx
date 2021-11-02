@@ -9,8 +9,8 @@ export default function RatingListEntry({ review }) {
   return (
     <div className={styles.content}>
       <div className={styles.ratingHeader}>
-        <StarGraphic stars={4.5} />
-        <div>User1234, January 1, 2019</div>
+        <StarGraphic stars={review.rating} />
+        <div>{`${review.reviewer_name}, ${review.date}`}</div>
       </div>
       <div className={styles.ratingTitle}>Donut chocolate bar pudding.</div>
       <div className={styles.ratingBody}>
@@ -53,16 +53,16 @@ export default function RatingListEntry({ review }) {
 }
 
 RatingListEntry.propTypes = {
-  review: PropTypes.shape.({
-    review_id: PropTypes.number.isRequired,
-    rating: PropTypes.number.isRequired,
-    summary: PropTypes.string.isRequired,
-    recommend:PropTypes.bool.isRequired,
-    response: PropTypes.string.isRequired,
-    body:PropTypes.string.isRequired,
-    date:PropTypes.string.isRequired,
-    reviewer_name:PropTypes.string.isRequired,
-    helpfulness:PropTypes.number.isRequired,
-    photos:PropTypes.array.isRequired,
-  }),
+  review: PropTypes.shape({
+    review_id: PropTypes.number,
+    rating: PropTypes.number,
+    summary: PropTypes.string,
+    recommend: PropTypes.bool,
+    response: PropTypes.string,
+    body: PropTypes.string,
+    date: PropTypes.string,
+    reviewer_name: PropTypes.string,
+    helpfulness: PropTypes.number,
+    photos: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
 };
