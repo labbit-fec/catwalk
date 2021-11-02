@@ -18,12 +18,14 @@
 .upper {
   display: flex;
   flex-direction: row;
-  align-content: stretch;
+  /* align-content: stretch; */
   /* justify-content: space-between; */
 }
 
 .right {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: left;
 }
