@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  margin-top: 2em;
+  justify-content: space-between;
+}
+
+.actionButton {
+  background: none;
+  color: inherit;
+  border: 1px solid rgba(35, 35, 35, 0.5);
+  padding: 1em;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.addReviewButton {
+  background-color: rgba(35, 35, 35, 1);
+  color: white;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  /* font-weight: bold; */
+}
+
+.addReviewButton svg {
+  stroke-width: 1;
+}

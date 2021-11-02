@@ -1,23 +1,32 @@
-import React from 'react';
+import React, { useEffect, useContext, useState } from 'react';
+import axios from 'axios';
 import styles from './Bars.css';
 import Slider from './Bar/Bar';
+import { ProductIdContext } from '../../../context/ProductIdContext';
 
 export default function Sliders() {
-  const shaded = {
-    5: 0.1,
-    4: 0.3,
-    3: 0.3,
-    2: 0.2,
-    1: 0.1,
-  };
+  const { productId } = useContext(ProductIdContext);
+  const [ratings, setRatings] = useState([]);
+
+  function getRatings() {
+    return axios.get('/api/reviews/meta/ratings', {
+      params: {
+        productId: productId,
+      },
+    });
+  }
+
+  useEffect(() => {
+    getRatings().then((response) => {
+      setRatings(response.data.ratings);
+    });
+  });
 
   return (
     <div className={styles.container}>
-      {Object.keys(shaded)
-        .reverse()
-        .map((stars) => (
-          <Slider stars={stars} shaded={shaded[stars]} />
-        ))}
+      {ratings.map(({ rating, count, percent }) => (
+        <Slider rating={rating} count={count} percent={percent} />
+      ))}
     </div>
   );
 }

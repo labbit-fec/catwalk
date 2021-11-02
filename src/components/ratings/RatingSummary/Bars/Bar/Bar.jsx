@@ -2,22 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Bar.css';
 
-export default function Slider({ stars, shaded }) {
+export default function Slider({ rating, percent, count }) {
   return (
     <div className={styles.container}>
-      <div style={{ flex: 2 }}>{`${stars} stars:`}</div>
+      <div style={{ flex: 2 }}>{`${rating} stars:`}</div>
       <div style={{ flex: 8 }} className={styles.bar}>
-        <div style={{ flex: shaded }} className={styles.shaded} />
-        <div style={{ flex: 1 - shaded }} className={styles.unshaded} />
+        <div style={{ flex: percent }} className={styles.shaded} />
+        <div style={{ flex: 1 - percent }} className={styles.unshaded} />
       </div>
-      <div style={{ flex: 1, textAlign: 'right' }}>
-        {Math.floor(Math.random() * (40 - 1) + 1)}
-      </div>
+      <div style={{ flex: 1, textAlign: 'right' }}>{count}</div>
     </div>
   );
 }
 
 Slider.propTypes = {
-  shaded: PropTypes.number.isRequired,
-  stars: PropTypes.number.isRequired,
+  percent: PropTypes.number.isRequired,
+  rating: PropTypes.number.isRequired,
+  count: PropTypes.number.isRequired,
 };
