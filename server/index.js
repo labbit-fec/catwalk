@@ -18,6 +18,6 @@ app.use('/api/reviews', reviewRoutes);
 // JONATHAN: const QaRoutes = ...
 // app.use(...)
 
-app.listen(port, () => {});
+app.listen(port, () => { });
 
 module.exports.port = port;

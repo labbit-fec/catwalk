@@ -18,7 +18,7 @@ const Answer = function () {
       </span>
       <Images />
       <div className={styles.answer_bar}>
-        <span className={styles.info}> User1234, May 1, 2019 </span>|
+        <span className={styles.info}> by User1234, May 1, 2019 </span>|
         <div className={styles.answer_buttons}>
           <span> Helpful? </span>
           <span className={styles.helpful_button}> Yes</span>
