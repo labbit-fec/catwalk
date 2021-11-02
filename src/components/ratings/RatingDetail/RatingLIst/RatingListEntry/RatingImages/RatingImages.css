@@ -7,7 +7,18 @@
   margin-right: 1em;
 }
 
-.reviewImages img {
+.reviewImage {
   margin-right: 1em;
+  display: flex;
+  position: relative;
+}
+
+.reviewImage svg {
+  position: absolute;
+  right: 5%;
+  top: 5%;
+}
+
+.reviewImage img {
   border-radius: 0.5em;
 }
