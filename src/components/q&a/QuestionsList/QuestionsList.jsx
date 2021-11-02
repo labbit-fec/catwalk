@@ -1,5 +1,6 @@
 import React from 'react';
 import IndividualQuestion from './IndividualQuestion/IndividualQuestion';
+import BottomBar from './BottomBar/BottomBar';
 import styles from './QuestionsList.css';
 
 class QuestionsList extends React.Component {
@@ -107,6 +108,7 @@ class QuestionsList extends React.Component {
             dummyData={dummyData}
           />
         ))}
+        <BottomBar />
       </div>
     );
   }

@@ -2,7 +2,7 @@ import React from 'react';
 import Answer from './Answer/Answer';
 import styles from './IndividualQuestion.css';
 
-const IndividualQuestion = function (props) {
+const IndividualQuestion = function () {
   return (
     <div className={styles.container}>
       <div className={styles.question}>
