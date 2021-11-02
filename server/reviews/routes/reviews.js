@@ -11,8 +11,9 @@ router.get('/firstTwoReviews', (req, res) => {
     .get(`${baseUrl}/reviews`, {
       params: {
         product_id: productId,
-        page: 1,
+        page: 2,
         count: 2,
+        sort: 'newest',
       },
       headers: {
         Authorization: authorization,

@@ -1,9 +1,9 @@
 import React from 'react';
 import { VscCheck } from 'react-icons/vsc';
-import { IconContext } from 'react-icons';
 import PropTypes from 'prop-types';
 import styles from './RatingListEntry.css';
 import StarGraphic from '../../../RatingSummary/Stars/StarGraphic/StarGraphic';
+import RatingImages from './RatingImages/RatingImages';
 
 export default function RatingListEntry({ review }) {
   return (
@@ -19,7 +19,10 @@ export default function RatingListEntry({ review }) {
         })}`}</div>
       </div>
       <div className={styles.ratingTitle}>{review.summary}</div>
-      <div className={styles.ratingBody}>{review.body}</div>
+      <div className={styles.ratingBody}>
+        {review.body}
+        {review.photos.length > 0 && <RatingImages photos={review.photos} />}
+      </div>
       {review.recommend && (
         <div className={styles.check}>
           <VscCheck /> I recommend this product
@@ -63,6 +66,11 @@ RatingListEntry.propTypes = {
     date: PropTypes.string,
     reviewer_name: PropTypes.string,
     helpfulness: PropTypes.number,
-    photos: PropTypes.arrayOf(PropTypes.string),
+    photos: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        url: PropTypes.string,
+      })
+    ).isRequired,
   }).isRequired,
 };
