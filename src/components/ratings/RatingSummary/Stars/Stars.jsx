@@ -8,20 +8,20 @@ export default function Stars() {
   const [stars, setStars] = useState(0);
   const { productId } = useContext(ProductIdContext);
 
-  function getStars() {
-    return axios.get('/api/reviews/meta/stars', {
-      params: {
-        productId: productId,
-      },
-    });
-  }
-
   useEffect(() => {
+    function getStars() {
+      return axios.get('/api/reviews/meta/stars', {
+        params: {
+          productId: productId,
+        },
+      });
+    }
+
     console.log('use effect: stars');
     getStars().then((response) => {
       setStars(response.data.stars);
     });
-  }, []);
+  }, [productId]);
 
   return (
     <div className={styles.container}>
