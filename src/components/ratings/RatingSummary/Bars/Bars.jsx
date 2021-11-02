@@ -20,7 +20,7 @@ export default function Sliders() {
     getRatings().then((response) => {
       setRatings(response.data.ratings);
     });
-  });
+  }, []);
 
   return (
     <div className={styles.container}>

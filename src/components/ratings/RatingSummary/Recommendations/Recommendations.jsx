@@ -16,10 +16,11 @@ export default function Recommendations() {
   }
 
   useEffect(() => {
+    console.log('use effect: stars');
     getRecommendations().then((response) => {
       setRecommendations(response.data.recommended);
     });
-  });
+  }, []);
 
   return (
     <div className={styles.container}>

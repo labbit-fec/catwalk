@@ -17,10 +17,11 @@ export default function Sliders() {
   }
 
   useEffect(() => {
+    console.log('use effect: sliders');
     getCharacteristics().then((response) => {
       setCharacteristics(response.data.characteristics);
     });
-  });
+  }, []);
 
   return (
     <div className={styles.container}>

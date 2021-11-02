@@ -17,10 +17,11 @@ export default function Stars() {
   }
 
   useEffect(() => {
+    console.log('use effect: stars');
     getStars().then((response) => {
       setStars(response.data.stars);
     });
-  });
+  }, []);
 
   return (
     <div className={styles.container}>
