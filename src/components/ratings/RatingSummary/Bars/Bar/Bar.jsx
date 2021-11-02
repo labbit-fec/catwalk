@@ -18,4 +18,5 @@ export default function Slider({ rating, percent, count }) {
 Slider.propTypes = {
   percent: PropTypes.number.isRequired,
   rating: PropTypes.number.isRequired,
+  count: PropTypes.number.isRequired,
 };
