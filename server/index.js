@@ -18,6 +18,11 @@ app.use('/api/reviews', reviewRoutes);
 // JONATHAN: const QaRoutes = ...
 // app.use(...)
 
+const QaRoutes = require('./qa/routes');
+
+app.use('/api/qa', QaRoutes);
+
+// eslint-disable-next-line prettier/prettier
 app.listen(port, () => { });
 
 module.exports.port = port;
