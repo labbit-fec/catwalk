@@ -1,0 +1,48 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(235, 235, 235, 1)
+}
+
+.answer_text{
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+
+.A{
+  width: 20px;
+  /* justify-self: center; */
+}
+
+.answer_body{
+  /* justify-self: center; */
+  align-self: center;
+}
+
+.answer_bar{
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+
+.info{
+  margin-right: 5px;
+}
+
+.answer_buttons{
+  margin-left: 5px;
+}
+
+.helpful_button{
+  color: rgb(106, 106, 116);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.report{
+  margin-left: 5px;
+  color: rgb(106, 106, 116);
+  text-decoration: underline;
+  cursor: pointer;
+}

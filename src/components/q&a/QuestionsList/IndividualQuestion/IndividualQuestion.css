@@ -31,3 +31,12 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 98%;
+  background-color: green;
+  height: 1px;
+}
