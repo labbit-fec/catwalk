@@ -26,7 +26,7 @@ const server = {
   authorization: TOKEN,
 };
 
-app.get('/api/reviews/stars', (req, res) => {
+app.get('/api/reviews/meta/stars', (req, res) => {
   const { productId } = req.query;
   axios
     .get(`${server.baseUrl}/reviews/meta`, {
@@ -49,5 +49,27 @@ app.get('/api/reviews/stars', (req, res) => {
         0
       );
       res.status(200).json({ stars: sum / count });
+    });
+});
+
+app.get('/api/reviews/meta/recommended', (req, res) => {
+  const { productId } = req.query;
+  axios
+    .get(`${server.baseUrl}/reviews/meta`, {
+      params: {
+        product_id: productId,
+      },
+      headers: {
+        Authorization: server.authorization,
+      },
+    })
+    .then((response) => {
+      const { recommended } = response.data;
+
+      const recoPercent =
+        Number(recommended.true) /
+        (Number(recommended.true) + Number(recommended.false));
+
+      res.status(200).json({ recommended: recoPercent });
     });
 });

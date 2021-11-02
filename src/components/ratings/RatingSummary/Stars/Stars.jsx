@@ -9,7 +9,7 @@ export default function Stars() {
   const { productId } = useContext(ProductIdContext);
 
   function getStars() {
-    return axios.get('/api/reviews/stars', {
+    return axios.get('/api/reviews/meta/stars', {
       params: {
         productId: productId,
       },
