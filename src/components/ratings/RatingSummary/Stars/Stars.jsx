@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import styles from './Stars.css';
 import StarGraphic from './StarGraphic/StarGraphic';
+import { ProductIdContext } from '../../../context/ProductIdContext';
 
 export default function Stars() {
   const [stars, setStars] = useState(0);
+  const { productId } = useContext(ProductIdContext);
 
   function getStars() {
     return axios.get('/api/reviews/stars', {
       params: {
-        productId: 61575,
+        productId: productId,
       },
     });
   }
