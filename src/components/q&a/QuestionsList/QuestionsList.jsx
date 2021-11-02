@@ -1,5 +1,6 @@
 import React from 'react';
 import IndividualQuestion from './IndividualQuestion/IndividualQuestion';
+import styles from './QuestionsList.css';
 
 class QuestionsList extends React.Component {
   constructor(props) {
@@ -156,7 +157,7 @@ class QuestionsList extends React.Component {
   render() {
     const { dummyData } = this.state;
     return (
-      <div className="questions_list">
+      <div className={styles.container}>
         {dummyData.map((question) => (
           // <button type="submit">Submit</button>
           <IndividualQuestion
