@@ -9,11 +9,17 @@ import ProductTextOverview from './ProductTextOverview/ProductTextOverview';
 const Overview = () => (
   <div className={styles.container}>
     Product Overview
-    <ImageGallery />
-    <ProductInformation />
-    <StyleSelector />
-    <AddToCart />
-    <ProductTextOverview />
+    <div className={styles.context}>
+      <div className={styles.upper}>
+        <ImageGallery />
+        <div className={styles.right}>
+          <ProductInformation />
+          <StyleSelector />
+          <AddToCart />
+        </div>
+      </div>
+      <ProductTextOverview />
+    </div>
   </div>
 );
 

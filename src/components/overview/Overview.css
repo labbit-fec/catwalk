@@ -1,10 +1,29 @@
 .container {
   display: flex;
-
+  flex-direction: column;
   /* Placeholder CSS for illustrative layout only */
   border: 3px solid black;
   color: black;
   font-weight: bold;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
+  align-content: stretch;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+}
+
+.upper {
+  display: flex;
+  flex-direction: row;
+  align-content: stretch;
+  /* justify-content: space-between; */
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
