@@ -8,19 +8,19 @@ export default function Sliders() {
   const { productId } = useContext(ProductIdContext);
   const [ratings, setRatings] = useState([]);
 
-  function getRatings() {
-    return axios.get('/api/reviews/meta/ratings', {
-      params: {
-        productId: productId,
-      },
-    });
-  }
-
   useEffect(() => {
+    function getRatings() {
+      return axios.get('/api/reviews/meta/ratings', {
+        params: {
+          productId: productId,
+        },
+      });
+    }
+
     getRatings().then((response) => {
       setRatings(response.data.ratings);
     });
-  });
+  }, [productId]);
 
   return (
     <div className={styles.container}>

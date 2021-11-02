@@ -8,19 +8,20 @@ export default function Sliders() {
   const [characteristics, setCharacteristics] = useState({});
   const { productId } = useContext(ProductIdContext);
 
-  function getCharacteristics() {
-    return axios.get('/api/reviews/meta/characteristics', {
-      params: {
-        productId: productId,
-      },
-    });
-  }
-
   useEffect(() => {
+    function getCharacteristics() {
+      return axios.get('/api/reviews/meta/characteristics', {
+        params: {
+          productId: productId,
+        },
+      });
+    }
+
+    console.log('use effect: sliders');
     getCharacteristics().then((response) => {
       setCharacteristics(response.data.characteristics);
     });
-  });
+  }, [productId]);
 
   return (
     <div className={styles.container}>

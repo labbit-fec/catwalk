@@ -7,19 +7,20 @@ export default function Recommendations() {
   const { productId } = useContext(ProductIdContext);
   const [recommendations, setRecommendations] = useState(0);
 
-  function getRecommendations() {
-    return axios.get('/api/reviews/meta/recommended', {
-      params: {
-        productId: productId,
-      },
-    });
-  }
-
   useEffect(() => {
+    function getRecommendations() {
+      return axios.get('/api/reviews/meta/recommended', {
+        params: {
+          productId: productId,
+        },
+      });
+    }
+
+    console.log('use effect: stars');
     getRecommendations().then((response) => {
       setRecommendations(response.data.recommended);
     });
-  });
+  }, [productId]);
 
   return (
     <div className={styles.container}>
