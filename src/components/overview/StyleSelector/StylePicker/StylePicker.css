@@ -4,7 +4,7 @@
   flex-wrap: nowrap;
   /* Placeholder CSS for illustrative layout only */
   justify-content: flex-start;
-  align-items: left;
+  align-items: flex-start;
 }
 
 .row {
@@ -13,10 +13,16 @@
   flex-wrap: nowrap;
   /* Placeholder CSS for illustrative layout only */
   justify-content: flex-start;
-  align-items: left;
+  align-items: flex-start;
 }
 
 .dot {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  /* Placeholder CSS for illustrative layout only */
+  justify-content: flex-start;
+  align-items: flex-start;
   height: 25px;
   width: 25px;
   background-color: #bbb;
