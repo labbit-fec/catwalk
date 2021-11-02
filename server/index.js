@@ -74,6 +74,34 @@ app.get('/api/reviews/meta/recommended', (req, res) => {
     });
 });
 
+app.get('/api/reviews/meta/ratings', (req, res) => {
+  const { productId } = req.query;
+  axios
+    .get(`${server.baseUrl}/reviews/meta`, {
+      params: {
+        product_id: productId,
+      },
+      headers: {
+        Authorization: server.authorization,
+      },
+    })
+    .then((response) => {
+      const { ratings } = response.data;
+      const totalRatings = Object.keys(ratings).reduce(
+        (total, current) => total + Number(ratings[current]),
+        0
+      );
+
+      const result = [5, 4, 3, 2, 1].map((rating) => ({
+        rating,
+        count: Number(ratings[rating]) || 0,
+        percent: Number(ratings[rating] || 0) / totalRatings,
+      }));
+      console.log(result);
+      res.status(200).json({ ratings: result });
+    });
+});
+
 app.get('/api/reviews/meta/characteristics', (req, res) => {
   const { productId } = req.query;
   axios
