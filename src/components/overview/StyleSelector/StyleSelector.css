@@ -2,11 +2,11 @@
   display: flex;
   flex-direction: column;
   /* Placeholder CSS for illustrative layout only */
-  border: 3px solid black;
-  color: black;
+  /* border: 3px solid black;
+  color: black; */
   font-weight: bold;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .title {
@@ -16,4 +16,6 @@
   /* Placeholder CSS for illustrative layout only */
   color: #6e7076;
   font-weight: bold;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
