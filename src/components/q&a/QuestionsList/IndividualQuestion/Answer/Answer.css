@@ -1,0 +1,54 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(235, 235, 235, 1)
+}
+
+.answer_text{
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  margin-left: 15px;
+}
+
+.A{
+  width: 20px;
+  margin-top: 15px;
+}
+
+.answer_body{
+  margin-top: 15px;
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+
+.answer_bar{
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  font-size: 10px;
+  margin-left: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.info{
+  margin-right: 5px;
+}
+
+.answer_buttons{
+  margin-left: 5px;
+}
+
+.helpful_button{
+  color: rgb(106, 106, 116);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.report{
+  margin-left: 5px;
+  color: rgb(106, 106, 116);
+  text-decoration: underline;
+  cursor: pointer;
+}
