@@ -1,10 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Answer from './Answer/Answer';
 import styles from './IndividualQuestion.css';
 
-const IndividualQuestion = function () {
+const IndividualQuestion = function ({ question, id }) {
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      data-testid="individual-question-container"
+    >
       <div className={styles.question}>
         <h4 className={styles.question_text}>
           Q: What fabric is the top made of?
@@ -23,3 +27,8 @@ const IndividualQuestion = function () {
 };
 
 export default IndividualQuestion;
+
+IndividualQuestion.propTypes = {
+  question: PropTypes.object.isRequired,
+  id: PropTypes.number.isRequired,
+};
