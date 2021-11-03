@@ -10,7 +10,6 @@ const IndividualQuestion = function ({ body, id, helpfulness }) {
   const [answers, setAnswers] = useState([]);
 
   useEffect(() => {
-    console.log('KEY: ' + id)
     axios
       .get(`/api/qa/questions/${id}/answers`, {
         params: {
@@ -59,6 +58,6 @@ export default IndividualQuestion;
 
 IndividualQuestion.propTypes = {
   body: PropTypes.string.isRequired,
-  key: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
   helpfulness: PropTypes.number.isRequired,
 };

@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 import Images from './Images/Images';
 import styles from './Answer.css';
 
-const Answer = function () {
+const Answer = function ({ body, key, helpfulness, date, name, photos }) {
   return (
     <div className={styles.container}>
       <span className={styles.answer_text}>
         <h4 className={styles.A}>A: </h4>
-        <span className={styles.answer_body}>
-          {body}
-        </span>
+        <span className={styles.answer_body}>{body}</span>
       </span>
       <Images />
       <div className={styles.answer_bar}>

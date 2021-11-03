@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React from 'react';
 import {
   render,
@@ -9,11 +10,12 @@ import {
 import '@testing-library/jest-dom';
 import QA from './QA';
 
+// eslint-disable-next-line no-undef
 test('Displays QA Container', async () => {
   render(<QA />);
 
   expect(screen.getByText('Questions & Answers')).toBeVisible();
-})
+});
 
 test('Displays Search element', async () => {
   render(<QA />);
