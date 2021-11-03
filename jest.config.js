@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /*
  * For a detailed explanation regarding each configuration property, visit:
  * https://jestjs.io/docs/configuration
@@ -42,7 +43,7 @@ module.exports = {
   // ],
   "reporters": [
     "default",
-    ["jest-summary-reporter", {"failuresOnly": false}]
+    ["jest-summary-reporter", { "failuresOnly": false }]
   ],
 
   // An object that configures minimum threshold enforcement for coverage results
