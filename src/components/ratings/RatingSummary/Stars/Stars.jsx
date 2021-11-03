@@ -5,7 +5,7 @@ import StarGraphic from './StarGraphic/StarGraphic';
 import { ProductIdContext } from '../../../context/ProductIdContext';
 
 export default function Stars() {
-  const [stars, setStars] = useState(0);
+  const [stars, setStars] = useState(null);
   const { productId } = useContext(ProductIdContext);
 
   useEffect(() => {
@@ -24,8 +24,14 @@ export default function Stars() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.starCount}>{stars.toFixed(1)}</div>
-      <StarGraphic stars={stars} />
+      {stars ? (
+        <>
+          <div className={styles.starCount}>stars.toFixed(1)</div>
+          <StarGraphic stars={stars || 0} />
+        </>
+      ) : (
+        <div>This product has no ratings yet.</div>
+      )}
     </div>
   );
 }
