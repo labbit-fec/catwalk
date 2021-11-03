@@ -121,7 +121,12 @@ const QuestionsList = function () {
     <div className={styles.container} data-testid="question-list-container">
       {questions.map((question) => (
         // <button type="submit">Submit</button>
-        <IndividualQuestion question={question} id={question.question_id} />
+        <IndividualQuestion
+          body={question.question_body}
+          key={question.question_id}
+          id={question.question_id}
+          helpfulness={question.question_helpfulness}
+        />
       ))}
       <BottomBar />
     </div>

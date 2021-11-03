@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Images from './Images/Images';
 import styles from './Answer.css';
 
@@ -8,12 +9,7 @@ const Answer = function () {
       <span className={styles.answer_text}>
         <h4 className={styles.A}>A: </h4>
         <span className={styles.answer_body}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu
-          dolor nibh. Curabitur non vestibulum massa. Curabitur erat purus,
-          consequat sit amet sem laoreet, lacinia gravida dolor. Pellentesque
-          faucibus odio ut ex facilisis rutrum. Quisque sed arcu a massa
-          suscipit euismod. Pellentesque habitant morbi tristique senectus et
-          netus et malesuada fames ac turpis egestas.
+          {body}
         </span>
       </span>
       <Images />
@@ -30,3 +26,12 @@ const Answer = function () {
 };
 
 export default Answer;
+
+Answer.propTypes = {
+  helpfulness: PropTypes.number.isRequired,
+  key: PropTypes.number.isRequired,
+  body: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  photos: PropTypes.string.isRequired,
+};

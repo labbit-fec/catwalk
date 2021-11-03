@@ -24,4 +24,26 @@ router.get('/questions', (req, res) => {
     });
 });
 
+router.get('/questions/:question_id/answers', (req, res) => {
+  const { productId } = req.query;
+  // eslint-disable-next-line camelcase
+  const { question_id } = req.params;
+  axios
+    // eslint-disable-next-line camelcase
+    .get(`${baseUrl}/qa/questions/${question_id}/answers`, {
+      params: {
+        product_id: productId,
+      },
+      headers: {
+        Authorization: authorization,
+      },
+    })
+    .then((response) => {
+      res.status(200).send(response.data);
+    })
+    .catch(() => {
+      res.status(500).send('Unable to complete request.');
+    });
+});
+
 module.exports = router;
