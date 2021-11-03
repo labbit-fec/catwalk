@@ -6,9 +6,13 @@ import BottomBar from './BottomBar/BottomBar';
 import styles from './QuestionsList.css';
 import { ProductIdContext } from '../../context/ProductIdContext';
 
-const QuestionsList = function ({ questions, setQuestions }) {
+const QuestionsList = function ({ questions, setQuestions, setAllQuestions }) {
   const { productId } = useContext(ProductIdContext);
-  // const [questions, setQuestions] = useState([]);
+
+  const successCB = (response) => {
+    setQuestions(response.data);
+    setAllQuestions(response.data);
+  };
 
   useEffect(() => {
     axios
@@ -18,7 +22,7 @@ const QuestionsList = function ({ questions, setQuestions }) {
         },
       })
       .then((response) => {
-        setQuestions(response.data);
+        successCB(response);
         // console.log(JSON.stringify(response.data));
       })
       .catch((err) => {
@@ -74,4 +78,5 @@ QuestionsList.propTypes = {
     })
   ).isRequired,
   setQuestions: PropTypes.func.isRequired,
+  setAllQuestions: PropTypes.func.isRequired,
 };

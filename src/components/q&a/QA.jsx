@@ -6,13 +6,23 @@ import QuestionsList from './QuestionsList/QuestionsList';
 
 const QA = function () {
   const [questions, setQuestions] = useState([]);
+  const [allQuestions, setAllQuestions] = useState([]);
 
   return (
     <div className={styles.container}>
       <h3>Questions & Answers</h3>
       <div className={styles.content}>
-        <Search questions={questions} setQuestions={setQuestions} />
-        <QuestionsList questions={questions} setQuestions={setQuestions} />
+        <Search
+          questions={questions}
+          setQuestions={setQuestions}
+          allQuestions={allQuestions}
+        />
+        <QuestionsList
+          questions={questions}
+          setQuestions={setQuestions}
+          allQuestions={allQuestions}
+          setAllQuestions={setAllQuestions}
+        />
       </div>
     </div>
   );
