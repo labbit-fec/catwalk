@@ -5,10 +5,8 @@ import styles from './Search.css';
 import { ProductIdContext } from '../../context/ProductIdContext';
 
 const Search = function ({ questions, setQuestions, allQuestions }) {
-  const { productId } = useContext(ProductIdContext);
-
-  const handleSearch = () => {
-    const input = document.getElementById('input').value.toLowerCase();
+  const handleSearch = (e) => {
+    const input = e.target.value.toLowerCase();
     console.log(input);
     if (input.length < 3) {
       setQuestions(allQuestions);
@@ -21,17 +19,15 @@ const Search = function ({ questions, setQuestions, allQuestions }) {
           filtered.push(question);
         } else if (Object.values(question.answers).length) {
           const answers = Object.values(question.answers);
-          // console.log(
-          //   `I HAVE ${Object.values(question.answers).length} ANSWERS!!!`
-          // );
 
-          answers.forEach((answer) => {
-            const aBody = answer.body.toLowerCase();
+          for (let i = 0; i < answers.length; i += 1) {
+            const aBody = answers[i].body.toLowerCase();
 
             if (aBody.includes(input)) {
               filtered.push(question);
+              break;
             }
-          });
+          }
         }
       });
       setQuestions(filtered);
@@ -45,8 +41,9 @@ const Search = function ({ questions, setQuestions, allQuestions }) {
         className={styles.input}
         type="text"
         placeholder="Search Questions & Answers"
+        onChange={handleSearch}
       />
-      <button type="submit" className={styles.button} onClick={handleSearch}>
+      <button type="submit" className={styles.button}>
         Search
       </button>
     </div>
