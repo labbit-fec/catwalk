@@ -9,19 +9,19 @@ export default function RatingList() {
   const [reviewList, setReviewList] = useState([]);
   const { productId } = useContext(ProductIdContext);
 
-  function getFirstTwoReviews() {
-    return axios.get('/api/reviews/firstTwoReviews', {
-      params: {
-        productId,
-      },
-    });
-  }
-
   useEffect(() => {
+    function getFirstTwoReviews() {
+      return axios.get('/api/reviews/firstTwoReviews', {
+        params: {
+          productId,
+        },
+      });
+    }
+
     getFirstTwoReviews().then((response) => {
       setReviewList(response.data.reviews);
     });
-  }, []);
+  }, [productId]);
 
   return (
     <div className={styles.content}>
