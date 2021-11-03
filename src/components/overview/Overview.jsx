@@ -1,6 +1,26 @@
 import React from 'react';
 import styles from './Overview.css';
+import ImageGallery from './ImageGallery/ImageGallery';
+import AddToCart from './AddToCart/AddToCart';
+import ProductInformation from './ProductInformation/ProductInformation';
+import StyleSelector from './StyleSelector/StyleSelector';
+import ProductTextOverview from './ProductTextOverview/ProductTextOverview';
 
-const Overview = () => <div className={styles.container}>Product Overview</div>;
+const Overview = () => (
+  <div className={styles.container}>
+    Product Overview
+    <div className={styles.context}>
+      <div className={styles.upper}>
+        <ImageGallery />
+        <div className={styles.right}>
+          <ProductInformation />
+          <StyleSelector />
+          <AddToCart />
+        </div>
+      </div>
+      <ProductTextOverview />
+    </div>
+  </div>
+);
 
 export default Overview;
