@@ -8,10 +8,35 @@ import { ProductIdContext } from '../../context/ProductIdContext';
 
 const QuestionsList = function ({ questions, setQuestions, setAllQuestions }) {
   const { productId } = useContext(ProductIdContext);
+  const [expanded, setExpanded] = useState(false);
 
   const successCB = (response) => {
     setQuestions(response.data);
     setAllQuestions(response.data);
+  };
+
+  const renderShortenedList = () => {
+    if (expanded) {
+      return questions.map((question) => (
+        // <button type="submit">Submit</button>
+        <IndividualQuestion
+          body={question.question_body}
+          key={question.question_id}
+          id={question.question_id}
+          helpfulness={question.question_helpfulness}
+        />
+      ));
+    }
+    const shortened = questions.slice(0, 4);
+    return shortened.map((question) => (
+      // <button type="submit">Submit</button>
+      <IndividualQuestion
+        body={question.question_body}
+        key={question.question_id}
+        id={question.question_id}
+        helpfulness={question.question_helpfulness}
+      />
+    ));
   };
 
   useEffect(() => {
@@ -34,7 +59,7 @@ const QuestionsList = function ({ questions, setQuestions, setAllQuestions }) {
     <div className={styles.container} data-testid="question-list-container">
       {questions.length ? (
         <div>
-          {questions.map((question) => (
+          {/* {questions.map((question) => (
             // <button type="submit">Submit</button>
             <IndividualQuestion
               body={question.question_body}
@@ -42,7 +67,8 @@ const QuestionsList = function ({ questions, setQuestions, setAllQuestions }) {
               id={question.question_id}
               helpfulness={question.question_helpfulness}
             />
-          ))}
+          ))} */}
+          {renderShortenedList()}
           <BottomBar />
         </div>
       ) : (
