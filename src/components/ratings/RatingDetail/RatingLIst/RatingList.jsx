@@ -9,10 +9,11 @@ import ActionButtons from './ActionButtons/ActionButtons';
 export default function RatingList({ sortBy }) {
   const [reviewList, setReviewList] = useState([]);
   const [lastPageLoaded, setLastPageLoaded] = useState(0); // represents the last page that was
+  const [moreReviews, setMoreReviews] = useState(false);
   const { productId } = useContext(ProductIdContext);
 
-  function getNextTwoReviews(pageToLoad) {
-    setLastPageLoaded(pageToLoad);
+  function getNextTwoReviews(pageToLoad, checkOnly) {
+    if (!checkOnly) setLastPageLoaded(pageToLoad);
     return axios.get('/api/reviews', {
       params: {
         productId,
@@ -25,14 +26,21 @@ export default function RatingList({ sortBy }) {
 
   // When the component mounts, and any time productId changes, need to load the first two reviews, starting at page 1
   useEffect(() => {
-    getNextTwoReviews(1).then((response) => {
+    getNextTwoReviews(1, false).then((response) => {
       setReviewList(response.data.reviews);
     });
   }, [productId]);
 
+  // Whenever the reviewList changes, check if there are more reviews, in order to activate/deactive more reviews button
+  useEffect(() => {
+    getNextTwoReviews(lastPageLoaded + 1, true).then((response) => {
+      setMoreReviews(response.data.reviews.length > 0);
+    });
+  }, [reviewList]);
+
   // When the more reviews button is clicked
   const moreClickHandler = useCallback(() => {
-    getNextTwoReviews(lastPageLoaded + 1).then((response) => {
+    getNextTwoReviews(lastPageLoaded + 1, false).then((response) => {
       setReviewList([...reviewList, ...response.data.reviews]);
       const reviewContainer = document.getElementById('review-container');
       reviewContainer.scrollTop = reviewContainer.scrollHeight;
