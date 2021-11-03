@@ -26,7 +26,7 @@ export default function Stars() {
     <div className={styles.container}>
       {stars ? (
         <>
-          <div className={styles.starCount}>stars.toFixed(1)</div>
+          <div className={styles.starCount}>{stars.toFixed(1)}</div>
           <StarGraphic stars={stars || 0} />
         </>
       ) : (

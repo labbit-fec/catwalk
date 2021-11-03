@@ -5,15 +5,15 @@ const { baseUrl, authorization } = require('../../server-config');
 const router = express.Router();
 
 router.get('/firstTwoReviews', (req, res) => {
-  const { productId } = req.query;
+  const { productId, sort } = req.query;
 
   axios
     .get(`${baseUrl}/reviews`, {
       params: {
         product_id: productId,
-        page: 2,
+        page: 1,
         count: 2,
-        sort: 'newest',
+        sort,
       },
       headers: {
         Authorization: authorization,

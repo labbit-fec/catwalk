@@ -5,7 +5,7 @@ import styles from './RatingList.css';
 import RatingListEntry from './RatingListEntry/RatingListEntry';
 import { ProductIdContext } from '../../../context/ProductIdContext';
 
-export default function RatingList() {
+export default function RatingList({ sortBy }) {
   const [reviewList, setReviewList] = useState([]);
   const { productId } = useContext(ProductIdContext);
 
@@ -14,6 +14,7 @@ export default function RatingList() {
       return axios.get('/api/reviews/firstTwoReviews', {
         params: {
           productId,
+          sort: sortBy,
         },
       });
     }
@@ -21,7 +22,7 @@ export default function RatingList() {
     getFirstTwoReviews().then((response) => {
       setReviewList(response.data.reviews);
     });
-  }, [productId]);
+  }, [productId, sortBy]);
 
   return (
     <div className={styles.content}>

@@ -7,7 +7,7 @@ import Related from './related/Related';
 import styles from './App.css';
 
 export default function App() {
-  const [productId, setProductId] = useState(61577);
+  const [productId, setProductId] = useState(61576);
   return (
     <div className={styles.container}>
       App Container

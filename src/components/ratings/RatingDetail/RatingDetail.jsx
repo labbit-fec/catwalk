@@ -18,7 +18,7 @@ export default function RatingDetail() {
   return (
     <div className={styles.content}>
       <RatingCount sortBy={sortBy} handleChange={handleChange} />
-      <RatingList />
+      <RatingList sortBy={sortBy} />
       <ActionButtons />
     </div>
   );
