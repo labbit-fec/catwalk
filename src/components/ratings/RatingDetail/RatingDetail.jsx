@@ -2,7 +2,6 @@ import React, { useState, useCallback } from 'react';
 import styles from './RatingDetail.css';
 import RatingCount from './RatingCount/RatingCount';
 import RatingList from './RatingList/RatingList';
-import ActionButtons from './ActionButtons/ActionButtons';
 
 export default function RatingDetail() {
   const [sortBy, setSortBy] = useState('newest');
@@ -19,7 +18,6 @@ export default function RatingDetail() {
     <div className={styles.content}>
       <RatingCount sortBy={sortBy} handleChange={handleChange} />
       <RatingList sortBy={sortBy} />
-      <ActionButtons />
     </div>
   );
 }

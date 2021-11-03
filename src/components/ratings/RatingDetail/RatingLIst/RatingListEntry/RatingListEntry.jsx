@@ -28,7 +28,7 @@ export default function RatingListEntry({ review }) {
           <VscCheck /> I recommend this product
         </div>
       )}
-      {review.response.length > 0 && (
+      {review.response && review.response.length > 0 && (
         <div className={styles.response}>
           <strong>Response:</strong>
           <p>{review.response}</p>
