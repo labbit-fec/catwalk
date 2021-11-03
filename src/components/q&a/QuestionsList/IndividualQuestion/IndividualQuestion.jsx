@@ -17,6 +17,12 @@ const IndividualQuestion = function ({ body, id, helpfulness }) {
         },
       })
       .then((response) => {
+        // response.data.results.forEach((answer) => {
+        //   const tempDate = answer.date.split('T')[0].split('-');
+        //   const date = `${tempDate[1]}-${tempDate[2]}-${tempDate[0]}`;
+        //   console.log('TEST: ' + date)
+        //   answer.newDate = date;
+        // });
         setAnswers(response.data.results);
         // console.log(JSON.stringify(response.data));
       })
@@ -46,7 +52,7 @@ const IndividualQuestion = function ({ body, id, helpfulness }) {
           date={answer.date}
           name={answer.answerer_name}
           helpfulness={answer.helpfulness}
-          photos={JSON.stringify(answer.photos)}
+          photos={answer.photos}
         />
       ))}
       <hr />
