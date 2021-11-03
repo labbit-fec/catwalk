@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './RatingCount.css';
 
 export default function RatingCount({ sortBy, handleChange }) {
@@ -19,3 +20,8 @@ export default function RatingCount({ sortBy, handleChange }) {
     </div>
   );
 }
+
+RatingCount.propTypes = {
+  sortBy: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+};
