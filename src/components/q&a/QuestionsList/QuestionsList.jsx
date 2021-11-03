@@ -9,12 +9,6 @@ const QuestionsList = function () {
   const { productId } = useContext(ProductIdContext);
   const [questions, setQuestions] = useState([]);
 
-  // funaxios.get('/api/qa/questions', {
-  //     params: {
-  //       productId: productId,
-  //     },
-  //   });
-
   useEffect(() => {
     axios
       .get('/api/qa/questions', {
