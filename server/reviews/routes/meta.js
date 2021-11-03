@@ -1,10 +1,10 @@
 const express = require('express');
 const axios = require('axios');
-const { baseUrl, authorization } = require('../server-config');
+const { baseUrl, authorization } = require('../../server-config');
 
 const router = express.Router();
 
-router.get('/meta/stars', (req, res) => {
+router.get('/stars', (req, res) => {
   const { productId } = req.query;
   axios
     .get(`${baseUrl}/reviews/meta`, {
@@ -30,7 +30,7 @@ router.get('/meta/stars', (req, res) => {
     });
 });
 
-router.get('/meta/recommended', (req, res) => {
+router.get('/recommended', (req, res) => {
   const { productId } = req.query;
   axios
     .get(`${baseUrl}/reviews/meta`, {
@@ -52,7 +52,7 @@ router.get('/meta/recommended', (req, res) => {
     });
 });
 
-router.get('/meta/ratings', (req, res) => {
+router.get('/ratings', (req, res) => {
   const { productId } = req.query;
   axios
     .get(`${baseUrl}/reviews/meta`, {
@@ -80,7 +80,7 @@ router.get('/meta/ratings', (req, res) => {
     });
 });
 
-router.get('/meta/characteristics', (req, res) => {
+router.get('/characteristics', (req, res) => {
   const { productId } = req.query;
   axios
     .get(`${baseUrl}/reviews/meta`, {
@@ -93,6 +93,10 @@ router.get('/meta/characteristics', (req, res) => {
     })
     .then((response) => {
       const { characteristics } = response.data;
+
+      Object.keys(characteristics).forEach((key) => {
+        characteristics[key].value = Number(characteristics[key].value);
+      });
 
       res.status(200).json({ characteristics });
     });

@@ -17,7 +17,6 @@ export default function Sliders() {
       });
     }
 
-    console.log('use effect: sliders');
     getCharacteristics().then((response) => {
       setCharacteristics(response.data.characteristics);
     });
@@ -25,12 +24,16 @@ export default function Sliders() {
 
   return (
     <div className={styles.container}>
-      {Object.keys(characteristics).map((characteristic) => (
-        <Slider
-          characteristic={characteristic}
-          average={characteristics[characteristic].value}
-        />
-      ))}
+      {Object.keys(characteristics).reduce(
+        (memo, char) => memo + char.value,
+        0
+      ) > 0 &&
+        Object.keys(characteristics).map((characteristic) => (
+          <Slider
+            characteristic={characteristic}
+            average={characteristics[characteristic].value}
+          />
+        ))}
     </div>
   );
 }
