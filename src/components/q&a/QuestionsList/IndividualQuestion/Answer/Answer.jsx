@@ -18,7 +18,13 @@ const Answer = function ({ body, helpfulness, date, name, photos }) {
       <Images photos={photos} />
       <div className={styles.answer_bar}>
         <span className={styles.info}>
-          by {name}, {formatDate(date)}
+          by
+          {name === 'Seller' ? (
+            <span className={styles.seller}> Seller</span>
+          ) : (
+            <span className="name"> {name}</span>
+          )}
+          , {formatDate(date)}
         </span>
         |
         <div className={styles.answer_buttons}>
