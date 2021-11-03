@@ -55,7 +55,10 @@ export default function RatingList({ sortBy }) {
         ))}
       </div>
       <div className={styles.actionButtons}>
-        <ActionButtons moreClickHandler={moreClickHandler} />
+        <ActionButtons
+          moreReviews={moreReviews}
+          moreClickHandler={moreClickHandler}
+        />
       </div>
     </div>
   );

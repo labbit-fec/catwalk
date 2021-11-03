@@ -3,16 +3,18 @@ import { VscAdd } from 'react-icons/vsc';
 import PropTypes from 'prop-types';
 import styles from './ActionButtons.css';
 
-export default function ActionButtons({ moreClickHandler }) {
+export default function ActionButtons({ moreReviews, moreClickHandler }) {
   return (
     <div className={styles.container}>
-      <button
-        type="button"
-        className={styles.actionButton}
-        onClick={moreClickHandler}
-      >
-        More reviews
-      </button>
+      {moreReviews && (
+        <button
+          type="button"
+          className={styles.actionButton}
+          onClick={moreClickHandler}
+        >
+          More reviews
+        </button>
+      )}
       <button
         type="button"
         className={`${styles.actionButton} ${styles.addReviewButton}`}
@@ -26,4 +28,5 @@ export default function ActionButtons({ moreClickHandler }) {
 
 ActionButtons.propTypes = {
   moreClickHandler: PropTypes.func.isRequired,
+  moreReviews: PropTypes.bool.isRequired,
 };
