@@ -34,15 +34,21 @@ export default function RatingList({ sortBy }) {
   const moreClickHandler = useCallback(() => {
     getNextTwoReviews(lastPageLoaded + 1).then((response) => {
       setReviewList([...reviewList, ...response.data.reviews]);
+      const reviewContainer = document.getElementById('review-container');
+      reviewContainer.scrollTop = reviewContainer.scrollHeight;
     });
   }, [getNextTwoReviews]);
 
   return (
-    <div className={styles.content}>
-      {reviewList.map((review) => (
-        <RatingListEntry key={review.review_id} review={review} />
-      ))}
-      <ActionButtons moreClickHandler={moreClickHandler} />
+    <div className={styles.container}>
+      <div id="review-container" className={styles.content}>
+        {reviewList.map((review) => (
+          <RatingListEntry key={review.review_id} review={review} />
+        ))}
+      </div>
+      <div className={styles.actionButtons}>
+        <ActionButtons moreClickHandler={moreClickHandler} />
+      </div>
     </div>
   );
 }
