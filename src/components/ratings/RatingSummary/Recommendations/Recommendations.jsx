@@ -16,7 +16,6 @@ export default function Recommendations() {
       });
     }
 
-    console.log('use effect: stars');
     getRecommendations().then((response) => {
       setRecommendations(response.data.recommended);
     });
@@ -25,8 +24,11 @@ export default function Recommendations() {
   return (
     <div className={styles.container}>
       <div>
-        {`${parseFloat(recommendations * 100).toFixed()}%`} of reviews recommend
-        this product
+        {recommendations === null
+          ? 'This product has no recommendations yet.'
+          : `${parseFloat(
+              recommendations * 100
+            ).toFixed()}% of reviews recommend this product.`}
       </div>
     </div>
   );

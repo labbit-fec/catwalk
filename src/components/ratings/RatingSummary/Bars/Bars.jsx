@@ -24,9 +24,10 @@ export default function Sliders() {
 
   return (
     <div className={styles.container}>
-      {ratings.map(({ rating, count, percent }) => (
-        <Slider rating={rating} count={count} percent={percent} />
-      ))}
+      {ratings.reduce((memo, rating) => memo + rating.count, 0) > 0 &&
+        ratings.map(({ rating, count, percent }) => (
+          <Slider rating={rating} count={count} percent={percent} />
+        ))}
     </div>
   );
 }
