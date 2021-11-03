@@ -17,7 +17,6 @@ export default function Stars() {
       });
     }
 
-    console.log('use effect: stars');
     getStars().then((response) => {
       setStars(response.data.stars);
     });
