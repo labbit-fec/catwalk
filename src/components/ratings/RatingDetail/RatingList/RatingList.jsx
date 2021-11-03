@@ -1,4 +1,10 @@
-import React, { useState, useContext, useEffect, useCallback } from 'react';
+import React, {
+  useState,
+  useContext,
+  useEffect,
+  useCallback,
+  useRef,
+} from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from './RatingList.css';
@@ -12,40 +18,51 @@ export default function RatingList({ sortBy }) {
   const [moreReviews, setMoreReviews] = useState(false);
   const { productId } = useContext(ProductIdContext);
 
-  function getNextTwoReviews(pageToLoad, checkOnly) {
-    if (!checkOnly) setLastPageLoaded(pageToLoad);
+  function getMoreReviews(page, count, update) {
+    if (update) setLastPageLoaded(page);
     return axios.get('/api/reviews', {
       params: {
         productId,
-        page: pageToLoad,
+        page,
         sort: sortBy,
-        count: 2,
+        count,
       },
     });
   }
 
   // When the component mounts, and any time productId changes, need to load the first two reviews, starting at page 1
   useEffect(() => {
-    getNextTwoReviews(1, false).then((response) => {
+    getMoreReviews(1, 2, true).then((response) => {
       setReviewList(response.data.reviews);
     });
   }, [productId]);
 
   // Whenever the reviewList changes, check if there are more reviews, in order to activate/deactive more reviews button
+  // Manage state with moreReviews
+  // But, do not update reviewList - pass false for update
   useEffect(() => {
-    getNextTwoReviews(lastPageLoaded + 1, true).then((response) => {
+    getMoreReviews(lastPageLoaded + 1, 2, false).then((response) => {
       setMoreReviews(response.data.reviews.length > 0);
     });
   }, [reviewList]);
 
+  // Whenever sortBy changes, build the same review list, sorted via the new sortBy
+  useEffect(() => {
+    if (lastPageLoaded === 0) return; // DO NOT use this effect on component mount
+    const count = lastPageLoaded * 2;
+    getMoreReviews(1, count, true).then((response) => {
+      setReviewList(response.data.reviews);
+    });
+  }, [sortBy]);
+
   // When the more reviews button is clicked
   const moreClickHandler = useCallback(() => {
-    getNextTwoReviews(lastPageLoaded + 1, false).then((response) => {
+    getMoreReviews(lastPageLoaded + 1, 2, true).then((response) => {
       setReviewList([...reviewList, ...response.data.reviews]);
       const reviewContainer = document.getElementById('review-container');
       reviewContainer.scrollTop = reviewContainer.scrollHeight;
     });
-  }, [getNextTwoReviews]);
+  }, [getMoreReviews]);
 
   return (
     <div className={styles.container}>
