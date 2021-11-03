@@ -1,13 +1,14 @@
 import React, { useEffect, useContext, useState } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import IndividualQuestion from './IndividualQuestion/IndividualQuestion';
 import BottomBar from './BottomBar/BottomBar';
 import styles from './QuestionsList.css';
 import { ProductIdContext } from '../../context/ProductIdContext';
 
-const QuestionsList = function () {
+const QuestionsList = function ({ questions, setQuestions }) {
   const { productId } = useContext(ProductIdContext);
-  const [questions, setQuestions] = useState([]);
+  // const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
     axios
@@ -50,3 +51,27 @@ const QuestionsList = function () {
 };
 
 export default QuestionsList;
+
+QuestionsList.propTypes = {
+  questions: PropTypes.arrayOf(
+    PropTypes.shape({
+      question_id: PropTypes.number.isRequired,
+      question_body: PropTypes.string.isRequired,
+      question_date: PropTypes.string.isRequired,
+      asker_name: PropTypes.string.isRequired,
+      question_helpfulness: PropTypes.number.isRequired,
+      reported: PropTypes.bool.isRequired,
+      answers: PropTypes.objectOf(
+        PropTypes.shape({
+          id: PropTypes.number.isRequired,
+          body: PropTypes.string.isRequired,
+          date: PropTypes.string.isRequired,
+          answerer_name: PropTypes.string.isRequired,
+          helpfulness: PropTypes.number.isRequired,
+          photos: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+        })
+      ),
+    })
+  ).isRequired,
+  setQuestions: PropTypes.func.isRequired,
+};
