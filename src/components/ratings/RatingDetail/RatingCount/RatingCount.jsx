@@ -9,11 +9,13 @@ export default function RatingCount({ sortBy, handleChange }) {
         <strong>
           <label htmlFor="sort-select">
             248 reviews, sorted by
-            <select value={sortBy} id="sort-select" onChange={handleChange}>
-              <option value="newest">Newest</option>
-              <option value="helpful">Most helpful</option>
-              <option value="relevent">Most relevant</option>
-            </select>
+            <span className={styles.customSelect}>
+              <select value={sortBy} id="sort-select" onChange={handleChange}>
+                <option value="newest">Newest</option>
+                <option value="helpful">Most helpful</option>
+                <option value="relevent">Most relevant</option>
+              </select>
+            </span>
           </label>
         </strong>
       </p>
