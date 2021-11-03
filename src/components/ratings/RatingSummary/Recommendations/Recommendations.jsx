@@ -16,7 +16,6 @@ export default function Recommendations() {
       });
     }
 
-    console.log('use effect: stars');
     getRecommendations().then((response) => {
       setRecommendations(response.data.recommended);
     });

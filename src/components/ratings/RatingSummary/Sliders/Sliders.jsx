@@ -17,7 +17,6 @@ export default function Sliders() {
       });
     }
 
-    console.log('use effect: sliders');
     getCharacteristics().then((response) => {
       setCharacteristics(response.data.characteristics);
     });
