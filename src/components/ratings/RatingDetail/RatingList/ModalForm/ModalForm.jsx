@@ -6,7 +6,7 @@ export default function ModalForm({ closeModalClickHandler }) {
   return (
     <div className={styles.modal}>
       <div className={styles.modalMain}>
-        <div>This is a modal form</div>
+        <h1>Add a review</h1>
         <button type="button" onClick={closeModalClickHandler}>
           Close
         </button>
