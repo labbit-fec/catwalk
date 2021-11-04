@@ -5,6 +5,7 @@ import {
   getByText,
   waitFor,
   screen,
+  within,
 } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Overview from './Overview';
@@ -30,8 +31,10 @@ describe('Product Information Container', () => {
   expect(screen.getByText('Product Information')).toBeVisible();
   });
 
-  test('Displays mock Product Title as h1 element', async () => {
-    expect(screen.getByRole('h1')).toBeVisible();
+  test('Displays mock Product Title as h1 element ', async () => {
+    expect(
+      screen.getByRole('heading', { level: 1, name: 'Product Title' })
+    ).toBeVisible();
   });
 
   test('Displays title text from mock server', async () => {
@@ -50,5 +53,3 @@ test('Displays Style Selector Container', async () => {
 test('Displays Add to Cart Container', async () => {
   expect(screen.getByText('Add To Cart')).toBeVisible();
 });
-
-
