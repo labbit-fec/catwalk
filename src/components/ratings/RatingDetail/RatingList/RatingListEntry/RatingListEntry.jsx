@@ -17,6 +17,13 @@ export default function RatingListEntry({ review }) {
     });
   }
 
+  function handleReportClick(event) {
+    event.preventDefault();
+    axios.put(`/api/reviews/${review.review_id}/report`).then(() => {
+      setReported(true);
+    });
+  }
+
   const [helpfulForm, setHelpfulForm] = useState(
     <div className={styles.helpful}>
       <div>Helpful?</div>
@@ -34,6 +41,7 @@ export default function RatingListEntry({ review }) {
         <button
           type="button"
           className={`${styles.btnHelpful} ${styles.report}`}
+          onClick={handleReportClick}
         >
           Report
         </button>
@@ -52,7 +60,7 @@ export default function RatingListEntry({ review }) {
 
     if (reported) {
       setHelpfulForm(
-        <div className={styles.helpful}>Thank you for providing feedback</div>
+        <div className={styles.helpful}>You have reported this review</div>
       );
     }
   }, [markedHelpful, reported]);
