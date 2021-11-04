@@ -18,6 +18,7 @@ export default function RatingList({ sortBy }) {
   const [moreReviews, setMoreReviews] = useState(false);
   const { productId } = useContext(ProductIdContext);
   const [showModal, setShowModal] = useState(false);
+  const { showAddReviews, setShowAddReviews } = useState(true);
 
   function getMoreReviews(page, sort, count) {
     return axios.get('/api/reviews', {
@@ -58,7 +59,7 @@ export default function RatingList({ sortBy }) {
     });
   }, [getMoreReviews]);
 
-  const addClickHandler = useCallback(() => {}, [createReview]);
+  const addClickHandler = useCallback(() => {}, []);
 
   useEffect(() => {
     const promises = [];
@@ -85,6 +86,7 @@ export default function RatingList({ sortBy }) {
       <div className={styles.actionButtons}>
         <ActionButtons
           moreReviews={moreReviews}
+          showAddReviews={showAddReviews}
           moreClickHandler={moreClickHandler}
           addClickHandler={addClickHandler}
         />

@@ -3,7 +3,12 @@ import { VscAdd } from 'react-icons/vsc';
 import PropTypes from 'prop-types';
 import styles from './ActionButtons.css';
 
-export default function ActionButtons({ moreReviews, moreClickHandler }) {
+export default function ActionButtons({
+  moreReviews,
+  moreClickHandler,
+  addClickHandler,
+  showAddReviews,
+}) {
   return (
     <div className={styles.container}>
       {moreReviews && (
@@ -15,13 +20,16 @@ export default function ActionButtons({ moreReviews, moreClickHandler }) {
           More reviews
         </button>
       )}
-      <button
-        type="button"
-        className={`${styles.actionButton} ${styles.addReviewButton}`}
-      >
-        <VscAdd />
-        &nbsp;Add a review
-      </button>
+      {showAddReviews && (
+        <button
+          type="button"
+          className={`${styles.actionButton} ${styles.addReviewButton}`}
+          onClick={addClickHandler}
+        >
+          <VscAdd />
+          &nbsp;Add a review
+        </button>
+      )}
     </div>
   );
 }
