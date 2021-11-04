@@ -53,6 +53,21 @@ export default function RatingList({ sortBy }) {
     });
   }, [getMoreReviews]);
 
+  useEffect(() => {
+    const promises = [];
+    for (let page = 1; page <= lastPageLoaded; page += 1) {
+      promises.push(getMoreReviews(page, sortBy, 2));
+    }
+    Promise.all(promises)
+      .then((responses) =>
+        responses.reduce(
+          (memo, response) => [...memo, ...response.data.reviews],
+          []
+        )
+      )
+      .then((reviews) => setReviewList(reviews));
+  }, [sortBy]);
+
   return (
     <div className={styles.container}>
       <div id="review-container" className={styles.content}>
