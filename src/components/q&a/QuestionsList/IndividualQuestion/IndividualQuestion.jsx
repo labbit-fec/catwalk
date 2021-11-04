@@ -5,7 +5,13 @@ import Answer from './Answer/Answer';
 import styles from './IndividualQuestion.css';
 import { ProductIdContext } from '../../../context/ProductIdContext';
 
-const IndividualQuestion = function ({ body, id, helpfulness }) {
+const IndividualQuestion = function ({
+  body,
+  id,
+  helpfulness,
+  questions,
+  setQuestions,
+}) {
   const { productId } = useContext(ProductIdContext);
   const [answers, setAnswers] = useState([]);
 
@@ -25,6 +31,34 @@ const IndividualQuestion = function ({ body, id, helpfulness }) {
       });
   }, []);
 
+  const successCB = () => {
+    const copy = questions.slice();
+
+    copy.forEach((question) => {
+      if (question.question_id === id) {
+        // eslint-disable-next-line no-param-reassign
+        question.question_helpfulness += 1;
+      }
+    });
+
+    setQuestions(copy);
+  };
+
+  const handleHelpful = () => {
+    axios
+      .put(`/api/qa/questions/${id}/helpful`, {
+        params: {
+          productId: productId,
+        },
+      })
+      .then(() => {
+        successCB();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div
       className={styles.container}
@@ -34,7 +68,15 @@ const IndividualQuestion = function ({ body, id, helpfulness }) {
         <h4 className={styles.question_text}>Q: {body}</h4>
         <div className={styles.question_buttons}>
           <span> Helpful? </span>
-          <span className={styles.helpful_button}> Yes</span>
+          <span
+            className={styles.helpful_button}
+            onClick={handleHelpful}
+            onKeyPress={handleHelpful}
+            role="button"
+            tabIndex={0}
+          >
+            Yes
+          </span>
           <span> ({helpfulness}) </span>|
           <span className={styles.add_answer}>Add Answer</span>
         </div>
@@ -60,4 +102,25 @@ IndividualQuestion.propTypes = {
   body: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   helpfulness: PropTypes.number.isRequired,
+  questions: PropTypes.arrayOf(
+    PropTypes.shape({
+      question_id: PropTypes.number.isRequired,
+      question_body: PropTypes.string.isRequired,
+      question_date: PropTypes.string.isRequired,
+      asker_name: PropTypes.string.isRequired,
+      question_helpfulness: PropTypes.number.isRequired,
+      reported: PropTypes.bool.isRequired,
+      answers: PropTypes.objectOf(
+        PropTypes.shape({
+          id: PropTypes.number.isRequired,
+          body: PropTypes.string.isRequired,
+          date: PropTypes.string.isRequired,
+          answerer_name: PropTypes.string.isRequired,
+          helpfulness: PropTypes.number.isRequired,
+          photos: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+        })
+      ),
+    })
+  ).isRequired,
+  setQuestions: PropTypes.func.isRequired,
 };

@@ -24,13 +24,11 @@ router.get('/questions', (req, res) => {
     });
 });
 
-router.get('/questions/:question_id/answers', (req, res) => {
+router.get('/questions/:questionId/answers', (req, res) => {
   const { productId } = req.query;
-  // eslint-disable-next-line camelcase
-  const { question_id } = req.params;
+  const { questionId } = req.params;
   axios
-    // eslint-disable-next-line camelcase
-    .get(`${baseUrl}/qa/questions/${question_id}/answers`, {
+    .get(`${baseUrl}/qa/questions/${questionId}/answers`, {
       params: {
         product_id: productId,
       },
@@ -40,6 +38,27 @@ router.get('/questions/:question_id/answers', (req, res) => {
     })
     .then((response) => {
       res.status(200).send(response.data);
+    })
+    .catch(() => {
+      res.status(500).send('Unable to complete request.');
+    });
+});
+
+router.put('/questions/:questionId/helpful', (req, res) => {
+  const { productId } = req.query;
+  const { questionId } = req.params;
+
+  axios
+    .put(`${baseUrl}/qa/questions/${questionId}/helpful`, null, {
+      params: {
+        product_id: productId,
+      },
+      headers: {
+        Authorization: authorization,
+      },
+    })
+    .then(() => {
+      res.status(204).send('Question was marked as helpful!');
     })
     .catch(() => {
       res.status(500).send('Unable to complete request.');

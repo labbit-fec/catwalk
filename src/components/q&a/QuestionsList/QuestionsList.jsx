@@ -24,6 +24,8 @@ const QuestionsList = function ({ questions, setQuestions, setAllQuestions }) {
           key={question.question_id}
           id={question.question_id}
           helpfulness={question.question_helpfulness}
+          questions={questions}
+          setQuestions={setQuestions}
         />
       ));
     }
@@ -35,6 +37,8 @@ const QuestionsList = function ({ questions, setQuestions, setAllQuestions }) {
         key={question.question_id}
         id={question.question_id}
         helpfulness={question.question_helpfulness}
+        questions={questions}
+        setQuestions={setQuestions}
       />
     ));
   };
@@ -59,15 +63,6 @@ const QuestionsList = function ({ questions, setQuestions, setAllQuestions }) {
     <div className={styles.container} data-testid="question-list-container">
       {questions.length ? (
         <div>
-          {/* {questions.map((question) => (
-            // <button type="submit">Submit</button>
-            <IndividualQuestion
-              body={question.question_body}
-              key={question.question_id}
-              id={question.question_id}
-              helpfulness={question.question_helpfulness}
-            />
-          ))} */}
           {renderShortenedList()}
           <BottomBar expanded={expanded} setExpanded={setExpanded} />
         </div>

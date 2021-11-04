@@ -39,7 +39,7 @@ app.get('/product/*', (req, res) => {
 
 // eslint-disable-next-line prettier/prettier
 if (process.env.NODE_ENV !== 'test') {
-  app.listen(port, () => {});
+  app.listen(port, () => { });
 }
 
 module.exports.port = port;
