@@ -60,7 +60,9 @@ export default function RatingListEntry({ review }) {
 
     if (reported) {
       setHelpfulForm(
-        <div className={styles.helpful}>You have reported this review</div>
+        <div className={styles.helpful}>
+          <em>You have reported this review</em>
+        </div>
       );
     }
   }, [markedHelpful, reported]);
