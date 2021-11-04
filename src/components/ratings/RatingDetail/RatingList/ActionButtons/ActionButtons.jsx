@@ -37,4 +37,6 @@ export default function ActionButtons({
 ActionButtons.propTypes = {
   moreClickHandler: PropTypes.func.isRequired,
   moreReviews: PropTypes.bool.isRequired,
+  addClickHandler: PropTypes.func.isRequired,
+  showAddReviews: PropTypes.bool.isRequired,
 };

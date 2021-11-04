@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  useContext,
-  useEffect,
-  useCallback,
-  useRef,
-} from 'react';
+import React, { useState, useContext, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from './RatingList.css';
@@ -18,7 +12,7 @@ export default function RatingList({ sortBy }) {
   const [moreReviews, setMoreReviews] = useState(false);
   const { productId } = useContext(ProductIdContext);
   const [showModal, setShowModal] = useState(false);
-  const { showAddReviews, setShowAddReviews } = useState(true);
+  const [showAddReviews, setShowAddReviews] = useState(true);
 
   function getMoreReviews(page, sort, count) {
     return axios.get('/api/reviews', {
