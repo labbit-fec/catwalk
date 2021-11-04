@@ -69,7 +69,7 @@ const QuestionsList = function ({ questions, setQuestions, setAllQuestions }) {
             />
           ))} */}
           {renderShortenedList()}
-          <BottomBar />
+          <BottomBar expanded={expanded} setExpanded={setExpanded} />
         </div>
       ) : (
         <button type="button" className={styles.add_question}>
