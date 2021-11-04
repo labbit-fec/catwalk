@@ -5,6 +5,7 @@ import styles from './RatingList.css';
 import RatingListEntry from './RatingListEntry/RatingListEntry';
 import { ProductIdContext } from '../../../context/ProductIdContext';
 import ActionButtons from './ActionButtons/ActionButtons';
+import ModalForm from './ModalForm/ModalForm';
 
 export default function RatingList({ sortBy }) {
   const [reviewList, setReviewList] = useState([]);
@@ -94,14 +95,7 @@ export default function RatingList({ sortBy }) {
         />
       </div>
       {showModal && (
-        <div className={styles.modal}>
-          <div className={styles.modalMain}>
-            <div>This is a modal form</div>
-            <button type="button" onClick={closeModalClickHandler}>
-              Close
-            </button>
-          </div>
-        </div>
+        <ModalForm closeModalClickHandler={closeModalClickHandler} />
       )}
     </div>
   );
