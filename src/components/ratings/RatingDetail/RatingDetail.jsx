@@ -9,6 +9,7 @@ export default function RatingDetail() {
   const handleChange = useCallback(
     (event) => {
       event.preventDefault();
+      console.log(event.target.value);
       setSortBy(event.target.value);
     },
     [sortBy]
