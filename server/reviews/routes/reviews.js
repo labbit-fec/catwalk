@@ -36,4 +36,17 @@ router.put('/:reviewId/helpful', (req, res) => {
   });
 });
 
+router.put('/:reviewId/report', (req, res) => {
+  const { reviewId } = req.params;
+  axios({
+    method: 'put',
+    url: `${baseUrl}/reviews/${reviewId}/report`,
+    headers: {
+      Authorization: authorization,
+    },
+  }).then((response) => {
+    res.status(204).send(response.data);
+  });
+});
+
 module.exports = router;
