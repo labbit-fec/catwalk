@@ -1,11 +1,62 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { VscCheck } from 'react-icons/vsc';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import styles from './RatingListEntry.css';
 import StarGraphic from '../../../RatingSummary/Stars/StarGraphic/StarGraphic';
 import RatingImages from './RatingImages/RatingImages';
 
 export default function RatingListEntry({ review }) {
+  const [markedHelpful, setMarkedHelpful] = useState(false);
+  const [reported, setReported] = useState(false);
+
+  function handleHelpfulClick(event) {
+    event.preventDefault();
+    axios.put(`/api/reviews/${review.review_id}/helpful`).then(() => {
+      setMarkedHelpful(true);
+    });
+  }
+
+  const [helpfulForm, setHelpfulForm] = useState(
+    <div className={styles.helpful}>
+      <div>Helpful?</div>
+      <div>
+        <button
+          type="button"
+          className={styles.btnHelpful}
+          onClick={handleHelpfulClick}
+        >
+          Yes
+        </button>
+        ({review.helpfulness})
+      </div>
+      <div>
+        <button
+          type="button"
+          className={`${styles.btnHelpful} ${styles.report}`}
+        >
+          Report
+        </button>
+      </div>
+    </div>
+  );
+
+  useEffect(() => {
+    if (markedHelpful) {
+      setHelpfulForm(
+        <div className={styles.helpful}>
+          <em>Thank you for marking this as helpful!</em>
+        </div>
+      );
+    }
+
+    if (reported) {
+      setHelpfulForm(
+        <div className={styles.helpful}>Thank you for providing feedback</div>
+      );
+    }
+  }, [markedHelpful, reported]);
+
   return (
     <div className={styles.content}>
       <div className={styles.ratingHeader}>
@@ -25,7 +76,8 @@ export default function RatingListEntry({ review }) {
       </div>
       {review.recommend && (
         <div className={styles.check}>
-          <VscCheck /> I recommend this product
+          <VscCheck /> <strong>{review.reviewer_name}</strong> &nbsp;recommends
+          this product
         </div>
       )}
       {review.response && review.response.length > 0 && (
@@ -34,23 +86,7 @@ export default function RatingListEntry({ review }) {
           <p>{review.response}</p>
         </div>
       )}
-      <div className={styles.helpful}>
-        <div>Helpful?</div>
-        <div>
-          <button type="button" className={styles.btnHelpful}>
-            Yes
-          </button>
-          ({review.helpfulness})
-        </div>
-        <div>
-          <button
-            type="button"
-            className={`${styles.btnHelpful} ${styles.report}`}
-          >
-            Report
-          </button>
-        </div>
-      </div>
+      {helpfulForm}
     </div>
   );
 }
