@@ -22,9 +22,10 @@
 }
 
 .helpful {
-  font-size: 0.75em;
+  font-size: 0.85em;
   display: flex;
   flex-direction: row;
+  color: rgba(185, 185, 185, 1);
 }
 
 .helpful > div {
@@ -44,9 +45,15 @@
   text-decoration: underline;
 }
 
+.markedHelpful {
+  text-decoration: none;
+  font-weight: bold;
+  cursor: default;
+}
+
 .report {
-  border-left: 1px solid rgba(35, 35, 35, 0.5);
-  padding-left: 1em;
+  /* border-left: 1px solid rgba(35, 35, 35, 0.5); */
+  /* padding-left: 1em; */
 }
 
 .check {
