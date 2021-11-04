@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
-import axios from 'axios';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { VscSearch } from 'react-icons/vsc';
 import styles from './Search.css';
-import { ProductIdContext } from '../../context/ProductIdContext';
 
 const Search = function ({ questions, setQuestions, allQuestions }) {
   const handleSearch = (e) => {
@@ -36,16 +35,19 @@ const Search = function ({ questions, setQuestions, allQuestions }) {
 
   return (
     <div className={styles.container}>
-      <input
-        id="input"
-        className={styles.input}
-        type="text"
-        placeholder="Search Questions & Answers"
-        onChange={handleSearch}
-      />
-      <button type="submit" className={styles.button}>
+      <div className={styles.search}>
+        <VscSearch className={styles.icon} />
+        <input
+          id="input"
+          className={styles.input}
+          type="text"
+          placeholder="Search Questions & Answers"
+          onChange={handleSearch}
+        />
+      </div>
+      {/* <button type="submit" className={styles.button}>
         Search
-      </button>
+      </button> */}
     </div>
   );
 };
