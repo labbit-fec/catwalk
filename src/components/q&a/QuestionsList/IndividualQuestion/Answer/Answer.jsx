@@ -45,5 +45,10 @@ Answer.propTypes = {
   body: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  photos: PropTypes.arrayOf(PropTypes.string).isRequired,
+  photos: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      url: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };

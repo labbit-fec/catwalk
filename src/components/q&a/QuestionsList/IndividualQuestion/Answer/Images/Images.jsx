@@ -6,7 +6,7 @@ const Images = function ({ photos }) {
   return (
     <div className={styles.container}>
       {photos.map((photo) => (
-        <img className={styles.img} src={photo.url} alt="" />
+        <img className={styles.img} src={photo.url} alt="" key={photo.id} />
       ))}
     </div>
   );
@@ -17,7 +17,7 @@ export default Images;
 Images.propTypes = {
   photos: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
       url: PropTypes.string.isRequired,
     })
   ).isRequired,
