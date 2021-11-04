@@ -4,6 +4,9 @@
 }
 
 .add_question{
+  width: 30%;
+  margin-top: 30px;
+  align-self: center;
   margin-left: 20px;
   background-color:green;
   color: white;
