@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ModalForm.css';
+import StarsInput from './StarsInput/StarsInput';
 
 export default function ModalForm({ closeModalClickHandler }) {
   const [formData, setFormData] = useState({
@@ -16,11 +17,37 @@ export default function ModalForm({ closeModalClickHandler }) {
     console.log(newFormData);
   }
 
+  const updateStarData = useCallback(
+    (stars) => {
+      const newFormData = { ...formData };
+      newFormData.stars = stars;
+      setFormData(newFormData);
+      console.log(newFormData);
+    },
+    [setFormData]
+  );
+
   return (
     <div className={styles.modal}>
       <div className={styles.modalMain}>
         <h1>Add a review</h1>
         <form className={styles.modalForm}>
+          {/*
+
+            Divider
+
+           */}
+          <div className={styles.formField}>
+            <div className={styles.formLabel}>
+              Overall rating:
+              <div className={styles.formHelper}>
+                (1 = &quot;Poor&quot;, 2 = &quot;Fair&quot;, 3 =
+                &quot;Average&quot;, 4 = &quot;Good&quot;, 5 =
+                &quot;Great&quot;)
+              </div>
+            </div>
+            <StarsInput updateStarData={updateStarData} />
+          </div>
           {/*
 
             Divider
