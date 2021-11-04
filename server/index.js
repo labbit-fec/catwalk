@@ -23,6 +23,8 @@ const QaRoutes = require('./qa/routes');
 app.use('/api/qa', QaRoutes);
 
 // eslint-disable-next-line prettier/prettier
-app.listen(port, () => { });
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(port, () => {});
+}
 
 module.exports.port = port;
