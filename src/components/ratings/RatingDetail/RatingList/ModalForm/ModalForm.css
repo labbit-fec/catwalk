@@ -40,3 +40,7 @@
 .formLabel {
   margin-bottom: 0.5em;
 }
+
+.formHelper {
+  font-size: 0.75em;
+}
