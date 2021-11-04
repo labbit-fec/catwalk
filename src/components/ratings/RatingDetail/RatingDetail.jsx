@@ -9,6 +9,8 @@ export default function RatingDetail() {
   const handleChange = (event) => {
     event.preventDefault();
     setSortBy(event.target.value);
+    const reviewContainer = document.getElementById('review-container');
+    reviewContainer.scrollTop = 0;
   };
 
   return (
