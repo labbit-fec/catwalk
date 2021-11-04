@@ -4,7 +4,6 @@
 import { setupServer } from 'msw/node';
 import handlers from './handlers';
 
-debugger;
 const mswServer = setupServer(...handlers);
 
 export default mswServer;
