@@ -17,6 +17,7 @@ export default function RatingList({ sortBy }) {
   const [lastPageLoaded, setLastPageLoaded] = useState(0); // represents the last page that was
   const [moreReviews, setMoreReviews] = useState(false);
   const { productId } = useContext(ProductIdContext);
+  const [showModal, setShowModal] = useState(false);
 
   function getMoreReviews(page, sort, count) {
     return axios.get('/api/reviews', {
@@ -27,6 +28,10 @@ export default function RatingList({ sortBy }) {
         count,
       },
     });
+  }
+
+  function createReview() {
+    /* ... */
   }
 
   // When the component is mounted, and whenver productId changes, load the first two reviews
@@ -52,6 +57,8 @@ export default function RatingList({ sortBy }) {
       reviewContainer.scrollTop = reviewContainer.scrollHeight;
     });
   }, [getMoreReviews]);
+
+  const addClickHandler = useCallback(() => {}, [createReview]);
 
   useEffect(() => {
     const promises = [];
@@ -79,6 +86,7 @@ export default function RatingList({ sortBy }) {
         <ActionButtons
           moreReviews={moreReviews}
           moreClickHandler={moreClickHandler}
+          addClickHandler={addClickHandler}
         />
       </div>
     </div>
