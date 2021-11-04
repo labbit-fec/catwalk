@@ -25,7 +25,7 @@ export default function Sliders() {
   return (
     <div className={styles.container}>
       {Object.keys(characteristics).reduce(
-        (memo, char) => memo + char.value,
+        (memo, char) => memo + characteristics[char].value,
         0
       ) > 0 &&
         Object.keys(characteristics).map((characteristic) => (
