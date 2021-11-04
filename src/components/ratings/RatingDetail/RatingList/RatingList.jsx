@@ -53,7 +53,15 @@ export default function RatingList({ sortBy }) {
     });
   }, [getMoreReviews]);
 
-  const addClickHandler = useCallback(() => {}, []);
+  const addClickHandler = useCallback(() => {
+    setShowAddReviews(false);
+    setShowModal(true);
+  }, [createReview]);
+
+  const closeModalClickHandler = useCallback(() => {
+    setShowModal(false);
+    setShowAddReviews(true);
+  }, []);
 
   useEffect(() => {
     const promises = [];
@@ -85,6 +93,16 @@ export default function RatingList({ sortBy }) {
           addClickHandler={addClickHandler}
         />
       </div>
+      {showModal && (
+        <div className={styles.modal}>
+          <div className={styles.modalMain}>
+            <div>This is a modal form</div>
+            <button type="button" onClick={closeModalClickHandler}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
