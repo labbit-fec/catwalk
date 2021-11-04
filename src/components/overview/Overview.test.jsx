@@ -21,15 +21,6 @@ import '@testing-library/jest-dom';
 import Overview from './Overview';
 import mswServer from '../../../mocks/front/mswServer';
 
-// beforeAll(() => {
-//   const lib = path.join(
-//     path.dirname(require.resolve('axios')),
-//     'lib/adapters/http'
-//   );
-//   // eslint-disable-next-line import/no-dynamic-require, global-require
-//   const http = require(lib);
-//   config.adapter = http;
-// });
 beforeAll(() => mswServer.listen());
 afterEach(() => mswServer.resetHandlers());
 afterAll(() => mswServer.close());

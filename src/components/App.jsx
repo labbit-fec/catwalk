@@ -12,7 +12,7 @@ export default function App() {
     <div className={styles.container}>
       App Container
       <div className={styles.content}>
-        Main Content
+        Main Content of {productId}
         <ProductIdContext.Provider value={{ productId, setProductId }}>
           <Overview />
           <Related />

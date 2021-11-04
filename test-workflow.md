@@ -20,6 +20,8 @@ You may need to use waitFor, https://testing-library.com/docs/dom-testing-librar
 so that the test waitsFor your mock request to finish and for the component to update to the new text or change in some way. Included in my overview example for Product Title.
 
 Level 3: Use User Events to simulate the user interacting with the page, reply to any requests with MSW, then test that the expected result occurred to the page.
+https://testing-library.com/docs/ecosystem-user-event/
+
 
 Test your API Requests by using Super Test. Super Test is a way to test API Requests individually. However, technically, if you are replying to your API Requests with MSW to test the appearance of the page, then you have tested your requests as part of an integration test.
 
