@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
   const { productId, page, sort, count } = req.query;
-
+  console.log(req.query);
   axios
     .get(`${baseUrl}/reviews`, {
       params: {

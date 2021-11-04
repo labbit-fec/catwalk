@@ -1,4 +1,10 @@
-import React, { useState, useContext, useEffect, useCallback } from 'react';
+import React, {
+  useState,
+  useContext,
+  useEffect,
+  useCallback,
+  useRef,
+} from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from './RatingList.css';
@@ -12,40 +18,55 @@ export default function RatingList({ sortBy }) {
   const [moreReviews, setMoreReviews] = useState(false);
   const { productId } = useContext(ProductIdContext);
 
-  function getNextTwoReviews(pageToLoad, checkOnly) {
-    if (!checkOnly) setLastPageLoaded(pageToLoad);
+  function getMoreReviews(page, sort, count) {
     return axios.get('/api/reviews', {
       params: {
         productId,
-        page: pageToLoad,
-        sort: sortBy,
-        count: 2,
+        page,
+        sort,
+        count,
       },
     });
   }
 
-  // When the component mounts, and any time productId changes, need to load the first two reviews, starting at page 1
+  // When the component is mounted, and whenver productId changes, load the first two reviews
   useEffect(() => {
-    getNextTwoReviews(1, false).then((response) => {
+    getMoreReviews(1, sortBy, 2).then((response) => {
       setReviewList(response.data.reviews);
+      setLastPageLoaded(lastPageLoaded + 1);
     });
   }, [productId]);
 
-  // Whenever the reviewList changes, check if there are more reviews, in order to activate/deactive more reviews button
+  // Check if there are more reviews
   useEffect(() => {
-    getNextTwoReviews(lastPageLoaded + 1, true).then((response) => {
+    getMoreReviews(lastPageLoaded + 1, sortBy, 2).then((response) => {
       setMoreReviews(response.data.reviews.length > 0);
     });
-  }, [reviewList]);
+  }, [lastPageLoaded]);
 
-  // When the more reviews button is clicked
   const moreClickHandler = useCallback(() => {
-    getNextTwoReviews(lastPageLoaded + 1, false).then((response) => {
+    getMoreReviews(lastPageLoaded + 1, sortBy, 2).then((response) => {
       setReviewList([...reviewList, ...response.data.reviews]);
+      setLastPageLoaded(lastPageLoaded + 1);
       const reviewContainer = document.getElementById('review-container');
       reviewContainer.scrollTop = reviewContainer.scrollHeight;
     });
-  }, [getNextTwoReviews]);
+  }, [getMoreReviews]);
+
+  useEffect(() => {
+    const promises = [];
+    for (let page = 1; page <= lastPageLoaded; page += 1) {
+      promises.push(getMoreReviews(page, sortBy, 2));
+    }
+    Promise.all(promises)
+      .then((responses) =>
+        responses.reduce(
+          (memo, response) => [...memo, ...response.data.reviews],
+          []
+        )
+      )
+      .then((reviews) => setReviewList(reviews));
+  }, [sortBy]);
 
   return (
     <div className={styles.container}>

@@ -6,13 +6,10 @@ import RatingList from './RatingList/RatingList';
 export default function RatingDetail() {
   const [sortBy, setSortBy] = useState('newest');
 
-  const handleChange = useCallback(
-    (event) => {
-      event.preventDefault();
-      setSortBy(event.target.value);
-    },
-    [sortBy]
-  );
+  const handleChange = (event) => {
+    event.preventDefault();
+    setSortBy(event.target.value);
+  };
 
   return (
     <div className={styles.content}>
