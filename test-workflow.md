@@ -2,6 +2,9 @@ Front End
 
 Use React Testing Library to test that the page works from a user perspective. Consider translating the Business Requirement Documentation to tests, as the BRD is only concerned with the end goal, not the implementation. Your test should be the same, as we will continue to make changes over time to the implementation.
 
+How to run jest with the ability to debug and watch for changes:
+node --inspect node_modules/.bin/jest --runInBand src/components/overview/Overview.test.jsx --watch
+
 Recommended basic workflow:
 Level 1: To start, test that your components can be seen by the user.
 How to use GetByRole, if you want to be more exact than get by Text

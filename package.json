@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "react-dev": "webpack -d source-map --watch",
-    "server-dev": "nodemon server/index.js"
+    "server-dev": "nodemon server/index.js",
+    "debug": "nodemon --inspect server/index.js"
   },
   "repository": {
     "type": "git",

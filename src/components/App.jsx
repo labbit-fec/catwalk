@@ -13,19 +13,19 @@ export default function App() {
   useEffect(() => {
     const getNameFromUrl = () => {
       const segments = window.location.pathname.split('/');
-      return segments[0];
+      return segments[2];
     };
 
     const productURLName = getNameFromUrl();
 
     axios
-      .get('/product', {
+      .get('/products', {
         params: {
           name: productURLName,
         },
       })
       .then((response) => {
-        setProductId(response.data.Product.id);
+        setProductId(response.data.id);
       })
       .catch((error) => {
         console.log('Error getting product', error);

@@ -40,38 +40,13 @@ test('Displays App Container', async () => {
 });
 
 test('Product ID changes based on URL', async () => {
-  //go to url ? /morning-joggers/
-  //delete window.location;
-  // window.location = {
-  //   href: 'http://localhost:3000/shiba-snow-coat/',
-  //   pathname: '/shiba-snow-coat/', //brittle here
-  // };
   window.location.pathname = '/shiba-snow-coat/';
   cleanup();
   act(() => {
-    render(<App />); //rerender with new url
+    render(<App />);
   });
-  //displays matching product title on page
   const productId = await waitFor(() =>
     screen.getByText('Main Content of 1337')
   );
   expect(productId).toBeVisible();
-});
-
-test('Product Title changes based on URL', async () => {
-  //go to url ? /morning-joggers/
-  // delete window.location;
-  // window.location = {
-  //   href: 'http://localhost:3000/shiba-snow-coat/', //brittle here
-  //   pathname: '/shiba-snow-coat/',
-  // };
-  window.location.pathname = '/shiba-snow-coat/';
-  cleanup();
-  act(() => {
-    render(<App />); //rerender with new url
-  });
-  //displays matching product title on page
-  const productTitle = await waitFor(() =>
-    screen.getByRole('heading', { level: 1, name: 'Shiba Snow Coat' }));
-  expect(productTitle).toBeVisible();
 });
