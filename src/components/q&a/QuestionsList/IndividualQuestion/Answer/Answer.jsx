@@ -1,12 +1,53 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import Images from './Images/Images';
 import styles from './Answer.css';
+import { ProductIdContext } from '../../../../context/ProductIdContext';
 
-const Answer = function ({ body, helpfulness, date, name, photos }) {
+const Answer = function ({
+  body,
+  helpfulness,
+  date,
+  name,
+  photos,
+  id,
+  answers,
+  setAnswers,
+}) {
+  const { productId } = useContext(ProductIdContext);
+
   const formatDate = () => {
     const tempDate = date.split('T')[0].split('-');
     return `${tempDate[1]}-${tempDate[2]}-${tempDate[0]}`;
+  };
+
+  const handleSuccess = () => {
+    const copy = answers.slice();
+
+    copy.forEach((answer) => {
+      if (answer.answer_id === id) {
+        // eslint-disable-next-line no-param-reassign
+        answer.helpfulness += 1;
+      }
+    });
+
+    setAnswers(copy);
+  };
+
+  const handleHelpful = () => {
+    axios
+      .put(`/api/qa/answers/${id}/helpful`, {
+        params: {
+          productId: productId,
+        },
+      })
+      .then(() => {
+        handleSuccess();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -29,7 +70,15 @@ const Answer = function ({ body, helpfulness, date, name, photos }) {
         |
         <div className={styles.answer_buttons}>
           <span> Helpful? </span>
-          <span className={styles.helpful_button}> Yes</span>
+          <span
+            className={styles.helpful_button}
+            onClick={handleHelpful}
+            onKeyPress={handleHelpful}
+            role="button"
+            tabIndex={0}
+          >
+            Yes
+          </span>
           <span> ({helpfulness}) </span>|
           <span className={styles.report}>Report </span>
         </div>
@@ -41,6 +90,7 @@ const Answer = function ({ body, helpfulness, date, name, photos }) {
 export default Answer;
 
 Answer.propTypes = {
+  id: PropTypes.number.isRequired,
   helpfulness: PropTypes.number.isRequired,
   body: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
@@ -51,4 +101,15 @@ Answer.propTypes = {
       url: PropTypes.string.isRequired,
     })
   ).isRequired,
+  answers: PropTypes.arrayOf(
+    PropTypes.shape({
+      answer_id: PropTypes.number.isRequired,
+      body: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      answerer_name: PropTypes.string.isRequired,
+      helpfulness: PropTypes.number.isRequired,
+      photos: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    }).isRequired
+  ).isRequired,
+  setAnswers: PropTypes.func.isRequired,
 };

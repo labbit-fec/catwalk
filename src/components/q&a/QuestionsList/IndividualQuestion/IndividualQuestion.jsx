@@ -31,7 +31,7 @@ const IndividualQuestion = function ({
       });
   }, []);
 
-  const successCB = () => {
+  const handleSuccess = () => {
     const copy = questions.slice();
 
     copy.forEach((question) => {
@@ -70,8 +70,8 @@ const IndividualQuestion = function ({
           <span> Helpful? </span>
           <span
             className={styles.helpful_button}
-            onClick={handleHelpful}
-            onKeyPress={handleHelpful}
+            onClick={handleSuccess}
+            onKeyPress={handleSuccess}
             role="button"
             tabIndex={0}
           >
@@ -84,11 +84,14 @@ const IndividualQuestion = function ({
       {answers.map((answer) => (
         <Answer
           key={answer.answer_id}
+          id={answer.answer_id}
           body={answer.body}
           date={answer.date}
           name={answer.answerer_name}
           helpfulness={answer.helpfulness}
           photos={answer.photos}
+          answers={answers}
+          setAnswers={setAnswers}
         />
       ))}
       <hr />

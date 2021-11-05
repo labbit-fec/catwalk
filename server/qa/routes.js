@@ -65,4 +65,25 @@ router.put('/questions/:questionId/helpful', (req, res) => {
     });
 });
 
+router.put('/answers/:answerId/helpful', (req, res) => {
+  const { productId } = req.query;
+  const { answerId } = req.params;
+
+  axios
+    .put(`${baseUrl}/qa/answers/${answerId}/helpful`, null, {
+      params: {
+        product_id: productId,
+      },
+      headers: {
+        Authorization: authorization,
+      },
+    })
+    .then(() => {
+      res.status(204).send('Answer was marked as helpful!');
+    })
+    .catch(() => {
+      res.status(500).send('Unable to complete request.');
+    });
+});
+
 module.exports = router;
