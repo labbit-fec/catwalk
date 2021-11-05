@@ -12,7 +12,6 @@ export default function ModalForm({ closeModalClickHandler }) {
   });
 
   function updateFormData(event) {
-    console.log(event.target);
     const newFormData = { ...formData };
     newFormData[event.target.name] = event.target.value;
     setFormData(newFormData);

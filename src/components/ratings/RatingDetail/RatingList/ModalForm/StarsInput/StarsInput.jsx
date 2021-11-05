@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { VscStarEmpty, VscStarFull } from 'react-icons/vsc';
+import PropTypes from 'prop-types';
 import styles from './StarsInput.css';
 
 export default function StarsInput({ updateStarData }) {
@@ -61,3 +62,7 @@ export default function StarsInput({ updateStarData }) {
     </div>
   );
 }
+
+StarsInput.propTypes = {
+  updateStarData: PropTypes.func.isRequired,
+};
