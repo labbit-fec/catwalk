@@ -9,7 +9,7 @@ const ProductInformation = () => {
 
   useEffect(() => {
     axios
-      .get('/product')
+      .get('/products')
       .then((response) => {
         setProductTitle(response.data.Product.title);
       })
