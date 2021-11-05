@@ -7,10 +7,12 @@ export default function ModalForm({ closeModalClickHandler }) {
   const [formData, setFormData] = useState({
     nickname: '',
     email: '',
+    stars: null,
+    recommend: 'true',
   });
 
   function updateFormData(event) {
-    event.preventDefault();
+    console.log(event.target);
     const newFormData = { ...formData };
     newFormData[event.target.name] = event.target.value;
     setFormData(newFormData);
@@ -93,6 +95,39 @@ export default function ModalForm({ closeModalClickHandler }) {
                 For authentication reasons, you will not be emailed.
               </div>
             </label>
+          </div>
+          {/*
+
+            Divider
+
+           */}
+          <div>
+            <label htmlFor="recommend">
+              <div className={styles.formLabel}>
+                Do you recommend this product?
+              </div>
+              <input
+                type="radio"
+                id="option1"
+                value="true"
+                name="recommend"
+                checked={formData.recommend === 'true'}
+                onChange={updateFormData}
+              />
+              Yes
+              <input
+                type="radio"
+                id="option2"
+                value="false"
+                name="recommend"
+                checked={formData.recommend === 'false'}
+                onChange={updateFormData}
+              />
+              No
+            </label>
+            <div className={styles.formHelper}>
+              For authentication reasons, you will not be emailed.
+            </div>
           </div>
           {/*
 
