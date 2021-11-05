@@ -14,6 +14,7 @@ const IndividualQuestion = function ({
 }) {
   const { productId } = useContext(ProductIdContext);
   const [answers, setAnswers] = useState([]);
+  const [upvoted, setUpvoted] = useState(false);
 
   useEffect(() => {
     axios
@@ -41,6 +42,7 @@ const IndividualQuestion = function ({
       }
     });
 
+    setUpvoted(true);
     setQuestions(copy);
   };
 
@@ -52,7 +54,7 @@ const IndividualQuestion = function ({
         },
       })
       .then(() => {
-        successCB();
+        handleSuccess();
       })
       .catch((err) => {
         console.log(err);
@@ -66,20 +68,31 @@ const IndividualQuestion = function ({
     >
       <div className={styles.question}>
         <h4 className={styles.question_text}>Q: {body}</h4>
-        <div className={styles.question_buttons}>
-          <span> Helpful? </span>
-          <span
-            className={styles.helpful_button}
-            onClick={handleSuccess}
-            onKeyPress={handleSuccess}
-            role="button"
-            tabIndex={0}
-          >
-            Yes
-          </span>
-          <span> ({helpfulness}) </span>|
+        <span className={styles.question_buttons}>
+          {upvoted ? (
+            <span>
+              <span className={styles.upvoted}>
+                Question was marked as helpful!
+              </span>
+              |
+            </span>
+          ) : (
+            <span>
+              <span> Helpful? </span>
+              <span
+                className={styles.helpful_button}
+                onClick={handleHelpful}
+                onKeyPress={handleHelpful}
+                role="button"
+                tabIndex={0}
+              >
+                Yes
+              </span>
+              <span> ({helpfulness}) </span>|
+            </span>
+          )}
           <span className={styles.add_answer}>Add Answer</span>
-        </div>
+        </span>
       </div>
       {answers.map((answer) => (
         <Answer

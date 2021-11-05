@@ -45,6 +45,10 @@
   margin-left: 5px;
 }
 
+.upvoted{
+  margin-right: 5px;
+}
+
 .helpful_button{
   color: rgb(158, 158, 158);
   text-decoration: underline;

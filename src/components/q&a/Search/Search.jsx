@@ -45,9 +45,6 @@ const Search = function ({ questions, setQuestions, allQuestions }) {
           onChange={handleSearch}
         />
       </div>
-      {/* <button type="submit" className={styles.button}>
-        Search
-      </button> */}
     </div>
   );
 };

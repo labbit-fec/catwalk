@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import Images from './Images/Images';
@@ -16,6 +16,7 @@ const Answer = function ({
   setAnswers,
 }) {
   const { productId } = useContext(ProductIdContext);
+  const [upvoted, setUpvoted] = useState(false);
 
   const formatDate = () => {
     const tempDate = date.split('T')[0].split('-');
@@ -32,6 +33,7 @@ const Answer = function ({
       }
     });
 
+    setUpvoted(true);
     setAnswers(copy);
   };
 
@@ -69,17 +71,28 @@ const Answer = function ({
         </span>
         |
         <div className={styles.answer_buttons}>
-          <span> Helpful? </span>
-          <span
-            className={styles.helpful_button}
-            onClick={handleHelpful}
-            onKeyPress={handleHelpful}
-            role="button"
-            tabIndex={0}
-          >
-            Yes
-          </span>
-          <span> ({helpfulness}) </span>|
+          {upvoted ? (
+            <span>
+              <span className={styles.upvoted}>
+                Answer was marked as helpful!
+              </span>
+              |
+            </span>
+          ) : (
+            <span>
+              <span> Helpful? </span>
+              <span
+                className={styles.helpful_button}
+                onClick={handleHelpful}
+                onKeyPress={handleHelpful}
+                role="button"
+                tabIndex={0}
+              >
+                Yes
+              </span>
+              <span> ({helpfulness}) </span> |
+            </span>
+          )}
           <span className={styles.report}>Report </span>
         </div>
       </div>
