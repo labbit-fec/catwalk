@@ -29,14 +29,12 @@ app.get('/products', (req, res) => {
 });
 
 app.get('/product/*', (req, res) => {
-  // debugger;
   if (req.path.endsWith('bundle.js')) {
     res.sendFile(path.resolve(__dirname, '../dist/main.bundle.js'));
   }
   else {
     res.sendFile(path.resolve(__dirname, '../dist/index.html'));
   }
-  // res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
 // eslint-disable-next-line prettier/prettier
