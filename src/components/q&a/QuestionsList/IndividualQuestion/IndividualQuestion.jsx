@@ -32,7 +32,7 @@ const IndividualQuestion = function ({
       });
   }, []);
 
-  const handleSuccess = () => {
+  const handleSuccessfulUpvote = () => {
     const copy = questions.slice();
 
     copy.forEach((question) => {
@@ -54,7 +54,25 @@ const IndividualQuestion = function ({
         },
       })
       .then(() => {
-        handleSuccess();
+        handleSuccessfulUpvote();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleAdd = () => {
+    axios
+      .post(`/api/qa/questions/${id}/answers`, {
+        params: {
+          body: 'Test answer',
+          name: 'tester92',
+          email: 'testing123@gmail.com',
+          photos: [],
+        },
+      })
+      .then(() => {
+        console.log('Your answer was successfully posted!');
       })
       .catch((err) => {
         console.log(err);
@@ -91,7 +109,15 @@ const IndividualQuestion = function ({
               <span> ({helpfulness}) </span>|
             </span>
           )}
-          <span className={styles.add_answer}>Add Answer</span>
+          <span
+            className={styles.add_answer}
+            onClick={handleAdd}
+            onKeyPress={handleAdd}
+            role="button"
+            tabIndex={0}
+          >
+            Add Answer
+          </span>
         </span>
       </div>
       {answers.map((answer) => (

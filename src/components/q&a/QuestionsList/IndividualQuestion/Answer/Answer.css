@@ -1,7 +1,7 @@
 .container{
   display: flex;
   flex-direction: column;
-  background-color: rgba(235, 235, 235, 1)
+  background-color: rgb(253, 247, 247)
 }
 
 .answer_text{
@@ -19,7 +19,6 @@
 .answer_body{
   margin-top: 15px;
   margin-left: 5px;
-  /* margin-bottom: 10px; */
 }
 
 .answer_bar{
@@ -53,6 +52,10 @@
   color: rgb(158, 158, 158);
   text-decoration: underline;
   cursor: pointer;
+}
+
+.reported{
+  margin-left: 5px;
 }
 
 .report{

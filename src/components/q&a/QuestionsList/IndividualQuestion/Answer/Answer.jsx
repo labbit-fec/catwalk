@@ -17,13 +17,14 @@ const Answer = function ({
 }) {
   const { productId } = useContext(ProductIdContext);
   const [upvoted, setUpvoted] = useState(false);
+  const [reported, setReported] = useState(false);
 
   const formatDate = () => {
     const tempDate = date.split('T')[0].split('-');
     return `${tempDate[1]}-${tempDate[2]}-${tempDate[0]}`;
   };
 
-  const handleSuccess = () => {
+  const handleHelpfulSuccess = () => {
     const copy = answers.slice();
 
     copy.forEach((answer) => {
@@ -45,7 +46,26 @@ const Answer = function ({
         },
       })
       .then(() => {
-        handleSuccess();
+        handleHelpfulSuccess();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleReportSuccess = () => {
+    setReported(true);
+  };
+
+  const handleReport = () => {
+    axios
+      .put(`/api/qa/answers/${id}/report`, {
+        params: {
+          productId: productId,
+        },
+      })
+      .then(() => {
+        handleReportSuccess();
       })
       .catch((err) => {
         console.log(err);
@@ -93,7 +113,19 @@ const Answer = function ({
               <span> ({helpfulness}) </span> |
             </span>
           )}
-          <span className={styles.report}>Report </span>
+          {reported ? (
+            <span className={styles.reported}>Answer was reported!</span>
+          ) : (
+            <span
+              className={styles.report}
+              onClick={handleReport}
+              onKeyPress={handleReport}
+              role="button"
+              tabIndex={0}
+            >
+              Report
+            </span>
+          )}
         </div>
       </div>
     </div>

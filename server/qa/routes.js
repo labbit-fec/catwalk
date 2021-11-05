@@ -86,4 +86,56 @@ router.put('/answers/:answerId/helpful', (req, res) => {
     });
 });
 
+router.put('/answers/:answerId/report', (req, res) => {
+  const { answerId } = req.params;
+  const { productId } = req.query;
+
+  axios
+    .put(`${baseUrl}/qa/answers/${answerId}/report`, null, {
+      params: {
+        product_id: productId,
+      },
+      headers: {
+        Authorization: authorization,
+      },
+    })
+    .then(() => {
+      res.status(204).send('Answer was successfully reported!');
+    })
+    .catch(() => {
+      res.status(500).send('Unable to complete request.');
+    });
+});
+
+router.post('/questions/:questionId/answers', (req, res) => {
+  const { questionId } = req.params;
+  const { body, name, email, photos } = req.body.params;
+
+  const data = JSON.stringify({
+    body,
+    name,
+    email,
+    photos,
+  });
+
+  const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${questionId}/answers`;
+
+  const config = {
+    headers: {
+      Connection: 'keep-alive',
+      Authorization: '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',
+      'Content-Type': 'application/json',
+    },
+  };
+
+  axios
+    .post(url, data, config)
+    .then(() => {
+      res.status(201).send('Answer was successfully posted!');
+    })
+    .catch(() => {
+      res.status(500).send('Unable to complete request.');
+    });
+});
+
 module.exports = router;

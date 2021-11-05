@@ -11,6 +11,7 @@ const QuestionsList = function ({ questions, setQuestions, setAllQuestions }) {
   const [expanded, setExpanded] = useState(false);
 
   const successCB = (response) => {
+    // console.log(JSON.stringify(response.data));
     setQuestions(response.data);
     setAllQuestions(response.data);
   };
