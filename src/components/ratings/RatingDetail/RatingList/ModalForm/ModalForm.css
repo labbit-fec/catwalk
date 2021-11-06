@@ -33,11 +33,13 @@
 input {
   height: 2.5em;
   width: 100%;
-  margin-top: 0.5em;
-  margin-bottom: 0.25em;
   vertical-align: middle;
   font-size: 1.25em;
   padding: 0 0.5em;
+}
+
+.formPrompt {
+  margin-bottom: 0.5em;
 }
 
 .formHelper {
@@ -55,4 +57,8 @@ input[type='radio'] {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.characteristic {
+  margin: 1em 1em;
 }

@@ -11,14 +11,14 @@ export default function ModalForm({ closeModalClickHandler }) {
 
   const [formData, setFormData] = useState({
     productId,
-    rating: null, // integer 1-5
-    summary: null, // string
-    body: null, // string
-    recommend: null, // bool
-    name: null, // string
-    email: null, // string
-    photos: null, // array of strings,
-    characteristics: { Fit: '1' }, // object {"characteristic_id": value}
+    rating: 0, // integer 1-5
+    summary: '', // string
+    body: '', // string
+    recommend: false, // bool
+    name: '', // string
+    email: '', // string
+    photos: [''], // array of strings,
+    characteristics: {}, // object {"characteristic_id": value}
   });
 
   function getCharacteristics() {
@@ -169,7 +169,7 @@ export default function ModalForm({ closeModalClickHandler }) {
             </div>
             {Object.keys(characteristics).map((characteristic) => (
               <div className={styles.characteristic}>
-                {characteristic}
+                <strong>{characteristic}</strong>
                 {Object.keys(characteristics[characteristic]).map((score) => (
                   <label htmlFor={`${characteristic}-${score}`}>
                     <div className={styles.radio}>
