@@ -7,7 +7,7 @@ import { ProductIdContext } from '../../../../context/ProductIdContext';
 
 export default function ModalForm({ closeModalClickHandler }) {
   const { productId } = useContext(ProductIdContext);
-  const [characteristics, setCharacteristics] = useEffect({});
+  const [characteristics, setCharacteristics] = useState({});
 
   const [formData, setFormData] = useState({
     productId,
@@ -32,6 +32,8 @@ export default function ModalForm({ closeModalClickHandler }) {
   useEffect(() => {
     getCharacteristics().then((response) => {
       setCharacteristics(response.data.characteristics);
+      console.log(response.data.characteristics);
+      console.log(response.data);
     });
   }, [productId]);
 
@@ -160,6 +162,11 @@ export default function ModalForm({ closeModalClickHandler }) {
           <div className={styles.formField}>
             <div className={styles.formPrompt}>
               How would you rate the following characteristics?
+            </div>
+            <div>
+              {Object.keys(characteristics).map((key) => (
+                <div>{key}</div>
+              ))}
             </div>
           </div>
         </form>

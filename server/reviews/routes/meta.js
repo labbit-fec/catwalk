@@ -160,9 +160,12 @@ router.get('/characteristicsWithOptions', (req, res) => {
     })
     .then((response) => {
       const { characteristics } = response.data;
-      const result = Object.keys(characteristics).map((characteristic) => ({
-        characteristic: legend[characteristic],
-      }));
+      console.log(characteristics);
+      const result = {};
+      Object.keys(characteristics).forEach((key) => {
+        result[key] = legend[key];
+      });
+      console.log(result);
       res.status(200).json({ characteristics: result });
     });
 });
