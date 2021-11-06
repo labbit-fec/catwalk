@@ -216,6 +216,25 @@ export default function ModalForm({ closeModalClickHandler }) {
             Divider
 
           */}
+          <div className={styles.formField}>
+            <label htmlFor="body">
+              <div className={styles.formPrompt}>
+                Review body (50 - 1,000 characters):
+              </div>
+              <textarea
+                id="body"
+                name="body"
+                placeholder="Why did you like the product or not?"
+                value={formData.body}
+                onChange={updateFormDataByName}
+              />
+            </label>
+          </div>
+          {/*
+
+            Divider
+
+          */}
         </form>
         <button type="button" onClick={closeModalClickHandler}>
           Close
