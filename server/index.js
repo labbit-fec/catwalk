@@ -23,8 +23,8 @@ const { getProduct } = require('./products');
 
 app.get('/products', (req, res) => {
   getProduct(req.query.name, (err, product) => {
-    if (err) {res.sendStatus(500);}
-    else {res.send(product);};
+    if (err) { res.sendStatus(500); }
+    else { res.send(product); };
   });
 });
 

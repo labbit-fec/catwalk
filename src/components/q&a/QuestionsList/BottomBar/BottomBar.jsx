@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styles from './BottomBar.css';
+import { ProductIdContext } from '../../../context/ProductIdContext';
+import AddQuestionsButton from '../AddQuestionsButton/AddQuestionsButton';
 
 const BottomBar = function ({ expanded, setExpanded }) {
+  const { productId } = useContext(ProductIdContext);
+
   const handleMoreQClick = () => {
     if (expanded) {
       setExpanded(false);
@@ -20,9 +24,7 @@ const BottomBar = function ({ expanded, setExpanded }) {
       >
         MORE ANSWERED QUESTIONS
       </button>
-      <button type="button" className={styles.add_question}>
-        ADD A QUESTION +
-      </button>
+      <AddQuestionsButton />
     </div>
   );
 };

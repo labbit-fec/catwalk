@@ -5,11 +5,12 @@ const { baseUrl, authorization } = require('../server-config');
 const router = express.Router();
 
 router.get('/questions', (req, res) => {
-  const { productId } = req.query;
+  const { productId, count } = req.query;
   axios
     .get(`${baseUrl}/qa/questions`, {
       params: {
         product_id: productId,
+        count,
       },
       headers: {
         Authorization: authorization,
@@ -101,6 +102,36 @@ router.put('/answers/:answerId/report', (req, res) => {
     })
     .then(() => {
       res.status(204).send('Answer was successfully reported!');
+    })
+    .catch(() => {
+      res.status(500).send('Unable to complete request.');
+    });
+});
+
+router.post('/questions', (req, res) => {
+  const { body, name, email, product_id } = req.body.params;
+
+  const data = JSON.stringify({
+    body,
+    name,
+    email,
+    product_id,
+  });
+
+  const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions`;
+
+  const config = {
+    headers: {
+      Connection: 'keep-alive',
+      Authorization: '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',
+      'Content-Type': 'application/json',
+    },
+  };
+
+  axios
+    .post(url, data, config)
+    .then(() => {
+      res.status(201).send('Question was successfully posted!');
     })
     .catch(() => {
       res.status(500).send('Unable to complete request.');

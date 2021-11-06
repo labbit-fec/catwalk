@@ -5,6 +5,7 @@ import IndividualQuestion from './IndividualQuestion/IndividualQuestion';
 import BottomBar from './BottomBar/BottomBar';
 import styles from './QuestionsList.css';
 import { ProductIdContext } from '../../context/ProductIdContext';
+import AddQuestionsButton from './AddQuestionsButton/AddQuestionsButton';
 
 const QuestionsList = function ({ questions, setQuestions, setAllQuestions }) {
   const { productId } = useContext(ProductIdContext);
@@ -16,7 +17,7 @@ const QuestionsList = function ({ questions, setQuestions, setAllQuestions }) {
     setAllQuestions(response.data);
   };
 
-  const renderShortenedList = () => {
+  const renderList = () => {
     if (expanded) {
       return questions.map((question) => (
         // <button type="submit">Submit</button>
@@ -49,6 +50,7 @@ const QuestionsList = function ({ questions, setQuestions, setAllQuestions }) {
       .get('/api/qa/questions', {
         params: {
           productId: productId,
+          count: 100,
         },
       })
       .then((response) => {
@@ -64,13 +66,11 @@ const QuestionsList = function ({ questions, setQuestions, setAllQuestions }) {
     <div className={styles.container} data-testid="question-list-container">
       {questions.length ? (
         <div>
-          {renderShortenedList()}
+          {renderList()}
           <BottomBar expanded={expanded} setExpanded={setExpanded} />
         </div>
       ) : (
-        <button type="button" className={styles.add_question}>
-          ADD A QUESTION +
-        </button>
+        <AddQuestionsButton />
       )}
     </div>
   );
