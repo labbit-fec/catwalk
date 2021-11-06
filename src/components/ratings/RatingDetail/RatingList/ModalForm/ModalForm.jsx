@@ -39,15 +39,10 @@ export default function ModalForm({ closeModalClickHandler }) {
 
            */}
           <div className={styles.formField}>
-            <div className={styles.formLabel}>
+            <div className={styles.starsField}>
               Overall rating:
-              <div className={styles.formHelper}>
-                (1 = &quot;Poor&quot;, 2 = &quot;Fair&quot;, 3 =
-                &quot;Average&quot;, 4 = &quot;Good&quot;, 5 =
-                &quot;Great&quot;)
-              </div>
+              <StarsInput updateStarData={updateStarData} />
             </div>
-            <StarsInput updateStarData={updateStarData} />
           </div>
           {/*
 
@@ -56,21 +51,20 @@ export default function ModalForm({ closeModalClickHandler }) {
            */}
           <div className={styles.formField}>
             <label htmlFor="nickname">
-              <div className={styles.formLabel}>
-                Your nickname (up to 60 chars):
-              </div>
+              Your nickname (up to 60 chars):
               <input
                 type="text"
                 name="nickname"
+                id="nickname"
                 maxLength="60"
                 placeholder="Example: jackson11!"
                 value={formData.nickname}
                 onChange={updateFormData}
               />
-              <div className={styles.formHelper}>
-                For privacy reasons, do not use your full name or email.
-              </div>
             </label>
+            <div className={styles.formHelper}>
+              For privacy reasons, do not use your full name or email.
+            </div>
           </div>
           {/*
 
@@ -79,32 +73,29 @@ export default function ModalForm({ closeModalClickHandler }) {
            */}
           <div className={styles.formField}>
             <label htmlFor="email">
-              <div className={styles.formLabel}>
-                Your email (up to 60 chars):
-              </div>
+              Your email (up to 60 chars):
               <input
                 type="email"
+                id="email"
                 name="email"
                 maxLength="60"
                 placeholder="Example: jackson11@email.com"
                 value={formData.email}
                 onChange={updateFormData}
               />
-              <div className={styles.formHelper}>
-                For authentication reasons, you will not be emailed.
-              </div>
             </label>
+            <div className={styles.formHelper}>
+              For authentication reasons, you will not be emailed.
+            </div>
           </div>
           {/*
 
             Divider
 
            */}
-          <div>
-            <label htmlFor="recommend">
-              <div className={styles.formLabel}>
-                Do you recommend this product?
-              </div>
+          <div className={styles.formField}>
+            Do you recommend this product?
+            <label htmlFor="option1">
               <input
                 type="radio"
                 id="option1"
@@ -114,6 +105,8 @@ export default function ModalForm({ closeModalClickHandler }) {
                 onChange={updateFormData}
               />
               Yes
+            </label>
+            <label htmlFor="option2">
               <input
                 type="radio"
                 id="option2"
@@ -124,9 +117,6 @@ export default function ModalForm({ closeModalClickHandler }) {
               />
               No
             </label>
-            <div className={styles.formHelper}>
-              For authentication reasons, you will not be emailed.
-            </div>
           </div>
           {/*
 
