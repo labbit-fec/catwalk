@@ -160,7 +160,6 @@ router.get('/characteristicsWithOptions', (req, res) => {
     })
     .then((response) => {
       const { characteristics } = response.data;
-      console.log(characteristics);
       const result = {};
       Object.keys(characteristics).forEach((key) => {
         result[key] = legend[key];

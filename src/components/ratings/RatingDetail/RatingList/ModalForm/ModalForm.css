@@ -19,6 +19,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 1em;
+  overflow-y: auto;
 }
 
 .modalForm {
@@ -45,9 +46,4 @@ input {
 
 input[type='radio'] {
   height: 1em;
-}
-
-.radio {
-  display: flex;
-  flex-direction: row;
 }

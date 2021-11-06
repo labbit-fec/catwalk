@@ -18,7 +18,7 @@ export default function ModalForm({ closeModalClickHandler }) {
     name: null, // string
     email: null, // string
     photos: null, // array of strings,
-    characteristics: null, // object {"characteristic_id": value}
+    characteristics: { Fit: '1' }, // object {"characteristic_id": value}
   });
 
   function getCharacteristics() {
@@ -32,16 +32,21 @@ export default function ModalForm({ closeModalClickHandler }) {
   useEffect(() => {
     getCharacteristics().then((response) => {
       setCharacteristics(response.data.characteristics);
-      console.log(response.data.characteristics);
-      console.log(response.data);
     });
   }, [productId]);
 
-  function updateFormData(event) {
+  function updateFormDataByName(event) {
     const newFormData = { ...formData };
     newFormData[event.target.name] = event.target.value;
     setFormData(newFormData);
-    // console.log(newFormData);
+    console.log(newFormData);
+  }
+
+  function updateCharacteristicFormData(event) {
+    const newFormData = { ...formData };
+    newFormData.characteristics[event.target.name] = event.target.value;
+    setFormData(newFormData);
+    console.log(newFormData);
   }
 
   const updateStarData = useCallback(
@@ -49,7 +54,6 @@ export default function ModalForm({ closeModalClickHandler }) {
       const newFormData = { ...formData };
       newFormData.rating = rating;
       setFormData(newFormData);
-      // console.log(newFormData);
     },
     [setFormData]
   );
@@ -87,7 +91,7 @@ export default function ModalForm({ closeModalClickHandler }) {
                 maxLength="60"
                 placeholder="Example: jackson11!"
                 value={formData.name}
-                onChange={updateFormData}
+                onChange={updateFormDataByName}
               />
             </label>
             <div className={styles.formHelper}>
@@ -111,7 +115,7 @@ export default function ModalForm({ closeModalClickHandler }) {
                 maxLength="60"
                 placeholder="Example: jackson11@email.com"
                 value={formData.email}
-                onChange={updateFormData}
+                onChange={updateFormDataByName}
               />
             </label>
             <div className={styles.formHelper}>
@@ -135,7 +139,7 @@ export default function ModalForm({ closeModalClickHandler }) {
                   value="true"
                   name="recommend"
                   checked={formData.recommend === 'true'}
-                  onChange={updateFormData}
+                  onChange={updateFormDataByName}
                 />
                 <div>Yes</div>
               </div>
@@ -148,7 +152,7 @@ export default function ModalForm({ closeModalClickHandler }) {
                   value="false"
                   name="recommend"
                   checked={formData.recommend === 'false'}
-                  onChange={updateFormData}
+                  onChange={updateFormDataByName}
                 />
                 No
               </div>
@@ -163,11 +167,28 @@ export default function ModalForm({ closeModalClickHandler }) {
             <div className={styles.formPrompt}>
               How would you rate the following characteristics?
             </div>
-            <div>
-              {Object.keys(characteristics).map((key) => (
-                <div>{key}</div>
-              ))}
-            </div>
+            {Object.keys(characteristics).map((characteristic) => (
+              <div className={styles.characteristic}>
+                {characteristic}
+                {Object.keys(characteristics[characteristic]).map((score) => (
+                  <label htmlFor={`${characteristic}-${score}`}>
+                    <div className={styles.radio}>
+                      <input
+                        type="radio"
+                        id={`${characteristic}-${score}`}
+                        value={score}
+                        name={characteristic}
+                        checked={
+                          formData.characteristics[characteristic] === score
+                        }
+                        onChange={updateCharacteristicFormData}
+                      />
+                      {`${score} - ${characteristics[characteristic][score]}`}
+                    </div>
+                  </label>
+                ))}
+              </div>
+            ))}
           </div>
         </form>
         <button type="button" onClick={closeModalClickHandler}>
