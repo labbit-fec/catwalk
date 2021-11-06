@@ -5,8 +5,6 @@ import { ProductIdContext } from '../../../context/ProductIdContext';
 import AddQuestionsButton from '../AddQuestionsButton/AddQuestionsButton';
 
 const BottomBar = function ({ expanded, setExpanded }) {
-  const { productId } = useContext(ProductIdContext);
-
   const handleMoreQClick = () => {
     if (expanded) {
       setExpanded(false);
@@ -17,13 +15,23 @@ const BottomBar = function ({ expanded, setExpanded }) {
 
   return (
     <div className={styles.container}>
-      <button
-        type="button"
-        className={styles.more_questions}
-        onClick={handleMoreQClick}
-      >
-        MORE ANSWERED QUESTIONS
-      </button>
+      {expanded ? (
+        <button
+          type="button"
+          className={styles.more_questions}
+          onClick={handleMoreQClick}
+        >
+          COLLAPSE
+        </button>
+      ) : (
+        <button
+          type="button"
+          className={styles.more_questions}
+          onClick={handleMoreQClick}
+        >
+          MORE ANSWERED QUESTIONS
+        </button>
+      )}
       <AddQuestionsButton />
     </div>
   );

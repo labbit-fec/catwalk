@@ -114,7 +114,7 @@ const Answer = function ({
             </span>
           )}
           {reported ? (
-            <span className={styles.reported}>Answer was reported!</span>
+            <span className={styles.reported}>Reported</span>
           ) : (
             <span
               className={styles.report}

@@ -6,6 +6,7 @@
 
 .more_questions{
   max-height: 60px;
+  width: 30%;
   align-self: center;
   background-color:green;
   color: white;

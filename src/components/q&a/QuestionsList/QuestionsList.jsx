@@ -19,30 +19,38 @@ const QuestionsList = function ({ questions, setQuestions, setAllQuestions }) {
 
   const renderList = () => {
     if (expanded) {
-      return questions.map((question) => (
-        // <button type="submit">Submit</button>
-        <IndividualQuestion
-          body={question.question_body}
-          key={question.question_id}
-          id={question.question_id}
-          helpfulness={question.question_helpfulness}
-          questions={questions}
-          setQuestions={setQuestions}
-        />
-      ));
+      return (
+        <div className={styles.questions_list}>
+          {questions.map((question) => (
+            // <button type="submit">Submit</button>
+            <IndividualQuestion
+              body={question.question_body}
+              key={question.question_id}
+              id={question.question_id}
+              helpfulness={question.question_helpfulness}
+              questions={questions}
+              setQuestions={setQuestions}
+            />
+          ))}
+        </div>
+      );
     }
-    const shortened = questions.slice(0, 4);
-    return shortened.map((question) => (
-      // <button type="submit">Submit</button>
-      <IndividualQuestion
-        body={question.question_body}
-        key={question.question_id}
-        id={question.question_id}
-        helpfulness={question.question_helpfulness}
-        questions={questions}
-        setQuestions={setQuestions}
-      />
-    ));
+    const shortened = questions.slice(0, 2);
+    return (
+      <div className={styles.questions_list}>
+        {shortened.map((question) => (
+          // <button type="submit">Submit</button>
+          <IndividualQuestion
+            body={question.question_body}
+            key={question.question_id}
+            id={question.question_id}
+            helpfulness={question.question_helpfulness}
+            questions={questions}
+            setQuestions={setQuestions}
+          />
+        ))}
+      </div>
+    );
   };
 
   useEffect(() => {
@@ -67,6 +75,7 @@ const QuestionsList = function ({ questions, setQuestions, setAllQuestions }) {
       {questions.length ? (
         <div>
           {renderList()}
+          <hr />
           <BottomBar expanded={expanded} setExpanded={setExpanded} />
         </div>
       ) : (

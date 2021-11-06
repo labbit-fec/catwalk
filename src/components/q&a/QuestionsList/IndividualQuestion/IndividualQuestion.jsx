@@ -15,6 +15,97 @@ const IndividualQuestion = function ({
   const { productId } = useContext(ProductIdContext);
   const [answers, setAnswers] = useState([]);
   const [upvoted, setUpvoted] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+
+  const handleMoreAClick = () => {
+    if (expanded) {
+      setExpanded(false);
+    } else {
+      setExpanded(true);
+    }
+  };
+
+  const renderList = () => {
+    if (answers.length <= 2) {
+      return answers.map((answer) => (
+        <Answer
+          key={answer.answer_id}
+          id={answer.answer_id}
+          body={answer.body}
+          date={answer.date}
+          name={answer.answerer_name}
+          helpfulness={answer.helpfulness}
+          photos={answer.photos}
+          answers={answers}
+          setAnswers={setAnswers}
+        />
+      ));
+    }
+    if (expanded) {
+      return (
+        <div>
+          {answers.map((answer) => (
+            <Answer
+              key={answer.answer_id}
+              id={answer.answer_id}
+              body={answer.body}
+              date={answer.date}
+              name={answer.answerer_name}
+              helpfulness={answer.helpfulness}
+              photos={answer.photos}
+              answers={answers}
+              setAnswers={setAnswers}
+            />
+          ))}
+          <button
+            type="button"
+            className={styles.more_answers}
+            onClick={handleMoreAClick}
+          >
+            Collapse Answers
+          </button>
+        </div>
+      );
+    }
+    const shortened = answers.slice(0, 2);
+    return (
+      <div>
+        {shortened.map((answer) => (
+          <Answer
+            key={answer.answer_id}
+            id={answer.answer_id}
+            body={answer.body}
+            date={answer.date}
+            name={answer.answerer_name}
+            helpfulness={answer.helpfulness}
+            photos={answer.photos}
+            answers={answers}
+            setAnswers={setAnswers}
+          />
+        ))}
+        <button
+          type="button"
+          className={styles.more_answers}
+          onClick={handleMoreAClick}
+        >
+          See More Answers
+        </button>
+      </div>
+    );
+  };
+
+  const setSortedAnswers = (response) => {
+    const answersList = response.data.results;
+    const sellersAnswers = [];
+
+    answersList.forEach((answer, i) => {
+      if (answer.answerer_name === 'Seller') {
+        sellersAnswers.push(answer);
+        answersList.splice(i, 1);
+      }
+    });
+    setAnswers(sellersAnswers.concat(answersList));
+  };
 
   useEffect(() => {
     axios
@@ -24,8 +115,7 @@ const IndividualQuestion = function ({
         },
       })
       .then((response) => {
-        setAnswers(response.data.results);
-        // console.log(JSON.stringify(response.data));
+        setSortedAnswers(response);
       })
       .catch((err) => {
         console.log(err);
@@ -84,6 +174,7 @@ const IndividualQuestion = function ({
       className={styles.container}
       data-testid="individual-question-container"
     >
+      <hr />
       <div className={styles.question}>
         <h4 className={styles.question_text}>Q: {body}</h4>
         <span className={styles.question_buttons}>
@@ -120,20 +211,7 @@ const IndividualQuestion = function ({
           </span>
         </span>
       </div>
-      {answers.map((answer) => (
-        <Answer
-          key={answer.answer_id}
-          id={answer.answer_id}
-          body={answer.body}
-          date={answer.date}
-          name={answer.answerer_name}
-          helpfulness={answer.helpfulness}
-          photos={answer.photos}
-          answers={answers}
-          setAnswers={setAnswers}
-        />
-      ))}
-      <hr />
+      <div className={styles.answers_list}>{renderList()}</div>
     </div>
   );
 };

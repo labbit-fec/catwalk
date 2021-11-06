@@ -2,3 +2,18 @@
   display: flex;
   flex-direction: column;
 }
+
+.questions_list{
+  max-height: 100vh;
+  overflow: auto;
+}
+
+hr {
+  border: 0;
+  margin-bottom: 20px;
+  clear:both;
+  display:block;
+  width: 100%;
+  background-color: grey;
+  height: 1px;
+}

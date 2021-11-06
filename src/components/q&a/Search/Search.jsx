@@ -41,7 +41,7 @@ const Search = function ({ questions, setQuestions, allQuestions }) {
           id="input"
           className={styles.input}
           type="text"
-          placeholder="Search Questions & Answers"
+          placeholder="Have a question? Search for answers…"
           onChange={handleSearch}
         />
       </div>
