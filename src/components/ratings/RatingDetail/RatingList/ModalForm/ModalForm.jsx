@@ -1,11 +1,13 @@
-import React, { useState, useCallback, useContext } from 'react';
+import React, { useState, useCallback, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import styles from './ModalForm.css';
 import StarsInput from './StarsInput/StarsInput';
-import { ProductIdContext } from '../../../context/ProductIdContext';
+import { ProductIdContext } from '../../../../context/ProductIdContext';
 
 export default function ModalForm({ closeModalClickHandler }) {
   const { productId } = useContext(ProductIdContext);
+  const [characteristics, setCharacteristics] = useEffect({});
 
   const [formData, setFormData] = useState({
     productId,
@@ -18,6 +20,20 @@ export default function ModalForm({ closeModalClickHandler }) {
     photos: null, // array of strings,
     characteristics: null, // object {"characteristic_id": value}
   });
+
+  function getCharacteristics() {
+    return axios.get('/api/reviews/meta/characteristicsWithOptions', {
+      params: {
+        productId,
+      },
+    });
+  }
+
+  useEffect(() => {
+    getCharacteristics().then((response) => {
+      setCharacteristics(response.data.characteristics);
+    });
+  }, [productId]);
 
   function updateFormData(event) {
     const newFormData = { ...formData };

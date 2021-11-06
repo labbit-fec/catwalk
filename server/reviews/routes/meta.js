@@ -102,4 +102,6 @@ router.get('/characteristics', (req, res) => {
     });
 });
 
+// router.get('/characteristicsWithOptions');
+
 module.exports = router;
