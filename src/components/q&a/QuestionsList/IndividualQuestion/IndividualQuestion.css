@@ -54,6 +54,9 @@ hr {
 }
 
 .more_answers {
+  margin-left: 15px;
+  margin-top: 5px;
+  height: 30px;
   background-color: rgba(35, 35, 35, 1);
   color: white;
   display: flex;
