@@ -23,8 +23,8 @@ const { getProduct } = require('./products');
 
 app.get('/products', (req, res) => {
   getProduct(req.query.name, (err, product) => {
-    if (err) {res.sendStatus(500);}
-    else {res.send(product);};
+    if (err) { res.sendStatus(500); }
+    else { res.send(product); };
   });
 });
 
@@ -39,7 +39,7 @@ app.get('/product/*', (req, res) => {
 
 // eslint-disable-next-line prettier/prettier
 if (process.env.NODE_ENV !== 'test') {
-  app.listen(port, () => {});
+  app.listen(port, () => { });
 }
 
 module.exports.port = port;

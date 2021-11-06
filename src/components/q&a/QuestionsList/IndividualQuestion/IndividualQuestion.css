@@ -10,14 +10,21 @@
 }
 
 .question_text{
-  flex: 4;
+  flex: 6;
   margin-left: 15px;
 }
 
 .question_buttons{
-  flex: 1;
+  flex: 2;
   font-size: 10px;
   align-self: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.upvoted{
+  margin-right: 5px;
 }
 
 .helpful_button{
@@ -40,4 +47,20 @@ hr {
   width: 100%;
   background-color: grey;
   height: 1px;
+}
+.answers_list{
+  max-height: 50vh;
+  overflow: auto;
+}
+
+.more_answers {
+  margin-left: 15px;
+  margin-top: 5px;
+  height: 30px;
+  background-color: rgba(35, 35, 35, 1);
+  color: white;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  cursor: pointer;
 }

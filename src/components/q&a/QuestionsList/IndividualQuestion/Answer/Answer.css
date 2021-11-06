@@ -1,7 +1,7 @@
 .container{
   display: flex;
   flex-direction: column;
-  background-color: rgba(235, 235, 235, 1)
+  background-color: rgb(253, 247, 247)
 }
 
 .answer_text{
@@ -19,7 +19,6 @@
 .answer_body{
   margin-top: 15px;
   margin-left: 5px;
-  /* margin-bottom: 10px; */
 }
 
 .answer_bar{
@@ -28,11 +27,12 @@
   align-content: center;
   font-size: 10px;
   margin-left: 15px;
-  /* margin-top: 10px; */
   margin-bottom: 10px;
+  color: rgb(158, 158, 158);
 }
 
 .info{
+  margin-left: 25px;
   margin-right: 5px;
 }
 
@@ -44,15 +44,23 @@
   margin-left: 5px;
 }
 
+.upvoted{
+  margin-right: 5px;
+}
+
 .helpful_button{
-  color: rgb(106, 106, 116);
+  color: rgb(158, 158, 158);
   text-decoration: underline;
   cursor: pointer;
 }
 
+.reported{
+  margin-left: 5px;
+}
+
 .report{
   margin-left: 5px;
-  color: rgb(106, 106, 116);
+  color: rgb(158, 158, 158);
   text-decoration: underline;
   cursor: pointer;
 }
