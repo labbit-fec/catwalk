@@ -40,7 +40,7 @@ export default function ModalForm({ closeModalClickHandler }) {
            */}
           <div className={styles.formField}>
             <div className={styles.starsField}>
-              Overall rating:
+              <div className={styles.formPrompt}>Overall rating:</div>
               <StarsInput updateStarData={updateStarData} />
             </div>
           </div>
@@ -51,7 +51,9 @@ export default function ModalForm({ closeModalClickHandler }) {
            */}
           <div className={styles.formField}>
             <label htmlFor="nickname">
-              Your nickname (up to 60 chars):
+              <div className={styles.formPrompt}>
+                Your nickname (up to 60 chars):
+              </div>
               <input
                 type="text"
                 name="nickname"
@@ -73,7 +75,9 @@ export default function ModalForm({ closeModalClickHandler }) {
            */}
           <div className={styles.formField}>
             <label htmlFor="email">
-              Your email (up to 60 chars):
+              <div className={styles.formPrompt}>
+                Your email (up to 60 chars):
+              </div>
               <input
                 type="email"
                 id="email"
@@ -94,28 +98,34 @@ export default function ModalForm({ closeModalClickHandler }) {
 
            */}
           <div className={styles.formField}>
-            Do you recommend this product?
+            <div className={styles.formPrompt}>
+              Do you recommend this product?
+            </div>
             <label htmlFor="option1">
-              <input
-                type="radio"
-                id="option1"
-                value="true"
-                name="recommend"
-                checked={formData.recommend === 'true'}
-                onChange={updateFormData}
-              />
-              Yes
+              <div className={styles.radio}>
+                <input
+                  type="radio"
+                  id="option1"
+                  value="true"
+                  name="recommend"
+                  checked={formData.recommend === 'true'}
+                  onChange={updateFormData}
+                />
+                <div>Yes</div>
+              </div>
             </label>
             <label htmlFor="option2">
-              <input
-                type="radio"
-                id="option2"
-                value="false"
-                name="recommend"
-                checked={formData.recommend === 'false'}
-                onChange={updateFormData}
-              />
-              No
+              <div className={styles.radio}>
+                <input
+                  type="radio"
+                  id="option2"
+                  value="false"
+                  name="recommend"
+                  checked={formData.recommend === 'false'}
+                  onChange={updateFormData}
+                />
+                No
+              </div>
             </label>
           </div>
           {/*
