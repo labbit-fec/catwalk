@@ -86,8 +86,8 @@ export default function ModalForm({ closeModalClickHandler }) {
               </div>
               <input
                 type="text"
-                name="name"
                 id="name"
+                name="name"
                 maxLength="60"
                 placeholder="Example: jackson11!"
                 value={formData.name}
@@ -136,8 +136,8 @@ export default function ModalForm({ closeModalClickHandler }) {
                 <input
                   type="radio"
                   id="option1"
-                  value="true"
                   name="recommend"
+                  value="true"
                   checked={formData.recommend === 'true'}
                   onChange={updateFormDataByName}
                 />
@@ -190,6 +190,32 @@ export default function ModalForm({ closeModalClickHandler }) {
               </div>
             ))}
           </div>
+          {/*
+
+            Divider
+
+          */}
+          <div className={styles.formField}>
+            <label htmlFor="summary">
+              <div className={styles.formPrompt}>
+                Review summary (up to 60 chars):
+              </div>
+              <input
+                type="text"
+                id="summary"
+                name="summary"
+                maxLength="60"
+                placeholder="Example: Best purchase ever!"
+                value={formData.summmary}
+                onChange={updateFormDataByName}
+              />
+            </label>
+          </div>
+          {/*
+
+            Divider
+
+          */}
         </form>
         <button type="button" onClick={closeModalClickHandler}>
           Close
