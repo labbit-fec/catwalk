@@ -1,14 +1,22 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useContext } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ModalForm.css';
 import StarsInput from './StarsInput/StarsInput';
+import { ProductIdContext } from '../../../context/ProductIdContext';
 
 export default function ModalForm({ closeModalClickHandler }) {
+  const { productId } = useContext(ProductIdContext);
+
   const [formData, setFormData] = useState({
-    nickname: '',
-    email: '',
-    stars: null,
-    recommend: 'true',
+    productId,
+    rating: null, // integer 1-5
+    summary: null, // string
+    body: null, // string
+    recommend: null, // bool
+    name: null, // string
+    email: null, // string
+    photos: null, // array of strings,
+    characteristics: null, // object {"characteristic_id": value}
   });
 
   function updateFormData(event) {
@@ -19,9 +27,9 @@ export default function ModalForm({ closeModalClickHandler }) {
   }
 
   const updateStarData = useCallback(
-    (stars) => {
+    (rating) => {
       const newFormData = { ...formData };
-      newFormData.stars = stars;
+      newFormData.rating = rating;
       setFormData(newFormData);
       console.log(newFormData);
     },
@@ -56,11 +64,11 @@ export default function ModalForm({ closeModalClickHandler }) {
               </div>
               <input
                 type="text"
-                name="nickname"
-                id="nickname"
+                name="name"
+                id="name"
                 maxLength="60"
                 placeholder="Example: jackson11!"
-                value={formData.nickname}
+                value={formData.name}
                 onChange={updateFormData}
               />
             </label>
@@ -132,7 +140,12 @@ export default function ModalForm({ closeModalClickHandler }) {
 
             Divider
 
-           */}
+          */}
+          <div className={styles.formField}>
+            <div className={styles.formPrompt}>
+              How would you rate the following characteristics?
+            </div>
+          </div>
         </form>
         <button type="button" onClick={closeModalClickHandler}>
           Close
