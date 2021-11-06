@@ -141,7 +141,7 @@ export default function ModalForm({ closeModalClickHandler }) {
                   checked={formData.recommend === 'true'}
                   onChange={updateFormDataByName}
                 />
-                <div>Yes</div>
+                Yes
               </div>
             </label>
             <label htmlFor="option2">

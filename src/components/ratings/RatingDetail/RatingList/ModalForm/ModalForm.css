@@ -45,5 +45,14 @@ input {
 }
 
 input[type='radio'] {
-  height: 1em;
+  width: auto;
+  height: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.radio {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
