@@ -39,7 +39,7 @@ export default function ModalForm({ closeModalClickHandler }) {
     const newFormData = { ...formData };
     newFormData[event.target.name] = event.target.value;
     setFormData(newFormData);
-    console.log(newFormData);
+    // console.log(newFormData);
   }
 
   const updateStarData = useCallback(
@@ -47,7 +47,7 @@ export default function ModalForm({ closeModalClickHandler }) {
       const newFormData = { ...formData };
       newFormData.rating = rating;
       setFormData(newFormData);
-      console.log(newFormData);
+      // console.log(newFormData);
     },
     [setFormData]
   );
