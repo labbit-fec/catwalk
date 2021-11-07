@@ -4,6 +4,7 @@ import axios from 'axios';
 import styles from './ModalForm.css';
 import StarsInput from './StarsInput/StarsInput';
 import { ProductIdContext } from '../../../../context/ProductIdContext';
+import PhotoUpload from './PhotoUpload/PhotoUpload';
 
 export default function ModalForm({ closeModalClickHandler }) {
   const { productId } = useContext(ProductIdContext);
@@ -49,6 +50,21 @@ export default function ModalForm({ closeModalClickHandler }) {
     setFormData(newFormData);
     console.log(newFormData);
   }
+
+  const updateImages = useCallback(
+    (event) => {
+      if (event.target.files && event.target.files[0]) {
+        const newFormData = { ...formData };
+        const images = [...event.target.files].map((photo) =>
+          URL.createObjectURL(photo)
+        );
+        newFormData.photos = images;
+        setFormData(newFormData);
+        console.log(newFormData);
+      }
+    },
+    [setFormData]
+  );
 
   const updateStarData = useCallback(
     (rating) => {
@@ -247,6 +263,12 @@ export default function ModalForm({ closeModalClickHandler }) {
                 : 'Minmum characters reached.'}
             </div>
           </div>
+          {/*
+
+            Divider
+
+          */}
+          <PhotoUpload updateImages={updateImages} />
           {/*
 
             Divider
