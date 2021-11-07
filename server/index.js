@@ -24,16 +24,18 @@ const { getProduct } = require('./products');
 
 app.get('/products', (req, res) => {
   getProduct(req.query.name, (err, product) => {
-    if (err) { res.sendStatus(500); }
-    else { res.send(product); };
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      res.send(product);
+    }
   });
 });
 
 app.get('/product/*', (req, res) => {
   if (req.path.endsWith('bundle.js')) {
     res.sendFile(path.resolve(__dirname, '../dist/main.bundle.js'));
-  }
-  else {
+  } else {
     res.sendFile(path.resolve(__dirname, '../dist/index.html'));
   }
 });

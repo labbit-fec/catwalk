@@ -1,4 +1,4 @@
-const { Cloud } = require('@google-cloud/storage');
+const Cloud = require('@google-cloud/storage');
 const path = require('path');
 
 const serviceKey = path.join(__dirname, 'gc-config.json');

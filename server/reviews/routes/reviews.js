@@ -1,9 +1,12 @@
 const express = require('express');
 const axios = require('axios');
 const { baseUrl, authorization } = require('../../server-config');
-const { storage } = require('../../firebase');
+const multerMid = require('../../middleware/multer');
+const uploadImage = require('../helpers');
 
 const router = express.Router();
+
+router.use(multerMid.single('file'));
 
 router.get('/', (req, res) => {
   const { productId, page, sort, count } = req.query;
@@ -50,26 +53,18 @@ router.put('/:reviewId/report', (req, res) => {
   });
 });
 
-router.post('/photos', (req, res) => {
+router.post('/uploads', async (req, res) => {
   console.log('received');
-  const { photo } = req.body;
-  const uploadTask = storage.ref(`images/${photo.name}`).put(photo);
-  uploadTask.on(
-    'state-changed',
-    (snapshot) => {},
-    (error) => {
-      console.log(error);
-    },
-    () => {
-      storage
-        .ref('images')
-        .child(photo.name)
-        .getDownloadURL()
-        .then((url) => {
-          res.status(201).send({ url });
-        });
-    }
-  );
+  try {
+    const myFile = req.file;
+    const imageUrl = await uploadImage(myFile);
+    res.status(200).json({
+      message: 'Upload was successful',
+      data: imageUrl,
+    });
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = router;
