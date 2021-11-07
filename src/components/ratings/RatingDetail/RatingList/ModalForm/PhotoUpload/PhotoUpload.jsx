@@ -24,7 +24,7 @@ export default function PhotoUpload({ updateImages }) {
           <button
             type="button"
             onClick={() => {
-              document.getElementById('photos').click();
+              document.getElementById('photoUploader').click();
               return false;
             }}
           >
@@ -32,7 +32,7 @@ export default function PhotoUpload({ updateImages }) {
           </button>
           <input
             type="file"
-            id="photos"
+            id="photoUploader"
             name="photos"
             accept="image/*"
             onChange={changeHandler}
