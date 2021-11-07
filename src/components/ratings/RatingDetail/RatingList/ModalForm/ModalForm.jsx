@@ -241,6 +241,11 @@ export default function ModalForm({ closeModalClickHandler }) {
                 }}
               />
             </label>
+            <div className={styles.formHelper}>
+              {bodyLength < 50
+                ? `Minimum required characters left: ${50 - bodyLength}`
+                : 'Minmum characters reached.'}
+            </div>
           </div>
           {/*
 
