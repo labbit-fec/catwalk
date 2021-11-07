@@ -4,8 +4,14 @@
 }
 
 .questions_list{
-  max-height: 100vh;
+  max-height: 80vh;
   overflow: auto;
+}
+
+.add_button_container{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
 }
 
 hr {

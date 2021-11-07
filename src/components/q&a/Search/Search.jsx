@@ -3,13 +3,16 @@ import PropTypes from 'prop-types';
 import { VscSearch } from 'react-icons/vsc';
 import styles from './Search.css';
 
-const Search = function ({ questions, setQuestions, allQuestions }) {
+const Search = function ({
+  questions,
+  setQuestions,
+  allQuestions,
+  setQuestionsList,
+}) {
   const handleSearch = (e) => {
     const input = e.target.value.toLowerCase();
-    console.log(input);
-    if (input.length < 3) {
-      setQuestions(allQuestions);
-    } else {
+
+    if (input.length >= 3) {
       const filtered = [];
 
       questions.forEach((question) => {
@@ -30,6 +33,14 @@ const Search = function ({ questions, setQuestions, allQuestions }) {
         }
       });
       setQuestions(filtered);
+      setQuestionsList({
+        shortenedQs: [],
+      });
+    } else if (input.length < 3 && questions.length !== allQuestions.length) {
+      setQuestions(allQuestions);
+      setQuestionsList({
+        shortenedQs: [],
+      });
     }
   };
 
@@ -93,4 +104,5 @@ Search.propTypes = {
     })
   ).isRequired,
   setQuestions: PropTypes.func.isRequired,
+  setQuestionsList: PropTypes.func.isRequired,
 };

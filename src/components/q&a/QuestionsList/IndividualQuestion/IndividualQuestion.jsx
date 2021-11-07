@@ -44,19 +44,21 @@ const IndividualQuestion = function ({
     if (expanded) {
       return (
         <div>
-          {answers.map((answer) => (
-            <Answer
-              key={answer.answer_id}
-              id={answer.answer_id}
-              body={answer.body}
-              date={answer.date}
-              name={answer.answerer_name}
-              helpfulness={answer.helpfulness}
-              photos={answer.photos}
-              answers={answers}
-              setAnswers={setAnswers}
-            />
-          ))}
+          <div className={styles.answers_list}>
+            {answers.map((answer) => (
+              <Answer
+                key={answer.answer_id}
+                id={answer.answer_id}
+                body={answer.body}
+                date={answer.date}
+                name={answer.answerer_name}
+                helpfulness={answer.helpfulness}
+                photos={answer.photos}
+                answers={answers}
+                setAnswers={setAnswers}
+              />
+            ))}
+          </div>
           <button
             type="button"
             className={styles.more_answers}
@@ -70,19 +72,21 @@ const IndividualQuestion = function ({
     const shortened = answers.slice(0, 2);
     return (
       <div>
-        {shortened.map((answer) => (
-          <Answer
-            key={answer.answer_id}
-            id={answer.answer_id}
-            body={answer.body}
-            date={answer.date}
-            name={answer.answerer_name}
-            helpfulness={answer.helpfulness}
-            photos={answer.photos}
-            answers={answers}
-            setAnswers={setAnswers}
-          />
-        ))}
+        <div className={styles.answers_list}>
+          {shortened.map((answer) => (
+            <Answer
+              key={answer.answer_id}
+              id={answer.answer_id}
+              body={answer.body}
+              date={answer.date}
+              name={answer.answerer_name}
+              helpfulness={answer.helpfulness}
+              photos={answer.photos}
+              answers={answers}
+              setAnswers={setAnswers}
+            />
+          ))}
+        </div>
         <button
           type="button"
           className={styles.more_answers}
@@ -112,6 +116,7 @@ const IndividualQuestion = function ({
       .get(`/api/qa/questions/${id}/answers`, {
         params: {
           productId: productId,
+          count: 100,
         },
       })
       .then((response) => {
@@ -211,7 +216,7 @@ const IndividualQuestion = function ({
           </span>
         </span>
       </div>
-      <div className={styles.answers_list}>{renderList()}</div>
+      {renderList()}
     </div>
   );
 };
