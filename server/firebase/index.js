@@ -1,3 +1,6 @@
+import firebase from 'firebase/app';
+import 'firebase/storage';
+
 const firebaseConfig = {
   apiKey: 'AIzaSyCCdb1cpDWjm1LvB9KqSTwvuAR-oCZoo3M',
   authDomain: 'limitless-25d7a.firebaseapp.com',
@@ -7,3 +10,9 @@ const firebaseConfig = {
   messagingSenderId: '10526228847',
   appId: '1:10526228847:web:8e69b9ea9ca6916d17689a',
 };
+
+firebase.initializeApp(firebaseConfig);
+
+const storage = firebase.storage();
+
+export { storage, firebase as default };
