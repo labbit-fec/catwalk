@@ -1,18 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './PhotoUpload.css';
 
 export default function PhotoUpload({ updateImages }) {
+  const [images, setImages] = useState([]);
+
+  function changeHandler(event) {
+    updateImages(event);
+    const newImages = [
+      ...images,
+      ...[...event.target.files].map((photo) => URL.createObjectURL(photo)),
+    ];
+    setImages(newImages);
+  }
+
   return (
     <div className={styles.formField}>
       <div className={styles.formPrompt}>Upload your photos:</div>
-      <input
-        type="file"
-        id="photos"
-        name="photos"
-        onChange={updateImages}
-        multiple
-      />
-      <div className={styles.formHelper}>Uploads remaining:</div>
+      {images.length < 5 && (
+        <label htmlFor="photos">
+          <button
+            type="button"
+            onClick={() => {
+              document.getElementById('photos').click();
+              return false;
+            }}
+          >
+            Add file
+          </button>
+          <input
+            type="file"
+            id="photos"
+            name="photos"
+            accept="image/*"
+            onChange={changeHandler}
+            multiple
+            style={{ display: 'none' }}
+            onClick={() => {}}
+          />
+        </label>
+      )}
+      <div className={styles.photoPreviews}>
+        {images.map((url) => (
+          <div className={styles.photo}>
+            <img src={url} alt="" />
+          </div>
+        ))}
+      </div>
+      <div className={styles.formHelper}>
+        Uploads remaining: {Math.max(5 - images.length, 0)}
+      </div>
     </div>
   );
 }

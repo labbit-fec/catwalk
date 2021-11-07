@@ -9,3 +9,22 @@
 .formField {
   margin: 2em 0;
 }
+
+.photoPreviews {
+  display: flex;
+  flex-direction: row;
+  /* border: 1px solid black; */
+  height: 5em;
+  margin-top: 1em;
+  margin-right: 1em;
+}
+
+.photo {
+  margin-right: 1em;
+  display: flex;
+  position: relative;
+}
+
+.photo img {
+  border-radius: 0.5em;
+}
