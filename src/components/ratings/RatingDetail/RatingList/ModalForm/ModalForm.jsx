@@ -18,7 +18,7 @@ export default function ModalForm({ closeModalClickHandler }) {
     recommend: false, // bool
     name: '', // string
     email: '', // string
-    photos: [''], // array of strings,
+    photos: [], // array of strings,
     characteristics: {}, // object {"characteristic_id": value}
   });
 

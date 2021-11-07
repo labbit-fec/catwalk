@@ -30,7 +30,7 @@ export default function StarsInput({ updateStarData }) {
   });
 
   return (
-    <div clasName={styles.content} onMouseLeave={mouseLeaveHandler}>
+    <div className={styles.content} onMouseLeave={mouseLeaveHandler}>
       {[...Array(5).keys()]
         .map((e) => e + 1)
         .map((id) => {
