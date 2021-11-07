@@ -8,6 +8,7 @@ import { ProductIdContext } from '../../../../context/ProductIdContext';
 export default function ModalForm({ closeModalClickHandler }) {
   const { productId } = useContext(ProductIdContext);
   const [characteristics, setCharacteristics] = useState({});
+  const [bodyLength, setBodyLength] = useState(0);
 
   const [formData, setFormData] = useState({
     productId,
@@ -57,6 +58,11 @@ export default function ModalForm({ closeModalClickHandler }) {
     },
     [setFormData]
   );
+
+  function countBody(event) {
+    setBodyLength(event.target.value.length);
+    console.log('body length:', event.target.value.length);
+  }
 
   return (
     <div className={styles.modal}>
@@ -229,7 +235,10 @@ export default function ModalForm({ closeModalClickHandler }) {
                 maxLength="1000"
                 rows="18"
                 value={formData.body}
-                onChange={updateFormDataByName}
+                onChange={(e) => {
+                  updateFormDataByName(e);
+                  countBody(e);
+                }}
               />
             </label>
           </div>
