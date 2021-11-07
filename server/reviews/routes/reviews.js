@@ -1,6 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 const { baseUrl, authorization } = require('../../server-config');
+const { storage } = require('../../firebase');
 
 const router = express.Router();
 
@@ -47,6 +48,28 @@ router.put('/:reviewId/report', (req, res) => {
   }).then((response) => {
     res.status(204).send(response.data);
   });
+});
+
+router.post('/photos', (req, res) => {
+  console.log('received');
+  const { photo } = req.body;
+  const uploadTask = storage.ref(`images/${photo.name}`).put(photo);
+  uploadTask.on(
+    'state-changed',
+    (snapshot) => {},
+    (error) => {
+      console.log(error);
+    },
+    () => {
+      storage
+        .ref('images')
+        .child(photo.name)
+        .getDownloadURL()
+        .then((url) => {
+          res.status(201).send({ url });
+        });
+    }
+  );
 });
 
 module.exports = router;
