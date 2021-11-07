@@ -6,12 +6,14 @@ export default function PhotoUpload({ updateImages }) {
   const [images, setImages] = useState([]);
 
   function changeHandler(event) {
-    updateImages(event);
-    const newImages = [
-      ...images,
-      ...[...event.target.files].map((photo) => URL.createObjectURL(photo)),
-    ];
-    setImages(newImages);
+    if (event.target.files && event.target.files[0]) {
+      const newImages = [
+        ...images,
+        ...[...event.target.files].map((photo) => URL.createObjectURL(photo)),
+      ];
+      updateImages(newImages);
+      setImages(newImages);
+    }
   }
 
   return (

@@ -52,16 +52,11 @@ export default function ModalForm({ closeModalClickHandler }) {
   }
 
   const updateImages = useCallback(
-    (event) => {
-      if (event.target.files && event.target.files[0]) {
-        const newFormData = { ...formData };
-        const images = [...event.target.files].map((photo) =>
-          URL.createObjectURL(photo)
-        );
-        newFormData.photos = images;
-        setFormData(newFormData);
-        console.log(newFormData);
-      }
+    (newImages) => {
+      const newFormData = { ...formData };
+      newFormData.photos = newImages;
+      setFormData(newFormData);
+      console.log(newFormData);
     },
     [setFormData]
   );
