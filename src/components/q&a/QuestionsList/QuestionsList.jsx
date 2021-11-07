@@ -67,7 +67,10 @@ const QuestionsList = function ({
 
   const renderListAndButtons = () => {
     if (questions.length) {
-      if (questions.length === questionsList.shortenedQs.length) {
+      if (
+        questions.length === questionsList.shortenedQs.length &&
+        questions.length <= 2
+      ) {
         return (
           <div>
             {renderList()}
