@@ -1,8 +1,7 @@
-import React, { useEffect, useContext, useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import styles from './QA.css';
 import Search from './Search/Search';
 import QuestionsList from './QuestionsList/QuestionsList';
-// import { ProductIdContext } from '../context/ProductIdContext';
 
 const QA = function () {
   const [questions, setQuestions] = useState([]);

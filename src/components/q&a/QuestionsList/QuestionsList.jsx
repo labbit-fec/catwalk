@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import IndividualQuestion from './IndividualQuestion/IndividualQuestion';
@@ -15,36 +15,13 @@ const QuestionsList = function ({
   setQuestionsList,
 }) {
   const { productId } = useContext(ProductIdContext);
-  // const [expanded, setExpanded] = useState(false);
-  // const [questionsList, setQuestionsList] = useState({
-  //   shortenedQs: [],
-  //   expanded: false,
-  // });
 
   const successCB = (response) => {
-    // console.log(JSON.stringify(response.data));
     setQuestions(response.data);
     setAllQuestions(response.data);
   };
 
   const renderList = () => {
-    // if (questionsList.expanded) {
-    //   return (
-    //     <div className={styles.questions_list}>
-    //       {questions.map((question) => (
-    //         // <button type="submit">Submit</button>
-    //         <IndividualQuestion
-    //           body={question.question_body}
-    //           key={question.question_id}
-    //           id={question.question_id}
-    //           helpfulness={question.question_helpfulness}
-    //           questions={questions}
-    //           setQuestions={setQuestions}
-    //         />
-    //       ))}
-    //     </div>
-    //   );
-    // }
     if (questionsList.shortenedQs.length) {
       return (
         <div className={styles.questions_list}>
@@ -75,7 +52,6 @@ const QuestionsList = function ({
     return (
       <div className={styles.questions_list}>
         {questionsList.shortenedQs.map((question) => (
-          // <button type="submit">Submit</button>
           <IndividualQuestion
             body={question.question_body}
             key={question.question_id}
@@ -89,6 +65,48 @@ const QuestionsList = function ({
     );
   };
 
+  const renderListAndButtons = () => {
+    if (questions.length) {
+      if (questions.length === questionsList.shortenedQs.length) {
+        return (
+          <div>
+            {renderList()}
+            <hr />
+            <div className={styles.add_button_container}>
+              <AddQuestionsButton />
+            </div>
+          </div>
+        );
+      }
+      return (
+        <div>
+          {renderList()}
+          <hr />
+          <BottomBar
+            questionsList={questionsList}
+            setQuestionsList={setQuestionsList}
+            questions={questions}
+          />
+        </div>
+      );
+    }
+    return <AddQuestionsButton />;
+
+    // {questions.length ? (
+    // <div>
+    //   {renderList()}
+    //   <hr />
+    //   <BottomBar
+    //     questionsList={questionsList}
+    //     setQuestionsList={setQuestionsList}
+    //     questions={questions}
+    //   />
+    // </div>
+    // ) : (
+    //   <AddQuestionsButton />
+    // )}
+  };
+
   useEffect(() => {
     axios
       .get('/api/qa/questions', {
@@ -99,7 +117,6 @@ const QuestionsList = function ({
       })
       .then((response) => {
         successCB(response);
-        // console.log(JSON.stringify(response.data));
       })
       .catch((err) => {
         console.log(err);
@@ -108,19 +125,7 @@ const QuestionsList = function ({
 
   return (
     <div className={styles.container} data-testid="question-list-container">
-      {questions.length ? (
-        <div>
-          {renderList()}
-          <hr />
-          <BottomBar
-            questionsList={questionsList}
-            setQuestionsList={setQuestionsList}
-            questions={questions}
-          />
-        </div>
-      ) : (
-        <AddQuestionsButton />
-      )}
+      {renderListAndButtons()}
     </div>
   );
 };
