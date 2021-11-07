@@ -225,6 +225,9 @@ export default function ModalForm({ closeModalClickHandler }) {
                 id="body"
                 name="body"
                 placeholder="Why did you like the product or not?"
+                minLength="60"
+                maxLength="1000"
+                rows="18"
                 value={formData.body}
                 onChange={updateFormDataByName}
               />
