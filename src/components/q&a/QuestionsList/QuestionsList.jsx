@@ -7,9 +7,19 @@ import styles from './QuestionsList.css';
 import { ProductIdContext } from '../../context/ProductIdContext';
 import AddQuestionsButton from './AddQuestionsButton/AddQuestionsButton';
 
-const QuestionsList = function ({ questions, setQuestions, setAllQuestions }) {
+const QuestionsList = function ({
+  questions,
+  setQuestions,
+  setAllQuestions,
+  questionsList,
+  setQuestionsList,
+}) {
   const { productId } = useContext(ProductIdContext);
-  const [expanded, setExpanded] = useState(false);
+  // const [expanded, setExpanded] = useState(false);
+  // const [questionsList, setQuestionsList] = useState({
+  //   shortenedQs: [],
+  //   expanded: false,
+  // });
 
   const successCB = (response) => {
     // console.log(JSON.stringify(response.data));
@@ -18,10 +28,27 @@ const QuestionsList = function ({ questions, setQuestions, setAllQuestions }) {
   };
 
   const renderList = () => {
-    if (expanded) {
+    // if (questionsList.expanded) {
+    //   return (
+    //     <div className={styles.questions_list}>
+    //       {questions.map((question) => (
+    //         // <button type="submit">Submit</button>
+    //         <IndividualQuestion
+    //           body={question.question_body}
+    //           key={question.question_id}
+    //           id={question.question_id}
+    //           helpfulness={question.question_helpfulness}
+    //           questions={questions}
+    //           setQuestions={setQuestions}
+    //         />
+    //       ))}
+    //     </div>
+    //   );
+    // }
+    if (questionsList.shortenedQs.length) {
       return (
         <div className={styles.questions_list}>
-          {questions.map((question) => (
+          {questionsList.shortenedQs.map((question) => (
             // <button type="submit">Submit</button>
             <IndividualQuestion
               body={question.question_body}
@@ -35,10 +62,19 @@ const QuestionsList = function ({ questions, setQuestions, setAllQuestions }) {
         </div>
       );
     }
-    const shortened = questions.slice(0, 2);
+    if (questions.length >= 2) {
+      setQuestionsList({
+        shortenedQs: questions.slice(0, 2),
+      });
+    } else {
+      setQuestionsList({
+        shortenedQs: questions,
+      });
+    }
+
     return (
       <div className={styles.questions_list}>
-        {shortened.map((question) => (
+        {questionsList.shortenedQs.map((question) => (
           // <button type="submit">Submit</button>
           <IndividualQuestion
             body={question.question_body}
@@ -76,7 +112,11 @@ const QuestionsList = function ({ questions, setQuestions, setAllQuestions }) {
         <div>
           {renderList()}
           <hr />
-          <BottomBar expanded={expanded} setExpanded={setExpanded} />
+          <BottomBar
+            questionsList={questionsList}
+            setQuestionsList={setQuestionsList}
+            questions={questions}
+          />
         </div>
       ) : (
         <AddQuestionsButton />
@@ -108,6 +148,30 @@ QuestionsList.propTypes = {
       ),
     })
   ).isRequired,
+  questionsList: PropTypes.shape({
+    expanded: PropTypes.bool,
+    shortenedQs: PropTypes.arrayOf(
+      PropTypes.shape({
+        question_id: PropTypes.number.isRequired,
+        question_body: PropTypes.string.isRequired,
+        question_date: PropTypes.string.isRequired,
+        asker_name: PropTypes.string.isRequired,
+        question_helpfulness: PropTypes.number.isRequired,
+        reported: PropTypes.bool.isRequired,
+        answers: PropTypes.objectOf(
+          PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            body: PropTypes.string.isRequired,
+            date: PropTypes.string.isRequired,
+            answerer_name: PropTypes.string.isRequired,
+            helpfulness: PropTypes.number.isRequired,
+            photos: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+          })
+        ),
+      })
+    ),
+  }).isRequired,
   setQuestions: PropTypes.func.isRequired,
   setAllQuestions: PropTypes.func.isRequired,
+  setQuestionsList: PropTypes.func.isRequired,
 };

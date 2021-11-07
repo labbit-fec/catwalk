@@ -4,7 +4,7 @@
 }
 
 .questions_list{
-  max-height: 100vh;
+  max-height: 80vh;
   overflow: auto;
 }
 

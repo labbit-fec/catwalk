@@ -3,12 +3,20 @@ import PropTypes from 'prop-types';
 import { VscSearch } from 'react-icons/vsc';
 import styles from './Search.css';
 
-const Search = function ({ questions, setQuestions, allQuestions }) {
+const Search = function ({
+  questions,
+  setQuestions,
+  allQuestions,
+  questionsList,
+  setQuestionsList,
+}) {
   const handleSearch = (e) => {
     const input = e.target.value.toLowerCase();
-    console.log(input);
-    if (input.length < 3) {
+    if (input.length < 3 && questions.length !== allQuestions.length) {
       setQuestions(allQuestions);
+      setQuestionsList({
+        shortenedQs: [],
+      });
     } else {
       const filtered = [];
 
@@ -30,6 +38,9 @@ const Search = function ({ questions, setQuestions, allQuestions }) {
         }
       });
       setQuestions(filtered);
+      setQuestionsList({
+        shortenedQs: [],
+      });
     }
   };
 
@@ -92,5 +103,29 @@ Search.propTypes = {
       ),
     })
   ).isRequired,
+  questionsList: PropTypes.shape({
+    expanded: PropTypes.bool,
+    shortenedQs: PropTypes.arrayOf(
+      PropTypes.shape({
+        question_id: PropTypes.number.isRequired,
+        question_body: PropTypes.string.isRequired,
+        question_date: PropTypes.string.isRequired,
+        asker_name: PropTypes.string.isRequired,
+        question_helpfulness: PropTypes.number.isRequired,
+        reported: PropTypes.bool.isRequired,
+        answers: PropTypes.objectOf(
+          PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            body: PropTypes.string.isRequired,
+            date: PropTypes.string.isRequired,
+            answerer_name: PropTypes.string.isRequired,
+            helpfulness: PropTypes.number.isRequired,
+            photos: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+          })
+        ),
+      })
+    ),
+  }).isRequired,
   setQuestions: PropTypes.func.isRequired,
+  setQuestionsList: PropTypes.func.isRequired,
 };

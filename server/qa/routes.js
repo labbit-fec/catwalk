@@ -26,12 +26,13 @@ router.get('/questions', (req, res) => {
 });
 
 router.get('/questions/:questionId/answers', (req, res) => {
-  const { productId } = req.query;
+  const { productId, count } = req.query;
   const { questionId } = req.params;
   axios
     .get(`${baseUrl}/qa/questions/${questionId}/answers`, {
       params: {
         product_id: productId,
+        count,
       },
       headers: {
         Authorization: authorization,
@@ -123,7 +124,7 @@ router.post('/questions', (req, res) => {
   const config = {
     headers: {
       Connection: 'keep-alive',
-      Authorization: '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',
+      Authorization: authorization,
       'Content-Type': 'application/json',
     },
   };
@@ -154,7 +155,7 @@ router.post('/questions/:questionId/answers', (req, res) => {
   const config = {
     headers: {
       Connection: 'keep-alive',
-      Authorization: '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',
+      Authorization: authorization,
       'Content-Type': 'application/json',
     },
   };
