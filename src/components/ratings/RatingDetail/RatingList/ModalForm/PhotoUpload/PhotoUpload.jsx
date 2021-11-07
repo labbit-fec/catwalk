@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './PhotoUpload.css';
+import RatingImages from '../../RatingListEntry/RatingImages/RatingImages';
 
 export default function PhotoUpload({ updateImages }) {
   const [images, setImages] = useState([]);
@@ -39,13 +40,7 @@ export default function PhotoUpload({ updateImages }) {
           />
         </label>
       )}
-      <div className={styles.photoPreviews}>
-        {images.map((url) => (
-          <div className={styles.photo}>
-            <img src={url} alt="" />
-          </div>
-        ))}
-      </div>
+      <RatingImages photos={images.map((url) => ({ url }))} />
       <div className={styles.formHelper}>
         Uploads remaining: {Math.max(5 - images.length, 0)}
       </div>
