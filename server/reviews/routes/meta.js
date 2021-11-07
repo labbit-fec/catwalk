@@ -138,10 +138,13 @@ router.get('/characteristics', (req, res) => {
     })
     .then((response) => {
       const { characteristics } = response.data;
+      console.log(response.data);
 
       Object.keys(characteristics).forEach((key) => {
         characteristics[key].value = Number(characteristics[key].value);
+        characteristics[key].legend = legend[key];
       });
+      console.log({ characteristics });
 
       res.status(200).json({ characteristics });
     });

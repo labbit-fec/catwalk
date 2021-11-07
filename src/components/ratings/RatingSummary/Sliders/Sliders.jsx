@@ -31,6 +31,7 @@ export default function Sliders() {
         Object.keys(characteristics).map((characteristic) => (
           <Slider
             characteristic={characteristic}
+            legend={characteristics[characteristic].legend}
             average={characteristics[characteristic].value}
           />
         ))}
