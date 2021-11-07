@@ -34,7 +34,7 @@ const legend = {
     5: 'Perfect',
   },
   Length: {
-    1: 'Runs Short',
+    1: 'Runs short',
     2: 'Runs slightly short',
     3: 'Perfect',
     4: 'Runs slightly long',
