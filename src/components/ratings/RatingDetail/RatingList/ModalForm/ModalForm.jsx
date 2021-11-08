@@ -188,23 +188,29 @@ export default function ModalForm({ closeModalClickHandler }) {
             {Object.keys(characteristics).map((characteristic) => (
               <div className={styles.characteristic}>
                 <strong>{characteristic}</strong>
-                {Object.keys(characteristics[characteristic]).map((score) => (
-                  <label htmlFor={`${characteristic}-${score}`}>
-                    <div className={styles.radio}>
-                      <input
-                        type="radio"
-                        id={`${characteristic}-${score}`}
-                        value={score}
-                        name={characteristic}
-                        checked={
-                          formData.characteristics[characteristic] === score
-                        }
-                        onChange={updateCharacteristicFormData}
-                      />
-                      {`${score} - ${characteristics[characteristic][score]}`}
-                    </div>
-                  </label>
-                ))}
+                {Object.keys(characteristics[characteristic].legend).map(
+                  (score) => (
+                    <label
+                      htmlFor={`${characteristics[characteristic].id}-${score}`}
+                    >
+                      <div className={styles.radio}>
+                        <input
+                          type="radio"
+                          id={`${characteristics[characteristic].id}-${score}`}
+                          value={score}
+                          name={characteristics[characteristic].id}
+                          checked={
+                            formData.characteristics[
+                              characteristics[characteristic].id
+                            ] === score
+                          }
+                          onChange={updateCharacteristicFormData}
+                        />
+                        {`${score} - ${characteristics[characteristic].legend[score]}`}
+                      </div>
+                    </label>
+                  )
+                )}
               </div>
             ))}
           </div>
