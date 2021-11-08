@@ -47,6 +47,8 @@ export default function PhotoUpload({ updateImages }) {
       {images.length < 5 && (
         <label htmlFor="photos">
           {uploaded ? (
+            'Uploaded successfully'
+          ) : (
             <button
               type="button"
               onClick={() => {
@@ -56,8 +58,6 @@ export default function PhotoUpload({ updateImages }) {
             >
               Add file
             </button>
-          ) : (
-            'Uploaded successfully'
           )}
           <input
             type="file"
@@ -75,7 +75,7 @@ export default function PhotoUpload({ updateImages }) {
       <div className={styles.formHelper}>
         Uploads remaining: {Math.max(5 - images.length, 0)}
       </div>
-      {!uploaded && (
+      {!uploaded && images.length > 0 && (
         <button type="button" onClick={uploadImageFiles}>
           Upload all
         </button>
