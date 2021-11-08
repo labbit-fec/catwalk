@@ -66,14 +66,57 @@ describe('Product Information Container', () => {
     );
     expect(productTitle).toBeVisible();
   });
+
+  test('Displays Category text from mock server', async () => {
+    const productCategory = await waitFor(() =>
+      screen.getByText('Coats')
+    );
+    expect(productCategory).toBeVisible();
+  });
+
+  test('Displays Default Price from mock server', async () => {
+    const productDefaultPrice = await waitFor(() =>
+      screen.getByText('9000.00')
+    );
+    expect(productDefaultPrice).toBeVisible();
+  });
+
+
 });
 
-test('Displays Product Text Overview Container', async () => {
-  const productTextOverview = await waitFor(() =>
-    screen.getByText('Product Text Overview')
-  );
-  expect(productTextOverview).toBeVisible();
+describe('Product Text Overview Container', () => {
+
+  test('Displays Product Text Overview Container', async () => {
+    const productTextOverview = await waitFor(() =>
+      screen.getByText('Product Text Overview')
+    );
+    expect(productTextOverview).toBeVisible();
+  });
+
+  test('Displays Product Slogan from mock server', async () => {
+    const productSlogan = await waitFor(() =>
+      screen.getByText('Woof woof woof')
+    );
+    expect(productSlogan).toBeVisible();
+  });
+
+  test('Displays Text Description from mock server', async () => {
+    const productDescription = await waitFor(() =>
+      screen.getByText('For the intelligent hound in cold weather')
+    );
+    expect(productDescription).toBeVisible();
+  });
+
+  test('Displays Feature from mock server', async () => {
+    const productFeature = await waitFor(() =>
+      screen.getByText('Zipper')
+    );
+    expect(productFeature).toBeVisible();
+  });
+
 });
+
+
 
 test('Displays Style Selector Container', async () => {
   const styleSelector = await waitFor(() =>
