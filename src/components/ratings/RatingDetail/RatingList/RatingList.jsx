@@ -31,19 +31,28 @@ export default function RatingList({ sortBy }) {
   }
 
   // When the component is mounted, and whenver productId changes, load the first two reviews
-  useEffect(() => {
-    getMoreReviews(1, sortBy, 2).then((response) => {
-      setReviewList(response.data.reviews);
-      setLastPageLoaded(lastPageLoaded + 1);
-    });
-  }, [productId]);
+  useEffect(async () => {
+    let reviewsLoadedFromLastPage = 100;
+    let lastPage = 0;
+    let newReviews = [];
+    let response;
+
+    while (reviewsLoadedFromLastPage === 100) {
+      // eslint-disable-next-line no-await-in-loop
+      response = await getMoreReviews(lastPage + 1, sortBy, 100);
+      newReviews = [...newReviews, ...response.data.reviews];
+      reviewsLoadedFromLastPage = response.data.reviews.length;
+      lastPage += 1;
+    }
+    setReviewList(newReviews);
+  }, [productId, sortBy]);
 
   // Check if there are more reviews
-  useEffect(() => {
+  /* useEffect(() => {
     getMoreReviews(lastPageLoaded + 1, sortBy, 2).then((response) => {
       setMoreReviews(response.data.reviews.length > 0);
     });
-  }, [lastPageLoaded]);
+  }, [lastPageLoaded]); */
 
   const moreClickHandler = useCallback(() => {
     getMoreReviews(lastPageLoaded + 1, sortBy, 2).then((response) => {
@@ -64,7 +73,7 @@ export default function RatingList({ sortBy }) {
     setShowAddReviews(true);
   }, []);
 
-  useEffect(() => {
+  /*   useEffect(() => {
     const promises = [];
     for (let page = 1; page <= lastPageLoaded; page += 1) {
       promises.push(getMoreReviews(page, sortBy, 2));
@@ -77,7 +86,7 @@ export default function RatingList({ sortBy }) {
         )
       )
       .then((reviews) => setReviewList(reviews));
-  }, [sortBy]);
+  }, [sortBy]); */
 
   return (
     <div className={styles.container}>
