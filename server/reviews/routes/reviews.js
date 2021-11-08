@@ -53,17 +53,18 @@ router.put('/:reviewId/report', (req, res) => {
   });
 });
 
-router.post('/uploads', async (req, res, next) => {
-  try {
-    const myFile = req.file;
-    const imageUrl = await uploadImage(myFile);
-    res.status(200).json({
-      message: 'Upload was successful',
-      data: imageUrl,
+router.post('/uploads', (req, res, next) => {
+  const myFile = req.file;
+  uploadImage(myFile)
+    .then((imageUrl) => {
+      res.status(201).json({
+        message: 'Upload was successful',
+        data: imageUrl,
+      });
+    })
+    .catch((error) => {
+      next(error);
     });
-  } catch (error) {
-    next(error);
-  }
 });
 
 module.exports = router;
