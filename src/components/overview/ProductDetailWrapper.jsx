@@ -20,3 +20,5 @@ const withProductDetails =
     // eslint-disable-next-line react/jsx-props-no-spreading
     return <WrappedComponent product={product} {...props} />;
   };
+
+export default withProductDetails;
