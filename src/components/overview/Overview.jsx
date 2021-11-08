@@ -14,6 +14,10 @@ const Overview = () => {
     ProductInformation,
     productId
   );
+  const ProductTextOverviewWithDetails = withProductDetails(
+    ProductTextOverview,
+    productId
+  );
 
   return (
     <div className={styles.container}>
@@ -27,7 +31,7 @@ const Overview = () => {
             <AddToCart />
           </div>
         </div>
-        <ProductTextOverview />
+        <ProductTextOverviewWithDetails />
       </div>
     </div>
   );
