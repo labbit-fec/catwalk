@@ -64,6 +64,11 @@ h4{
   color: rgb(170, 170, 170);
 }
 
+.error{
+  margin-left: 10px;
+  color: red;
+}
+
 .buttons{
  display: flex;
  flex-direction: row;
