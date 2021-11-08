@@ -46,15 +46,19 @@ export default function PhotoUpload({ updateImages }) {
       <div className={styles.formPrompt}>Upload your photos:</div>
       {images.length < 5 && (
         <label htmlFor="photos">
-          <button
-            type="button"
-            onClick={() => {
-              document.getElementById('photoUploader').click();
-              return false;
-            }}
-          >
-            Add file
-          </button>
+          {uploaded ? (
+            <button
+              type="button"
+              onClick={() => {
+                document.getElementById('photoUploader').click();
+                return false;
+              }}
+            >
+              Add file
+            </button>
+          ) : (
+            'Uploaded successfully'
+          )}
           <input
             type="file"
             id="photoUploader"
@@ -71,9 +75,7 @@ export default function PhotoUpload({ updateImages }) {
       <div className={styles.formHelper}>
         Uploads remaining: {Math.max(5 - images.length, 0)}
       </div>
-      {uploaded ? (
-        'Uploaded'
-      ) : (
+      {!uploaded && (
         <button type="button" onClick={uploadImageFiles}>
           Upload all
         </button>
