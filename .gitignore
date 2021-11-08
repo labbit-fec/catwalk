@@ -123,3 +123,5 @@ dist
 dist/
 
 server/config.js
+
+gc-config.json

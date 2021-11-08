@@ -9,3 +9,8 @@
 .formField {
   margin: 2em 0;
 }
+
+.uploaded {
+  color: green;
+  font-style: italic;
+}
