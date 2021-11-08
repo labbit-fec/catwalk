@@ -86,13 +86,6 @@ describe('Product Information Container', () => {
 
 describe('Product Text Overview Container', () => {
 
-  test('Displays Product Text Overview Container', async () => {
-    const productTextOverview = await waitFor(() =>
-      screen.getByText('Product Text Overview')
-    );
-    expect(productTextOverview).toBeVisible();
-  });
-
   test('Displays Product Slogan from mock server', async () => {
     const productSlogan = await waitFor(() =>
       screen.getByText('Woof woof woof')
