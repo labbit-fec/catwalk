@@ -13,10 +13,10 @@ export default function ModalForm({ closeModalClickHandler }) {
 
   const [formData, setFormData] = useState({
     productId,
-    rating: 0, // integer 1-5
+    rating: null, // integer 1-5
     summary: '', // string
     body: '', // string
-    recommend: false, // bool
+    recommend: null, // bool
     name: '', // string
     email: '', // string
     photos: [], // array of strings,
@@ -40,14 +40,19 @@ export default function ModalForm({ closeModalClickHandler }) {
 
   function updateFormDataByName(event) {
     const newFormData = { ...formData };
-    newFormData[event.target.name] = event.target.value;
+    if (event.target.name === 'recommend') {
+      console.log('recommend');
+      newFormData.recommend = event.target.value === 'true';
+    } else {
+      newFormData[event.target.name] = event.target.value;
+    }
     setFormData(newFormData);
     console.log(newFormData);
   }
 
   function updateCharacteristicFormData(event) {
     const newFormData = { ...formData };
-    newFormData.characteristics[event.target.name] = event.target.value;
+    newFormData.characteristics[event.target.name] = Number(event.target.value);
     setFormData(newFormData);
     console.log(newFormData);
   }
@@ -59,21 +64,28 @@ export default function ModalForm({ closeModalClickHandler }) {
       setFormData(newFormData);
       console.log(newFormData);
     },
-    [setFormData]
+    [formData, setFormData]
   );
 
   const updateStarData = useCallback(
     (rating) => {
       const newFormData = { ...formData };
-      newFormData.rating = rating;
+      newFormData.rating = Number(rating);
       setFormData(newFormData);
     },
-    [setFormData]
+    [formData, setFormData]
   );
 
   function countBody(event) {
     setBodyLength(event.target.value.length);
     console.log('body length:', event.target.value.length);
+  }
+
+  function submitForm() {
+    axios.post('/api/reviews/create', formData).then((response) => {
+      console.log(response);
+      closeModalClickHandler();
+    });
   }
 
   return (
@@ -156,7 +168,11 @@ export default function ModalForm({ closeModalClickHandler }) {
                   id="option1"
                   name="recommend"
                   value="true"
-                  checked={formData.recommend === 'true'}
+                  checked={
+                    formData.recommend === null
+                      ? false
+                      : formData.recommend.toString() === 'true'
+                  }
                   onChange={updateFormDataByName}
                 />
                 Yes
@@ -169,7 +185,11 @@ export default function ModalForm({ closeModalClickHandler }) {
                   id="option2"
                   value="false"
                   name="recommend"
-                  checked={formData.recommend === 'false'}
+                  checked={
+                    formData.recommend === null
+                      ? false
+                      : formData.recommend.toString() === 'false'
+                  }
                   onChange={updateFormDataByName}
                 />
                 No
@@ -202,7 +222,7 @@ export default function ModalForm({ closeModalClickHandler }) {
                           checked={
                             formData.characteristics[
                               characteristics[characteristic].id
-                            ] === score
+                            ] === Number(score)
                           }
                           onChange={updateCharacteristicFormData}
                         />
@@ -279,6 +299,9 @@ export default function ModalForm({ closeModalClickHandler }) {
         </form>
         <button type="button" onClick={closeModalClickHandler}>
           Close
+        </button>
+        <button type="submit" onClick={submitForm}>
+          Submit
         </button>
       </div>
     </div>

@@ -67,4 +67,20 @@ router.post('/uploads', (req, res, next) => {
     });
 });
 
+router.post('/create', (req, res, next) => {
+  const data = req.body;
+  data.product_id = data.productId;
+  delete data.productId;
+  axios({
+    method: 'post',
+    url: `${baseUrl}/reviews`,
+    data,
+    headers: {
+      Authorization: authorization,
+    },
+  }).then((response) => {
+    res.status(201).send(response.data);
+  });
+});
+
 module.exports = router;
