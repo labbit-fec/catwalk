@@ -1,22 +1,19 @@
-import React, {
-  useState,
-  useContext,
-  useEffect,
-  useCallback,
-  useRef,
-} from 'react';
+import React, { useState, useContext, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from './RatingList.css';
 import RatingListEntry from './RatingListEntry/RatingListEntry';
 import { ProductIdContext } from '../../../context/ProductIdContext';
 import ActionButtons from './ActionButtons/ActionButtons';
+import ModalForm from './ModalForm/ModalForm';
 
 export default function RatingList({ sortBy }) {
   const [reviewList, setReviewList] = useState([]);
   const [lastPageLoaded, setLastPageLoaded] = useState(0); // represents the last page that was
   const [moreReviews, setMoreReviews] = useState(false);
   const { productId } = useContext(ProductIdContext);
+  const [showModal, setShowModal] = useState(false);
+  const [showAddReviews, setShowAddReviews] = useState(true);
 
   function getMoreReviews(page, sort, count) {
     return axios.get('/api/reviews', {
@@ -27,6 +24,10 @@ export default function RatingList({ sortBy }) {
         count,
       },
     });
+  }
+
+  function createReview() {
+    /* ... */
   }
 
   // When the component is mounted, and whenver productId changes, load the first two reviews
@@ -53,6 +54,16 @@ export default function RatingList({ sortBy }) {
     });
   }, [getMoreReviews]);
 
+  const addClickHandler = useCallback(() => {
+    setShowAddReviews(false);
+    setShowModal(true);
+  }, [createReview]);
+
+  const closeModalClickHandler = useCallback(() => {
+    setShowModal(false);
+    setShowAddReviews(true);
+  }, []);
+
   useEffect(() => {
     const promises = [];
     for (let page = 1; page <= lastPageLoaded; page += 1) {
@@ -78,9 +89,14 @@ export default function RatingList({ sortBy }) {
       <div className={styles.actionButtons}>
         <ActionButtons
           moreReviews={moreReviews}
+          showAddReviews={showAddReviews}
           moreClickHandler={moreClickHandler}
+          addClickHandler={addClickHandler}
         />
       </div>
+      {showModal && (
+        <ModalForm closeModalClickHandler={closeModalClickHandler} />
+      )}
     </div>
   );
 }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { VscTriangleDown } from 'react-icons/vsc';
 import styles from './Slider.css';
 
-export default function Slider({ characteristic, average }) {
+export default function Slider({ characteristic, legend, average }) {
   return (
     <div className={styles.container}>
       <div className={styles.sliderTitle}>{characteristic}</div>
@@ -19,9 +19,9 @@ export default function Slider({ characteristic, average }) {
         <div className={styles.third} />
       </div>
       <div className={styles.labels}>
-        <div>Too small</div>
-        <div>Perfect</div>
-        <div>Too large</div>
+        <div className={styles.label}>{legend[1]}</div>
+        <div className={styles.label}>{legend[3]}</div>
+        <div className={styles.label}>{legend[5]}</div>
       </div>
     </div>
   );

@@ -1,0 +1,12 @@
+.content {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+}
+
+.selected {
+  font-size: 1.25em;
+  vertical-align: middle;
+  padding: 0 0.5em;
+}

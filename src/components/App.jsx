@@ -8,7 +8,7 @@ import Related from './related/Related';
 import styles from './App.css';
 
 export default function App() {
-  const [productId, setProductId] = useState(61575);
+  const [productId, setProductId] = useState(61618);
 
   useEffect(() => {
     const getNameFromUrl = () => {

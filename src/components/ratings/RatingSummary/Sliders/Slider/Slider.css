@@ -7,7 +7,20 @@
 .labels {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+}
+
+.label {
+  flex: 1;
+}
+
+.label:nth-child(1) {
+  text-align: left;
+}
+.label:nth-child(2) {
+  text-align: center;
+}
+.label:nth-child(3) {
+  text-align: right;
 }
 
 .thirds {
