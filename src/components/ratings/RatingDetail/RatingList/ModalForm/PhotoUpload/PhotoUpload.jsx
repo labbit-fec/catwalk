@@ -23,12 +23,14 @@ export default function PhotoUpload({ updateImages }) {
 
     Promise.all(promises).then((results) => {
       console.log(results);
+      setUploaded(true);
     });
   }
 
   function changeHandler(event) {
     if (event.target.files && event.target.files[0]) {
       const newImages = [
+        ...images,
         ...[...event.target.files].map((file) => URL.createObjectURL(file)),
       ];
       setImages(newImages);
@@ -66,9 +68,13 @@ export default function PhotoUpload({ updateImages }) {
       <div className={styles.formHelper}>
         Uploads remaining: {Math.max(5 - images.length, 0)}
       </div>
-      <button type="button" onClick={uploadImageFiles}>
-        Upload all
-      </button>
+      {uploaded ? (
+        <button type="button" onClick={uploadImageFiles}>
+          Upload all
+        </button>
+      ) : (
+        'Uploaded'
+      )}
     </div>
   );
 }
