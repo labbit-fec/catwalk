@@ -1,32 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './ProductInformation.css';
 import StarGraphic from '../../ratings/RatingSummary/Stars/StarGraphic/StarGraphic';
 
-
-const ProductInformation = () => {
-  const [productTitle, setProductTitle] = useState('Placeholder Title');
-
-  useEffect(() => {
-    axios
-      .get('/products')
-      .then((response) => {
-        setProductTitle(response.data.Product.title);
-      })
-      .catch((error) => {
-        console.log('Error getting product', error);
-      });
-  }, []);
-
-  return (
+const ProductInformation = ({ product }) => (
   <div className={styles.container}>
     Product Information
     <StarGraphic stars={4} />
-    <div className={styles.category}>Category</div>
-    <h1 className={styles.title}>{productTitle}</h1>
-    <div className={styles.price}>$395</div>
+    <div className={styles.category}>{product.category}</div>
+    <h1 className={styles.title}>{product.name}</h1>
+    <div className={styles.price}>{product.default_price}</div>
   </div>
-  );
+);
+
+ProductInformation.propTypes = {
+  product: PropTypes.shape({
+    category: PropTypes.string,
+    name: PropTypes.string,
+    default_price: PropTypes.string,
+  }),
+};
+
+ProductInformation.defaultProps = {
+  product: {
+    category: 'Placeholder Category',
+    name: 'Placeholder Name',
+    default_price: '9001.00',
+  },
 };
 
 export default ProductInformation;
