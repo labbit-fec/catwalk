@@ -8,9 +8,13 @@ const withProductDetails =
 
     useEffect(() => {
       axios
-        .get(`/products?productId=${productId}`)
+        .get('/api/overview/products/', {
+          params: {
+            productId: productId,
+          },
+        })
         .then((response) => {
-          setProduct(response.data.Product);
+          setProduct(response.data);
         })
         .catch((error) => {
           console.log('Error getting product details', error);
