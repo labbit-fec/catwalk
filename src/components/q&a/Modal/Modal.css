@@ -34,6 +34,7 @@ h3{
 }
 
 h4{
+  margin-top: -5px;
   align-self: center;
   justify-self: center;
 }
@@ -62,6 +63,11 @@ h4{
 
 .message{
   color: rgb(170, 170, 170);
+}
+
+.add_img{
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
 
 .error{
