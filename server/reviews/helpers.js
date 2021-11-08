@@ -12,10 +12,8 @@ const bucket = gc.bucket('limitless-fec');
  *   "originalname" and "buffer" as keys
  */
 
-const uploadImage = (file) => {
-  console.log(file);
-
-  return new Promise((resolve, reject) => {
+const uploadImage = (file) =>
+  new Promise((resolve, reject) => {
     const { originalname, buffer } = file;
 
     const blob = bucket.file(originalname.replace(/ /g, '_'));
@@ -32,6 +30,5 @@ const uploadImage = (file) => {
       })
       .end(buffer);
   });
-};
 
 module.exports = uploadImage;

@@ -2,7 +2,6 @@ const path = require('path');
 const axios = require('axios');
 const { baseUrl, authorization } = require('./server-config');
 
-
 const filterProduct = (products, name) => {
   let foundProduct = {};
   const formattedName = name.toLowerCase().replace('-', ' ');
@@ -15,10 +14,13 @@ const filterProduct = (products, name) => {
 };
 
 const getProduct = (productShortName, cb) => {
-  axios.get(`${baseUrl}/products`, {
-    headers: {Authorization: authorization},
-  })
-    .then((response) => cb(null, filterProduct(response.data, productShortName)))
+  axios
+    .get(`${baseUrl}/products`, {
+      headers: { Authorization: authorization },
+    })
+    .then((response) =>
+      cb(null, filterProduct(response.data, productShortName))
+    )
     .catch((err) => cb(err));
 };
 
