@@ -34,7 +34,10 @@ export default function PhotoUpload({ updateImages }) {
         ...[...event.target.files].map((file) => URL.createObjectURL(file)),
       ];
       setImages(newImages);
-      setImageFiles([...document.getElementById('photoUploader').files]);
+      setImageFiles([
+        ...imageFiles,
+        ...document.getElementById('photoUploader').files,
+      ]);
     }
   }
 
@@ -69,11 +72,11 @@ export default function PhotoUpload({ updateImages }) {
         Uploads remaining: {Math.max(5 - images.length, 0)}
       </div>
       {uploaded ? (
+        'Uploaded'
+      ) : (
         <button type="button" onClick={uploadImageFiles}>
           Upload all
         </button>
-      ) : (
-        'Uploaded'
       )}
     </div>
   );
