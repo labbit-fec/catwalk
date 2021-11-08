@@ -34,6 +34,7 @@ export default function ModalForm({ closeModalClickHandler }) {
   useEffect(() => {
     getCharacteristics().then((response) => {
       setCharacteristics(response.data.characteristics);
+      console.log('characteristics state: ', response.data.characteristics);
     });
   }, [productId]);
 
