@@ -13,10 +13,10 @@ export default function ModalForm({ closeModalClickHandler }) {
 
   const [formData, setFormData] = useState({
     productId,
-    rating: 0, // integer 1-5
+    rating: null, // integer 1-5
     summary: '', // string
     body: '', // string
-    recommend: false, // bool
+    recommend: null, // bool
     name: '', // string
     email: '', // string
     photos: [], // array of strings,
@@ -34,19 +34,25 @@ export default function ModalForm({ closeModalClickHandler }) {
   useEffect(() => {
     getCharacteristics().then((response) => {
       setCharacteristics(response.data.characteristics);
+      console.log('characteristics state: ', response.data.characteristics);
     });
   }, [productId]);
 
   function updateFormDataByName(event) {
     const newFormData = { ...formData };
-    newFormData[event.target.name] = event.target.value;
+    if (event.target.name === 'recommend') {
+      console.log('recommend');
+      newFormData.recommend = event.target.value === 'true';
+    } else {
+      newFormData[event.target.name] = event.target.value;
+    }
     setFormData(newFormData);
     console.log(newFormData);
   }
 
   function updateCharacteristicFormData(event) {
     const newFormData = { ...formData };
-    newFormData.characteristics[event.target.name] = event.target.value;
+    newFormData.characteristics[event.target.name] = Number(event.target.value);
     setFormData(newFormData);
     console.log(newFormData);
   }
@@ -58,21 +64,28 @@ export default function ModalForm({ closeModalClickHandler }) {
       setFormData(newFormData);
       console.log(newFormData);
     },
-    [setFormData]
+    [formData, setFormData]
   );
 
   const updateStarData = useCallback(
     (rating) => {
       const newFormData = { ...formData };
-      newFormData.rating = rating;
+      newFormData.rating = Number(rating);
       setFormData(newFormData);
     },
-    [setFormData]
+    [formData, setFormData]
   );
 
   function countBody(event) {
     setBodyLength(event.target.value.length);
     console.log('body length:', event.target.value.length);
+  }
+
+  function submitForm() {
+    axios.post('/api/reviews/create', formData).then((response) => {
+      console.log(response);
+      closeModalClickHandler();
+    });
   }
 
   return (
@@ -155,7 +168,11 @@ export default function ModalForm({ closeModalClickHandler }) {
                   id="option1"
                   name="recommend"
                   value="true"
-                  checked={formData.recommend === 'true'}
+                  checked={
+                    formData.recommend === null
+                      ? false
+                      : formData.recommend.toString() === 'true'
+                  }
                   onChange={updateFormDataByName}
                 />
                 Yes
@@ -168,7 +185,11 @@ export default function ModalForm({ closeModalClickHandler }) {
                   id="option2"
                   value="false"
                   name="recommend"
-                  checked={formData.recommend === 'false'}
+                  checked={
+                    formData.recommend === null
+                      ? false
+                      : formData.recommend.toString() === 'false'
+                  }
                   onChange={updateFormDataByName}
                 />
                 No
@@ -187,23 +208,29 @@ export default function ModalForm({ closeModalClickHandler }) {
             {Object.keys(characteristics).map((characteristic) => (
               <div className={styles.characteristic}>
                 <strong>{characteristic}</strong>
-                {Object.keys(characteristics[characteristic]).map((score) => (
-                  <label htmlFor={`${characteristic}-${score}`}>
-                    <div className={styles.radio}>
-                      <input
-                        type="radio"
-                        id={`${characteristic}-${score}`}
-                        value={score}
-                        name={characteristic}
-                        checked={
-                          formData.characteristics[characteristic] === score
-                        }
-                        onChange={updateCharacteristicFormData}
-                      />
-                      {`${score} - ${characteristics[characteristic][score]}`}
-                    </div>
-                  </label>
-                ))}
+                {Object.keys(characteristics[characteristic].legend).map(
+                  (score) => (
+                    <label
+                      htmlFor={`${characteristics[characteristic].id}-${score}`}
+                    >
+                      <div className={styles.radio}>
+                        <input
+                          type="radio"
+                          id={`${characteristics[characteristic].id}-${score}`}
+                          value={score}
+                          name={characteristics[characteristic].id}
+                          checked={
+                            formData.characteristics[
+                              characteristics[characteristic].id
+                            ] === Number(score)
+                          }
+                          onChange={updateCharacteristicFormData}
+                        />
+                        {`${score} - ${characteristics[characteristic].legend[score]}`}
+                      </div>
+                    </label>
+                  )
+                )}
               </div>
             ))}
           </div>
@@ -272,6 +299,9 @@ export default function ModalForm({ closeModalClickHandler }) {
         </form>
         <button type="button" onClick={closeModalClickHandler}>
           Close
+        </button>
+        <button type="submit" onClick={submitForm}>
+          Submit
         </button>
       </div>
     </div>

@@ -24,6 +24,7 @@ export default function PhotoUpload({ updateImages }) {
     Promise.all(promises).then((results) => {
       console.log(results);
       setUploaded(true);
+      updateImages(results.map((result) => result.data.data));
     });
   }
 
@@ -44,21 +45,18 @@ export default function PhotoUpload({ updateImages }) {
   return (
     <div className={styles.formField}>
       <div className={styles.formPrompt}>Upload your photos:</div>
+      {uploaded && <div className={styles.uploaded}>Uploaded successfully</div>}
       {images.length < 5 && (
         <label htmlFor="photos">
-          {uploaded ? (
-            <div className={styles.uploaded}>Uploaded successfully</div>
-          ) : (
-            <button
-              type="button"
-              onClick={() => {
-                document.getElementById('photoUploader').click();
-                return false;
-              }}
-            >
-              Add file
-            </button>
-          )}
+          <button
+            type="button"
+            onClick={() => {
+              document.getElementById('photoUploader').click();
+              return false;
+            }}
+          >
+            Add file
+          </button>
           <input
             type="file"
             id="photoUploader"
