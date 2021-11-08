@@ -53,8 +53,7 @@ router.put('/:reviewId/report', (req, res) => {
   });
 });
 
-router.post('/uploads', async (req, res) => {
-  console.log('received');
+router.post('/uploads', async (req, res, next) => {
   try {
     const myFile = req.file;
     const imageUrl = await uploadImage(myFile);
