@@ -23,7 +23,8 @@ export default function PhotoUpload({ updateImages }) {
 
     Promise.all(promises).then((results) => {
       console.log(results);
-      setUploaded(true);
+      setUploaded(results);
+      updateImages(results.map((result) => result.data.data));
     });
   }
 
