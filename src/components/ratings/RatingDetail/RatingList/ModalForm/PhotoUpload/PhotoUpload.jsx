@@ -47,7 +47,7 @@ export default function PhotoUpload({ updateImages }) {
       {images.length < 5 && (
         <label htmlFor="photos">
           {uploaded ? (
-            'Uploaded successfully'
+            <div className={styles.uploaded}>Uploaded successfully</div>
           ) : (
             <button
               type="button"
@@ -71,7 +71,9 @@ export default function PhotoUpload({ updateImages }) {
           />
         </label>
       )}
-      <RatingImages photos={images.map((url) => ({ url }))} />
+      {images.length > 0 && (
+        <RatingImages photos={images.map((url) => ({ url }))} />
+      )}
       <div className={styles.formHelper}>
         Uploads remaining: {Math.max(5 - images.length, 0)}
       </div>
