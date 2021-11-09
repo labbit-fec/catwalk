@@ -111,6 +111,20 @@ describe('Style Selector Container', () => {
     );
     expect(styleSelector).toBeVisible();
   });
+
+  test('Displays Default Style name', async () => {
+    const styleName = await waitFor(() => screen.getByText('Black'));
+    expect(styleName).toBeVisible();
+  });
+
+  test('Displays All Style Thumbnails', async () => {
+    const styleThumbnails = await waitFor(() =>
+      screen.getAllByRole('image', { name: /style thumbnail/i })
+    );
+    expect(styleThumbnails.length).toEqual(6);
+    expect(styleThumbnails[0]).toBeVisible();
+  });
+
 });
 
 describe('Add to Cart Container', () => {

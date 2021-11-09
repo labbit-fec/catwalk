@@ -1,4 +1,5 @@
 import { rest } from 'msw';
+import stylesResponseJSON from './data';
 
 const handlers = [
   rest.get('/products', (req, res, ctx) =>
@@ -47,6 +48,10 @@ const handlers = [
         ],
       })
     )
+  ),
+
+  rest.get('/api/overview/styles/', (req, res, ctx) =>
+    res(ctx.json(stylesResponseJSON))
   ),
 ];
 
