@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { ProductIdContext } from './context/ProductIdContext';
+import ProductIdContext from './context/ProductIdContext';
 import Overview from './overview/Overview';
 import QA from './q&a/QA';
 import Ratings from './ratings/Ratings';

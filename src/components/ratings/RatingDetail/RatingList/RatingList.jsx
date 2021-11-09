@@ -3,7 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from './RatingList.css';
 import RatingListEntry from './RatingListEntry/RatingListEntry';
-import { ProductIdContext } from '../../../context/ProductIdContext';
+import ProductIdContext from '../../../context/ProductIdContext';
 import ActionButtons from './ActionButtons/ActionButtons';
 import ModalForm from './ModalForm/ModalForm';
 

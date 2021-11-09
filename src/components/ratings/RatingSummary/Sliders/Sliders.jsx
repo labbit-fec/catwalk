@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Slider from './Slider/Slider';
 import styles from './Sliders.css';
-import { ProductIdContext } from '../../../context/ProductIdContext';
+import ProductIdContext from '../../../context/ProductIdContext';
 
 export default function Sliders() {
   const [characteristics, setCharacteristics] = useState({});

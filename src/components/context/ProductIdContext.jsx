@@ -1,6 +1,8 @@
 import { createContext } from 'react';
 
-export const ProductIdContext = createContext({
+const ProductIdContext = createContext({
   productId: null,
   setProductId: () => {},
 });
+
+export default ProductIdContext;
