@@ -1,27 +1,13 @@
-import React, { useContext } from 'react';
-import axios from 'axios';
-import ProductIdContext from '../../../context/ProductIdContext';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './AddQuestionsButton.css';
 
-const AddQuestionsButton = function () {
-  const { productId } = useContext(ProductIdContext);
-
+const AddQuestionsButton = function ({ setOpenModal }) {
   const handleAdd = () => {
-    axios
-      .post(`/api/qa/questions`, {
-        params: {
-          body: 'Is this a test',
-          name: 'tester92',
-          email: 'testing123@gmail.com',
-          product_id: productId,
-        },
-      })
-      .then(() => {
-        console.log('Your question was successfully posted!');
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    setOpenModal({
+      state: true,
+      type: 'question',
+    });
   };
 
   return (
@@ -32,3 +18,7 @@ const AddQuestionsButton = function () {
 };
 
 export default AddQuestionsButton;
+
+AddQuestionsButton.propTypes = {
+  setOpenModal: PropTypes.func.isRequired,
+};
