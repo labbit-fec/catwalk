@@ -14,14 +14,15 @@ export default function Slider({ rating, percent, count }) {
       (key) => newStarsToShow[key]
     );
     setStarFilter({ starsToShow: newStarsToShow, filtering: newFiltering });
-    console.log({ newStarsToShow, newFiltering });
   }
 
   return (
     <div className={styles.container}>
-      <div style={{ flex: 2 }} onClick={clickHandler}>{`${rating} stars: ${
-        starsToShow[rating] ? 'T' : 'F'
-      }`}</div>
+      <div style={{ flex: 2 }} onClick={clickHandler}>
+        {`${rating} stars: ${
+          filtering ? (starsToShow[rating] ? 'T' : 'F') : ''
+        }`}
+      </div>
       <div style={{ flex: 8 }} className={styles.bar}>
         <div style={{ flex: percent }} className={styles.shaded} />
         <div style={{ flex: 1 - percent }} className={styles.unshaded} />

@@ -55,7 +55,6 @@ export default function RatingList({ sortBy }) {
     }
 
     setFilteredReviewList(newReviews);
-    console.log(newReviews);
 
     if (!showAll) {
       newReviews = newReviews.slice(0, 2);
