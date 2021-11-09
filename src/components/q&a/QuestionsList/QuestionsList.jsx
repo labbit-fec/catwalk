@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import IndividualQuestion from './IndividualQuestion/IndividualQuestion';
 import BottomBar from './BottomBar/BottomBar';
 import styles from './QuestionsList.css';
-import { ProductIdContext } from '../../context/ProductIdContext';
+import ProductIdContext from '../../context/ProductIdContext';
 import AddQuestionsButton from './AddQuestionsButton/AddQuestionsButton';
 
 const QuestionsList = function ({

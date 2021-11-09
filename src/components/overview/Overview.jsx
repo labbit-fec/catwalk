@@ -6,7 +6,7 @@ import AddToCart from './AddToCart/AddToCart';
 import ProductInformation from './ProductInformation/ProductInformation';
 import StyleSelector from './StyleSelector/StyleSelector';
 import ProductTextOverview from './ProductTextOverview/ProductTextOverview';
-import { ProductIdContext } from '../context/ProductIdContext';
+import ProductIdContext from '../context/ProductIdContext';
 
 const Overview = () => {
   const { productId } = useContext(ProductIdContext);
@@ -36,9 +36,5 @@ const Overview = () => {
     </div>
   );
 };
-
-
-
-
 
 export default Overview;

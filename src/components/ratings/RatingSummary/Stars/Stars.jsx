@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import styles from './Stars.css';
 import StarGraphic from './StarGraphic/StarGraphic';
-import { ProductIdContext } from '../../../context/ProductIdContext';
+import ProductIdContext from '../../../context/ProductIdContext';
 
 export default function Stars() {
   const [stars, setStars] = useState(null);
