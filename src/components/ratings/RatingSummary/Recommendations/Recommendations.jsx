@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './Recommendations.css';
-import { ProductIdContext } from '../../../context/ProductIdContext';
+import ProductIdContext from '../../../context/ProductIdContext';
 
 export default function Recommendations() {
   const { productId } = useContext(ProductIdContext);

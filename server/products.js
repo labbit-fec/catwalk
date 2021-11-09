@@ -4,7 +4,7 @@ const { baseUrl, authorization } = require('./server-config');
 
 const filterProduct = (products, name) => {
   let foundProduct = {};
-  const formattedName = name.toLowerCase().replace('-', ' ');
+  const formattedName = name.toLowerCase().replace(/-/g, ' ');
   products.forEach((product) => {
     if (product.name.toLowerCase() === formattedName) {
       foundProduct = product;
@@ -18,9 +18,9 @@ const getProduct = (productShortName, cb) => {
     .get(`${baseUrl}/products`, {
       headers: { Authorization: authorization },
     })
-    .then((response) =>
-      cb(null, filterProduct(response.data, productShortName))
-    )
+    .then((response) => {
+      cb(null, filterProduct(response.data, productShortName));
+    })
     .catch((err) => cb(err));
 };
 

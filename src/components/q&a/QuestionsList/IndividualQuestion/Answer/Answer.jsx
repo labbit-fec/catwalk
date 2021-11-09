@@ -3,7 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import Images from './Images/Images';
 import styles from './Answer.css';
-import { ProductIdContext } from '../../../../context/ProductIdContext';
+import ProductIdContext from '../../../../context/ProductIdContext';
 
 const Answer = function ({
   body,

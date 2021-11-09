@@ -3,7 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import Answer from './Answer/Answer';
 import styles from './IndividualQuestion.css';
-import { ProductIdContext } from '../../../context/ProductIdContext';
+import ProductIdContext from '../../../context/ProductIdContext';
 
 const IndividualQuestion = function ({
   body,

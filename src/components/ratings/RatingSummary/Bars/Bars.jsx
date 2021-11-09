@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useState } from 'react';
 import axios from 'axios';
 import styles from './Bars.css';
 import Slider from './Bar/Bar';
-import { ProductIdContext } from '../../../context/ProductIdContext';
+import ProductIdContext from '../../../context/ProductIdContext';
 
 export default function Sliders() {
   const { productId } = useContext(ProductIdContext);
