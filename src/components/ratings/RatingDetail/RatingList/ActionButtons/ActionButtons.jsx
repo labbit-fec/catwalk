@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import styles from './ActionButtons.css';
 
 export default function ActionButtons({
-  moreReviews,
+  showMoreReviews,
   moreClickHandler,
   addClickHandler,
   showAddReviews,
 }) {
   return (
     <div className={styles.container}>
-      {moreReviews && (
+      {showMoreReviews && (
         <button
           type="button"
           className={styles.actionButton}
@@ -36,7 +36,7 @@ export default function ActionButtons({
 
 ActionButtons.propTypes = {
   moreClickHandler: PropTypes.func.isRequired,
-  moreReviews: PropTypes.bool.isRequired,
+  showMoreReviews: PropTypes.bool.isRequired,
   addClickHandler: PropTypes.func.isRequired,
   showAddReviews: PropTypes.bool.isRequired,
 };
