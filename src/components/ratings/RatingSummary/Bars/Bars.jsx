@@ -3,6 +3,7 @@ import axios from 'axios';
 import styles from './Bars.css';
 import Slider from './Bar/Bar';
 import ProductIdContext from '../../../context/ProductIdContext';
+import StarFilterContext from '../../context/StarFilterContext';
 
 export default function Sliders() {
   const { productId } = useContext(ProductIdContext);
