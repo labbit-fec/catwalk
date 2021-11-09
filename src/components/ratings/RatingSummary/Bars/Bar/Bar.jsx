@@ -9,8 +9,12 @@ export default function Slider({ rating, percent, count }) {
 
   function clickHandler() {
     const newStarsToShow = { ...starsToShow };
-    newStarsToShow[rating] = true;
-    setStarFilter({ starsToShow: newStarsToShow, filtering: true });
+    newStarsToShow[rating] = !newStarsToShow[rating];
+    const newFiltering = Object.keys(newStarsToShow).some(
+      (key) => newStarsToShow[key]
+    );
+    setStarFilter({ starsToShow: newStarsToShow, filtering: newFiltering });
+    console.log({ newStarsToShow, newFiltering });
   }
 
   return (
