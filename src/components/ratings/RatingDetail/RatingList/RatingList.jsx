@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import styles from './RatingList.css';
 import RatingListEntry from './RatingListEntry/RatingListEntry';
 import ProductIdContext from '../../../context/ProductIdContext';
+import StarFilterContext from '../../context/StarFilterContext';
 import ActionButtons from './ActionButtons/ActionButtons';
 import ModalForm from './ModalForm/ModalForm';
 
@@ -14,6 +15,7 @@ export default function RatingList({ sortBy }) {
   // const [lastPageLoaded, setLastPageLoaded] = useState(0); // represents the last page that was
   // const [moreReviews, setMoreReviews] = useState(false);
   const { productId } = useContext(ProductIdContext);
+  const { starFilter, setStarFilter } = useContext(StarFilterContext);
   const [showModal, setShowModal] = useState(false);
   const [showAddReviews, setShowAddReviews] = useState(true);
 
@@ -53,13 +55,6 @@ export default function RatingList({ sortBy }) {
     // setVisibleReviewList(newReviews.slice(0, 2));
   }, [productId, sortBy]);
 
-  // Check if there are more reviews
-  /* useEffect(() => {
-    getMoreReviews(lastPageLoaded + 1, sortBy, 2).then((response) => {
-      setMoreReviews(response.data.reviews.length > 0);
-    });
-  }, [lastPageLoaded]); */
-
   const moreClickHandler = useCallback(() => {
     setShowAll(true);
     setVisibleReviewList(reviewList);
@@ -75,24 +70,10 @@ export default function RatingList({ sortBy }) {
     setShowAddReviews(true);
   }, []);
 
-  /*   useEffect(() => {
-    const promises = [];
-    for (let page = 1; page <= lastPageLoaded; page += 1) {
-      promises.push(getMoreReviews(page, sortBy, 2));
-    }
-    Promise.all(promises)
-      .then((responses) =>
-        responses.reduce(
-          (memo, response) => [...memo, ...response.data.reviews],
-          []
-        )
-      )
-      .then((reviews) => setReviewList(reviews));
-  }, [sortBy]); */
-
   return (
     <div className={styles.container}>
       <div id="review-container" className={styles.content}>
+        {starFilter && <div>Star filter set to: {starFilter.toString()}</div>}
         {visibleReviewList.map((review) => (
           <RatingListEntry key={review.review_id} review={review} />
         ))}

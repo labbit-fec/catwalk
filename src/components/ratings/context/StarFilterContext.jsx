@@ -1,8 +1,5 @@
 import { createContext } from 'react';
 
-const StarFilterContext = createContext({
-  starFilter: null,
-  setStarFilterContext: () => {},
-});
+const StarFilterContext = createContext();
 
 export default StarFilterContext;
