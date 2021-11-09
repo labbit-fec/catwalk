@@ -7,6 +7,7 @@ import ProductInformation from './ProductInformation/ProductInformation';
 import StyleSelector from './StyleSelector/StyleSelector';
 import ProductTextOverview from './ProductTextOverview/ProductTextOverview';
 import ProductIdContext from '../context/ProductIdContext';
+import SelectedStyleContext from './context/SelectedStyleContext';
 
 const Overview = () => {
   const { productId } = useContext(ProductIdContext);
@@ -23,14 +24,16 @@ const Overview = () => {
     <div className={styles.container}>
       Product Overview
       <div className={styles.context}>
-        <div className={styles.upper}>
-          <ImageGallery />
-          <div className={styles.right}>
-            <ProductInformationWithDetails />
-            <StyleSelector />
-            <AddToCart />
+        <SelectedStyleContext.Provider>
+          <div className={styles.upper}>
+            <ImageGallery />
+            <div className={styles.right}>
+              <ProductInformationWithDetails />
+              <StyleSelector />
+              <AddToCart />
+            </div>
           </div>
-        </div>
+        </SelectedStyleContext.Provider>
         <ProductTextOverviewWithDetails />
       </div>
     </div>

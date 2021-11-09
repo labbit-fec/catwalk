@@ -13,7 +13,7 @@ const StyleSelector = ({ styleData }) => {
         {'Style >'}
         <div>{styleData[selectedStyleIndex]}</div>
       </div>
-      <StylePicker styleData={styleData}/>
+      <StylePicker styleData={styleData} />
     </div>
   );
 };
