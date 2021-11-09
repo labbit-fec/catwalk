@@ -13,12 +13,13 @@ const QuestionsList = function ({
   setAllQuestions,
   questionsList,
   setQuestionsList,
+  setOpenModal,
 }) {
   const { productId } = useContext(ProductIdContext);
 
   const successCB = (response) => {
-    setQuestions(response.data);
     setAllQuestions(response.data);
+    setQuestions(response.data);
   };
 
   const renderList = () => {
@@ -34,6 +35,7 @@ const QuestionsList = function ({
               helpfulness={question.question_helpfulness}
               questions={questions}
               setQuestions={setQuestions}
+              setOpenModal={setOpenModal}
             />
           ))}
         </div>
@@ -59,6 +61,7 @@ const QuestionsList = function ({
             helpfulness={question.question_helpfulness}
             questions={questions}
             setQuestions={setQuestions}
+            setOpenModal={setOpenModal}
           />
         ))}
       </div>
@@ -76,7 +79,7 @@ const QuestionsList = function ({
             {renderList()}
             <hr />
             <div className={styles.add_button_container}>
-              <AddQuestionsButton />
+              <AddQuestionsButton setOpenModal={setOpenModal} />
             </div>
           </div>
         );
@@ -89,25 +92,12 @@ const QuestionsList = function ({
             questionsList={questionsList}
             setQuestionsList={setQuestionsList}
             questions={questions}
+            setOpenModal={setOpenModal}
           />
         </div>
       );
     }
-    return <AddQuestionsButton />;
-
-    // {questions.length ? (
-    // <div>
-    //   {renderList()}
-    //   <hr />
-    //   <BottomBar
-    //     questionsList={questionsList}
-    //     setQuestionsList={setQuestionsList}
-    //     questions={questions}
-    //   />
-    // </div>
-    // ) : (
-    //   <AddQuestionsButton />
-    // )}
+    return <AddQuestionsButton setOpenModal={setOpenModal} />;
   };
 
   useEffect(() => {
@@ -182,4 +172,5 @@ QuestionsList.propTypes = {
   setQuestions: PropTypes.func.isRequired,
   setAllQuestions: PropTypes.func.isRequired,
   setQuestionsList: PropTypes.func.isRequired,
+  setOpenModal: PropTypes.func.isRequired,
 };

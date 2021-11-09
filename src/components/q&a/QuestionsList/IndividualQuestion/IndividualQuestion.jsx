@@ -11,6 +11,7 @@ const IndividualQuestion = function ({
   helpfulness,
   questions,
   setQuestions,
+  setOpenModal,
 }) {
   const { productId } = useContext(ProductIdContext);
   const [answers, setAnswers] = useState([]);
@@ -157,21 +158,12 @@ const IndividualQuestion = function ({
   };
 
   const handleAdd = () => {
-    axios
-      .post(`/api/qa/questions/${id}/answers`, {
-        params: {
-          body: 'Test answer',
-          name: 'tester92',
-          email: 'testing123@gmail.com',
-          photos: [],
-        },
-      })
-      .then(() => {
-        console.log('Your answer was successfully posted!');
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    setOpenModal({
+      state: true,
+      type: 'answer',
+      qBody: body,
+      qId: id,
+    });
   };
 
   return (
@@ -248,4 +240,5 @@ IndividualQuestion.propTypes = {
     })
   ).isRequired,
   setQuestions: PropTypes.func.isRequired,
+  setOpenModal: PropTypes.func.isRequired,
 };

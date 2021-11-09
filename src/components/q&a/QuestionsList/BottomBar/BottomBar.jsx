@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import styles from './BottomBar.css';
 import AddQuestionsButton from '../AddQuestionsButton/AddQuestionsButton';
 
-const BottomBar = function ({ questionsList, setQuestionsList, questions }) {
+const BottomBar = function ({
+  questionsList,
+  setQuestionsList,
+  questions,
+  setOpenModal,
+}) {
   const handleMoreQClick = () => {
     if (questionsList.expanded) {
       setQuestionsList({
@@ -59,7 +64,7 @@ const BottomBar = function ({ questionsList, setQuestionsList, questions }) {
           MORE ANSWERED QUESTIONS
         </button>
       )}
-      <AddQuestionsButton />
+      <AddQuestionsButton setOpenModal={setOpenModal} />
     </div>
   );
 };
@@ -111,4 +116,5 @@ BottomBar.propTypes = {
       ),
     })
   ).isRequired,
+  setOpenModal: PropTypes.func.isRequired,
 };
