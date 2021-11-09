@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from './Modal.css';
-import { ProductIdContext } from '../../context/ProductIdContext';
+import ProductIdContext from '../../context/ProductIdContext';
 
 const Modal = function ({ openModal, setOpenModal }) {
   const { productId } = useContext(ProductIdContext);
@@ -125,41 +125,45 @@ const Modal = function ({ openModal, setOpenModal }) {
             <h4>About Product #{productId}</h4>
           </div>
           <div className={styles.form_container}>
-            <span className={styles.input_name}>
+            <label htmlFor="input_q_body">
               <span className={styles.mandatory}>*</span>
-              <span>Your Question: </span>
-            </span>
-            <textarea
-              type="text"
-              id="input_q_body"
-              className={styles.body}
-              maxLength="1000"
-            />
-            <span className={styles.input_name}>
+              Your Question:
+              <textarea
+                type="text"
+                id="input_q_body"
+                className={styles.body}
+                maxLength="1000"
+              />
+            </label>
+            <label htmlFor="q_name">
               <span className={styles.mandatory}>*</span>
-              <span>What is Your Nickname? </span>
-            </span>
-            <input
-              type="text"
-              id="q_name"
-              placeholder="Example: jackson11!"
-              maxLength="60"
-              className={styles.input}
-            />
+              What is Your Nickname?
+              <div>
+                <input
+                  type="text"
+                  id="q_name"
+                  placeholder="Example: jackson11!"
+                  maxLength="60"
+                  className={styles.input}
+                />
+              </div>
+            </label>
             <span className={styles.message}>
               For privacy reasons, do not use your full name or email address.
             </span>
-            <span className={styles.input_name}>
+            <label htmlFor="q_email">
               <span className={styles.mandatory}>*</span>
-              <span>Your Email: </span>
-            </span>
-            <input
-              type="text"
-              id="q_email"
-              placeholder="Example: jack@email.com"
-              maxLength="60"
-              className={styles.input}
-            />
+              Your Email:
+              <div>
+                <input
+                  type="text"
+                  id="q_email"
+                  placeholder="Example: jack@email.com"
+                  maxLength="60"
+                  className={styles.input}
+                />
+              </div>
+            </label>
             <span className={styles.message}>
               For authentication reasons, you will not be emailed.
             </span>
@@ -171,7 +175,7 @@ const Modal = function ({ openModal, setOpenModal }) {
               type="button"
               onClick={handleQSubmit}
             >
-              Submit
+              Submit Question
             </button>
             <button
               className={styles.close_button}
@@ -191,41 +195,45 @@ const Modal = function ({ openModal, setOpenModal }) {
             </h4>
           </div>
           <div className={styles.form_container}>
-            <span className={styles.input_name}>
+            <label htmlFor="input_a_body">
               <span className={styles.mandatory}>*</span>
-              <span>Your Answer: </span>
-            </span>
-            <textarea
-              type="text"
-              id="input_a_body"
-              className={styles.body}
-              maxLength="1000"
-            />
-            <span className={styles.input_name}>
+              Your Answer:
+              <textarea
+                type="text"
+                id="input_a_body"
+                className={styles.body}
+                maxLength="1000"
+              />
+            </label>
+            <label htmlFor="a_name">
               <span className={styles.mandatory}>*</span>
-              <span>What is Your Nickname? </span>
-            </span>
-            <input
-              type="text"
-              maxLength="60"
-              placeholder="jack543!"
-              id="a_name"
-              className={styles.input}
-            />
+              What is Your Nickname?
+              <div>
+                <input
+                  type="text"
+                  maxLength="60"
+                  placeholder="jack543!"
+                  id="a_name"
+                  className={styles.input}
+                />
+              </div>
+            </label>
             <span className={styles.message}>
               For privacy reasons, do not use your full name or email address.
             </span>
-            <span className={styles.input_name}>
+            <label htmlFor="a_email">
+              Your Email:
               <span className={styles.mandatory}>*</span>
-              <span>Your Email: </span>
-            </span>
-            <input
-              type="text"
-              maxLength="60"
-              placeholder="Example: jack@email.com"
-              id="a_email"
-              className={styles.input}
-            />
+              <div>
+                <input
+                  type="text"
+                  maxLength="60"
+                  placeholder="Example: jack@email.com"
+                  id="a_email"
+                  className={styles.input}
+                />
+              </div>
+            </label>
             <span className={styles.message}>
               For authentication reasons, you will not be emailed.
             </span>
@@ -237,7 +245,7 @@ const Modal = function ({ openModal, setOpenModal }) {
               type="button"
               onClick={handleASubmit}
             >
-              Submit
+              Submit Answer
             </button>
             <button
               className={styles.close_button}

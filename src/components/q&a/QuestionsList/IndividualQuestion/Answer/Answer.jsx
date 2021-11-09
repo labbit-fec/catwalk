@@ -153,8 +153,8 @@ Answer.propTypes = {
       date: PropTypes.string.isRequired,
       answerer_name: PropTypes.string.isRequired,
       helpfulness: PropTypes.number.isRequired,
-      photos: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    }).isRequired
+      photos: PropTypes.arrayOf(PropTypes.string),
+    })
   ).isRequired,
   setAnswers: PropTypes.func.isRequired,
 };
