@@ -51,7 +51,7 @@ const handlers = [
   ),
 
   rest.get('/api/overview/styles/', (req, res, ctx) =>
-    res(ctx.json(stylesResponseJSON))
+    res(ctx.json(JSON.parse(stylesResponseJSON)))
   ),
 ];
 

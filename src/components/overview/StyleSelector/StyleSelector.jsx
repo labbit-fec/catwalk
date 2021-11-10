@@ -2,16 +2,17 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styles from './StyleSelector.css';
 import StylePicker from './StylePicker/StylePicker';
+import selectedStyleContext from '../context/SelectedStyleContext';
 
 const StyleSelector = ({ styleData }) => {
-  const selectedStyleIndex = useContext(selectedStyleContext);
+  const { selectedStyleIndex } = useContext(selectedStyleContext);
 
   return (
     <div className={styles.container}>
       Style Selector
       <div className={styles.title}>
         {'Style >'}
-        <div>{styleData[selectedStyleIndex]}</div>
+        <div>{styleData[selectedStyleIndex].name}</div>
       </div>
       <StylePicker styleData={styleData} />
     </div>
@@ -21,9 +22,7 @@ const StyleSelector = ({ styleData }) => {
 StyleSelector.propTypes = {
   styleData: PropTypes.arrayOf(
     PropTypes.shape({
-      selectedStyle: PropTypes.shape({
-        name: PropTypes.string,
-      }),
+      name: PropTypes.string,
     })
   ),
 };
