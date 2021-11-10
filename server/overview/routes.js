@@ -20,4 +20,20 @@ router.get('/products', (req, res) => {
     });
 });
 
+router.get('/styles', (req, res) => {
+  const { productId } = req.query;
+  axios
+    .get(`${baseUrl}/products/${productId}/styles`, {
+      headers: {
+        Authorization: authorization,
+      },
+    })
+    .then((response) => {
+      res.status(200).send(response.data);
+    })
+    .catch(() => {
+      res.status(500).send('Unable to get styles for Overview.');
+    });
+});
+
 module.exports = router;
