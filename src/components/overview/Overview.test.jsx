@@ -119,7 +119,7 @@ describe('Style Selector Container', () => {
 
   test('Displays All Style Thumbnails', async () => {
     const styleThumbnails = await waitFor(() =>
-      screen.getAllByRole('image', { name: /style thumbnail/i })
+      screen.getAllByRole('img', { name: /style thumbnail/i })
     );
     expect(styleThumbnails.length).toEqual(6);
     expect(styleThumbnails[0]).toBeVisible();
