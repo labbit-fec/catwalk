@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 
 const ProductIdContext = createContext({
-  productId: null,
+  productId: 61618,
   setProductId: () => {},
 });
 
