@@ -29,23 +29,31 @@ const IndividualQuestion = function ({
   const renderList = () => {
     if (answers.length <= 2) {
       return answers.map((answer) => (
-        <Answer
-          key={answer.answer_id}
-          id={answer.answer_id}
-          body={answer.body}
-          date={answer.date}
-          name={answer.answerer_name}
-          helpfulness={answer.helpfulness}
-          photos={answer.photos}
-          answers={answers}
-          setAnswers={setAnswers}
-        />
+        <div
+          className={styles.answers_list}
+          data-testid="answers-list-container"
+        >
+          <Answer
+            key={answer.answer_id}
+            id={answer.answer_id}
+            body={answer.body}
+            date={answer.date}
+            name={answer.answerer_name}
+            helpfulness={answer.helpfulness}
+            photos={answer.photos}
+            answers={answers}
+            setAnswers={setAnswers}
+          />
+        </div>
       ));
     }
     if (expanded) {
       return (
         <div>
-          <div className={styles.answers_list}>
+          <div
+            className={styles.answers_list}
+            data-testid="answers-list-container"
+          >
             {answers.map((answer) => (
               <Answer
                 key={answer.answer_id}
@@ -73,7 +81,10 @@ const IndividualQuestion = function ({
     const shortened = answers.slice(0, 2);
     return (
       <div>
-        <div className={styles.answers_list}>
+        <div
+          className={styles.answers_list}
+          data-testid="answers-list-container"
+        >
           {shortened.map((answer) => (
             <Answer
               key={answer.answer_id}
@@ -126,6 +137,10 @@ const IndividualQuestion = function ({
       .catch((err) => {
         console.log(err);
       });
+
+    // return () => {
+    //   setSortedAnswers([]);
+    // };
   }, []);
 
   const handleSuccessfulUpvote = () => {
@@ -199,6 +214,7 @@ const IndividualQuestion = function ({
           )}
           <span
             className={styles.add_answer}
+            data-testid="add-answer"
             onClick={handleAdd}
             onKeyPress={handleAdd}
             role="button"
