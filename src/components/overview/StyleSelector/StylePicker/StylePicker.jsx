@@ -14,6 +14,7 @@ const StylePicker = ({ styleData }) => {
         <img
           alt={`${currentStyle.name} style thumbnail`}
           src={currentStyle.photos[0].thumbnail_url}
+          className={styles.img}
         />
       );
     });
