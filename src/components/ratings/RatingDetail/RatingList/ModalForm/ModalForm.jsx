@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import styles from './ModalForm.css';
 import StarsInput from './StarsInput/StarsInput';
-import { ProductIdContext } from '../../../../context/ProductIdContext';
+import ProductIdContext from '../../../../context/ProductIdContext';
 import PhotoUpload from './PhotoUpload/PhotoUpload';
 
 export default function ModalForm({ closeModalClickHandler }) {
@@ -34,27 +34,23 @@ export default function ModalForm({ closeModalClickHandler }) {
   useEffect(() => {
     getCharacteristics().then((response) => {
       setCharacteristics(response.data.characteristics);
-      console.log('characteristics state: ', response.data.characteristics);
     });
   }, [productId]);
 
   function updateFormDataByName(event) {
     const newFormData = { ...formData };
     if (event.target.name === 'recommend') {
-      console.log('recommend');
       newFormData.recommend = event.target.value === 'true';
     } else {
       newFormData[event.target.name] = event.target.value;
     }
     setFormData(newFormData);
-    console.log(newFormData);
   }
 
   function updateCharacteristicFormData(event) {
     const newFormData = { ...formData };
     newFormData.characteristics[event.target.name] = Number(event.target.value);
     setFormData(newFormData);
-    console.log(newFormData);
   }
 
   const updateImages = useCallback(
@@ -62,7 +58,6 @@ export default function ModalForm({ closeModalClickHandler }) {
       const newFormData = { ...formData };
       newFormData.photos = newImages;
       setFormData(newFormData);
-      console.log(newFormData);
     },
     [formData, setFormData]
   );
@@ -78,12 +73,10 @@ export default function ModalForm({ closeModalClickHandler }) {
 
   function countBody(event) {
     setBodyLength(event.target.value.length);
-    console.log('body length:', event.target.value.length);
   }
 
   function submitForm() {
-    axios.post('/api/reviews/create', formData).then((response) => {
-      console.log(response);
+    axios.post('/api/reviews/create', formData).then(() => {
       closeModalClickHandler();
     });
   }
@@ -282,7 +275,7 @@ export default function ModalForm({ closeModalClickHandler }) {
             <div className={styles.formHelper}>
               {bodyLength < 50
                 ? `Minimum required characters left: ${50 - bodyLength}`
-                : 'Minmum characters reached.'}
+                : 'Minimum characters reached.'}
             </div>
           </div>
           {/*

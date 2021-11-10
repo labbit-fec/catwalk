@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
-const port = 3000;
+const port = process.env.NODE_ENV === 'test' ? 80 : 3000;
 
 app.use(express.static(path.join(__dirname, '../dist')));
 app.use(express.json());
@@ -40,9 +40,15 @@ app.get('/product/*', (req, res) => {
   }
 });
 
+<<<<<<< HEAD
 // eslint-disable-next-line prettier/prettier
 if (process.env.NODE_ENV !== 'test') {
   app.listen(port, () => { });
 }
+=======
+app.listen(port, () => {
+  console.log(`listening on port: ${port}`);
+});
+>>>>>>> e6ccc7e (implement tests for container, review list entries, and modal form)
 
-module.exports.port = port;
+module.exports = { app, port };
