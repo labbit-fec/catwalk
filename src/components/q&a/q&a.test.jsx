@@ -77,8 +77,32 @@ describe('Search', () => {
   });
 });
 
-test('Add A Question Button', async () => {
-  expect(screen.getByRole('button')).toBeVisible();
+describe('Bottom Bar', () => {
+  test('Add A Question Button', async () => {
+    expect(
+      screen.getByRole('button', { name: 'ADD A QUESTION +' })
+    ).toBeVisible();
+  });
+
+  test('More Answered Questions Button', async () => {
+    const button = await waitFor(() =>
+      screen.getByRole('button', { name: 'MORE ANSWERED QUESTIONS' })
+    );
+    expect(button).toBeVisible();
+  });
+
+  test('Click on More Answered Questions Button will expand list by 2', async () => {
+    const button = await waitFor(() =>
+      screen.getByRole('button', { name: 'MORE ANSWERED QUESTIONS' })
+    );
+    userEvent.click(button);
+
+    const IndividualQuestion = await waitFor(() =>
+      screen.getAllByTestId('individual-question-container')
+    );
+
+    expect(IndividualQuestion[2]).toBeVisible();
+  });
 });
 
 describe('Questions List Container', () => {
