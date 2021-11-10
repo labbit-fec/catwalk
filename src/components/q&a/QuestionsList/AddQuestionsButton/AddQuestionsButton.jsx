@@ -11,7 +11,12 @@ const AddQuestionsButton = function ({ setOpenModal }) {
   };
 
   return (
-    <button type="button" className={styles.add_question} onClick={handleAdd}>
+    <button
+      type="button"
+      className={styles.add_question}
+      data-testid="add-question"
+      onClick={handleAdd}
+    >
       ADD A QUESTION +
     </button>
   );

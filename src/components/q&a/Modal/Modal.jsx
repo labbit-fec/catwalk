@@ -117,7 +117,7 @@ const Modal = function ({ openModal, setOpenModal }) {
   };
 
   return (
-    <div className={styles.modal}>
+    <div className={styles.modal} data-testid="modal">
       {openModal.type === 'question' ? (
         <div className={styles.modal_inner}>
           <div className={styles.headers}>
@@ -131,6 +131,7 @@ const Modal = function ({ openModal, setOpenModal }) {
               <textarea
                 type="text"
                 id="input_q_body"
+                data-testid="your-question"
                 className={styles.body}
                 maxLength="1000"
               />

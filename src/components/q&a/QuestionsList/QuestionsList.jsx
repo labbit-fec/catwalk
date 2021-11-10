@@ -114,6 +114,11 @@ const QuestionsList = function ({
       .catch((err) => {
         console.log(err);
       });
+
+    // return () => {
+    //   setAllQuestions([]);
+    //   setQuestions([]);
+    // };
   }, []);
 
   return (
