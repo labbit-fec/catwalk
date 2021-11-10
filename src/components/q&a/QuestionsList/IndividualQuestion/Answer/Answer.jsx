@@ -73,7 +73,7 @@ const Answer = function ({
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="individual-answer-container">
       <span className={styles.answer_text}>
         <h4 className={styles.A}>A: </h4>
         <span className={styles.answer_body}>{body}</span>
