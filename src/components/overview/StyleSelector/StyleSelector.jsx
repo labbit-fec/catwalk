@@ -11,7 +11,7 @@ const StyleSelector = ({ styleData }) => {
     <div className={styles.container}>
       Style Selector
       <div className={styles.title}>
-        {'Style >'}
+        {'Style > '}
         <div>{styleData[selectedStyleIndex].name}</div>
       </div>
       <StylePicker styleData={styleData} />
