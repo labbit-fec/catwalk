@@ -34,12 +34,12 @@ export default function App() {
 
   return (
     <div className={styles.container}>
-      App Container
+      <div className={styles.navBar}>NavBar</div>
       <div className={styles.content}>
-        Main Content of {productId}
+        {/* Main Content of {productId} */}
         <ProductIdContext.Provider value={{ productId, setProductId }}>
           <Overview />
-          <Related />
+          {/* <Related /> */}
           <QA />
           <Ratings />
         </ProductIdContext.Provider>

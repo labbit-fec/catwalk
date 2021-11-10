@@ -1,21 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:global(html) {
+  background-color: var(--off-white);
+  color: var(--text);
+}
+
+:global(:root) {
+  /* Primary colors */
+  --primary: #395c6b;
+  --secondary: #06aed5;
+  --success: #78bc61;
+  --danger: #e9806e;
+  --warning: #e09f3e;
+  --light: #f4f2f3;
+  --off-white: #fafafa;
+  --text: #000;
+  --secondary-button: #fff;
+  --secondary-button-text: #000;
+  --primary-button-text: #fff;
+}
+
 .container {
   display: flex;
-  border: 3px solid red;
-  color: red;
   padding: 1em;
   /* font-weight: bold; */
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
+  font-family: 'Raleway', sans-serif;
+  /* font-family: 'Roboto', sans-serif; */
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  border: 3px solid orange;
-  color: orange;
+  /* border: 3px solid orange; */
+  /* color: orange; */
   /* font-weight: bold; */
-  margin: 1em;
+  margin-top: 30px;
   padding: 1em;
   max-width: 1280px;
   width: 100%;
@@ -25,4 +47,18 @@
 .content > div {
   margin: 1em;
   min-height: 200px;
+}
+
+.navBar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+  background-color: #fff;
+  color: black;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }

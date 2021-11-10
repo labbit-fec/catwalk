@@ -7,7 +7,7 @@
 .actionButton {
   background: none;
   color: inherit;
-  border: 1px solid rgba(35, 35, 35, 0.5);
+  border: 1px solid rgba(35, 35, 35, 0);
   padding: 1em;
   font: inherit;
   cursor: pointer;
@@ -15,12 +15,19 @@
 }
 
 .addReviewButton {
-  background-color: rgba(35, 35, 35, 1);
+  background-color: var(--primary);
   color: white;
   display: flex;
   align-items: center;
   align-content: center;
   /* font-weight: bold; */
+}
+
+.moreReviewsButton {
+  background-color: white;
+  border: 1px solid var(--primary);
+  /* border-color: var(--primary); */
+  /* color: var(--primary); */
 }
 
 .addReviewButton svg {

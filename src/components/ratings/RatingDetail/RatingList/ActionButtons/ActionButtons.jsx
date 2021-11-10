@@ -14,7 +14,7 @@ export default function ActionButtons({
       {showMoreReviews && (
         <button
           type="button"
-          className={styles.actionButton}
+          className={`${styles.actionButton} ${styles.moreReviewsButton}`}
           onClick={moreClickHandler}
         >
           More reviews
