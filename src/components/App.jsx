@@ -34,16 +34,16 @@ export default function App() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.navBar}>NavBar</div>
+      <div className={styles.navBar}>Limitless</div>
       <div className={styles.content}>
-        <div id="style-guide">
+        {/* <div id="style-guide">
           <button type="button" className="btn btn-primary">
             Button
           </button>
           <button type="button" className="btn btn-secondary">
             Button
           </button>
-        </div>
+        </div> */}
         {/* Main Content of {productId} */}
         <ProductIdContext.Provider value={{ productId, setProductId }}>
           <Overview />
