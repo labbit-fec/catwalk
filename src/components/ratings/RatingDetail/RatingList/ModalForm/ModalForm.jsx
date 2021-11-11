@@ -154,34 +154,38 @@ export default function ModalForm({ closeModalClickHandler }) {
            */}
           <div className="form-field">
             <label>Would you recommend this product?</label>
-            <input
-              type="radio"
-              id="option1"
-              name="recommend"
-              value="true"
-              checked={
-                formData.recommend === null
-                  ? false
-                  : formData.recommend.toString() === 'true'
-              }
-              onChange={updateFormDataByName}
-            />
-            <label htmlFor="option1">Yes</label>
-            <label htmlFor="option2">
-              <input
-                type="radio"
-                id="option2"
-                value="false"
-                name="recommend"
-                checked={
-                  formData.recommend === null
-                    ? false
-                    : formData.recommend.toString() === 'false'
-                }
-                onChange={updateFormDataByName}
-              />
-              No
-            </label>
+            <div className="radio-group">
+              <div className="radio-option">
+                <input
+                  type="radio"
+                  id="option1"
+                  name="recommend"
+                  value="true"
+                  checked={
+                    formData.recommend === null
+                      ? false
+                      : formData.recommend.toString() === 'true'
+                  }
+                  onChange={updateFormDataByName}
+                />
+                <label htmlFor="option1">Yes</label>
+              </div>
+              <div className="radio-option">
+                <input
+                  type="radio"
+                  id="option2"
+                  value="false"
+                  name="recommend"
+                  checked={
+                    formData.recommend === null
+                      ? false
+                      : formData.recommend.toString() === 'false'
+                  }
+                  onChange={updateFormDataByName}
+                />
+                <label htmlFor="option2">No</label>
+              </div>
+            </div>
           </div>
           {/*
 
