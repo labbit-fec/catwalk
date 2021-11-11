@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { VscClose } from 'react-icons/vsc';
 import styles from './ModalForm.css';
 import StarsInput from './StarsInput/StarsInput';
 import ProductIdContext from '../../../../context/ProductIdContext';
@@ -82,18 +83,27 @@ export default function ModalForm({ closeModalClickHandler }) {
   }
 
   return (
-    <div className={styles.modal}>
-      <div className={styles.modalMain}>
-        <h1>Add a review</h1>
-        <form className={styles.modalForm}>
+    <div className="bg-modal">
+      <div className="modal-content">
+        <h1>My review</h1>
+        <span>
+          <button
+            type="button"
+            className="btn-close"
+            onClick={closeModalClickHandler}
+          >
+            <VscClose />
+          </button>
+        </span>
+        <form className="modal-form">
           {/*
 
             Divider
 
            */}
-          <div className={styles.formField}>
-            <div className={styles.starsField}>
-              <div className={styles.formPrompt}>Overall rating:</div>
+          <div className="form-field">
+            <div>
+              <label>Overall rating</label>
               <StarsInput updateStarData={updateStarData} />
             </div>
           </div>
@@ -102,22 +112,18 @@ export default function ModalForm({ closeModalClickHandler }) {
             Divider
 
            */}
-          <div className={styles.formField}>
-            <label htmlFor="nickname">
-              <div className={styles.formPrompt}>
-                Your nickname (up to 60 chars):
-              </div>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                maxLength="60"
-                placeholder="Example: jackson11!"
-                value={formData.name}
-                onChange={updateFormDataByName}
-              />
-            </label>
-            <div className={styles.formHelper}>
+          <div className="form-field">
+            <label htmlFor="nickname">Your nickname (up to 60 chars)</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              maxLength="60"
+              placeholder="Example: jackson11!"
+              value={formData.name}
+              onChange={updateFormDataByName}
+            />
+            <div className="form-field-helper">
               For privacy reasons, do not use your full name or email.
             </div>
           </div>
@@ -126,22 +132,18 @@ export default function ModalForm({ closeModalClickHandler }) {
             Divider
 
            */}
-          <div className={styles.formField}>
-            <label htmlFor="email">
-              <div className={styles.formPrompt}>
-                Your email (up to 60 chars):
-              </div>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                maxLength="60"
-                placeholder="Example: jackson11@email.com"
-                value={formData.email}
-                onChange={updateFormDataByName}
-              />
-            </label>
-            <div className={styles.formHelper}>
+          <div className="form-field">
+            <label htmlFor="email">Your email (up to 60 chars)</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              maxLength="60"
+              placeholder="Example: jackson11@email.com"
+              value={formData.email}
+              onChange={updateFormDataByName}
+            />
+            <div className="form-field-helper">
               For authentication reasons, you will not be emailed.
             </div>
           </div>
@@ -150,43 +152,35 @@ export default function ModalForm({ closeModalClickHandler }) {
             Divider
 
            */}
-          <div className={styles.formField}>
-            <div className={styles.formPrompt}>
-              Do you recommend this product?
-            </div>
-            <label htmlFor="option1">
-              <div className={styles.radio}>
-                <input
-                  type="radio"
-                  id="option1"
-                  name="recommend"
-                  value="true"
-                  checked={
-                    formData.recommend === null
-                      ? false
-                      : formData.recommend.toString() === 'true'
-                  }
-                  onChange={updateFormDataByName}
-                />
-                Yes
-              </div>
-            </label>
+          <div className="form-field">
+            <label>Would you recommend this product?</label>
+            <input
+              type="radio"
+              id="option1"
+              name="recommend"
+              value="true"
+              checked={
+                formData.recommend === null
+                  ? false
+                  : formData.recommend.toString() === 'true'
+              }
+              onChange={updateFormDataByName}
+            />
+            <label htmlFor="option1">Yes</label>
             <label htmlFor="option2">
-              <div className={styles.radio}>
-                <input
-                  type="radio"
-                  id="option2"
-                  value="false"
-                  name="recommend"
-                  checked={
-                    formData.recommend === null
-                      ? false
-                      : formData.recommend.toString() === 'false'
-                  }
-                  onChange={updateFormDataByName}
-                />
-                No
-              </div>
+              <input
+                type="radio"
+                id="option2"
+                value="false"
+                name="recommend"
+                checked={
+                  formData.recommend === null
+                    ? false
+                    : formData.recommend.toString() === 'false'
+                }
+                onChange={updateFormDataByName}
+              />
+              No
             </label>
           </div>
           {/*
@@ -194,19 +188,17 @@ export default function ModalForm({ closeModalClickHandler }) {
             Divider
 
           */}
-          <div className={styles.formField}>
-            <div className={styles.formPrompt}>
-              How would you rate the following characteristics?
-            </div>
+          <div className="form-field">
+            <div>How would you rate the following characteristics?</div>
             {Object.keys(characteristics).map((characteristic) => (
-              <div className={styles.characteristic}>
+              <div>
                 <strong>{characteristic}</strong>
                 {Object.keys(characteristics[characteristic].legend).map(
                   (score) => (
                     <label
                       htmlFor={`${characteristics[characteristic].id}-${score}`}
                     >
-                      <div className={styles.radio}>
+                      <div>
                         <input
                           type="radio"
                           id={`${characteristics[characteristic].id}-${score}`}
@@ -232,11 +224,9 @@ export default function ModalForm({ closeModalClickHandler }) {
             Divider
 
           */}
-          <div className={styles.formField}>
+          <div className="form-field">
             <label htmlFor="summary">
-              <div className={styles.formPrompt}>
-                Review summary (up to 60 chars):
-              </div>
+              <div>Review summary (up to 60 chars):</div>
               <input
                 type="text"
                 id="summary"
@@ -253,11 +243,9 @@ export default function ModalForm({ closeModalClickHandler }) {
             Divider
 
           */}
-          <div className={styles.formField}>
+          <div className="form-field">
             <label htmlFor="body">
-              <div className={styles.formPrompt}>
-                Review body (50 - 1,000 characters):
-              </div>
+              <div>Review body (50 - 1,000 characters):</div>
               <textarea
                 id="body"
                 name="body"
@@ -272,7 +260,7 @@ export default function ModalForm({ closeModalClickHandler }) {
                 }}
               />
             </label>
-            <div className={styles.formHelper}>
+            <div>
               {bodyLength < 50
                 ? `Minimum required characters left: ${50 - bodyLength}`
                 : 'Minimum characters reached.'}
@@ -290,10 +278,8 @@ export default function ModalForm({ closeModalClickHandler }) {
 
           */}
         </form>
-        <button type="button" onClick={closeModalClickHandler}>
-          Close
-        </button>
-        <button type="submit" onClick={submitForm}>
+
+        <button className="btn btn-primary" type="submit" onClick={submitForm}>
           Submit
         </button>
       </div>

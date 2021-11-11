@@ -52,6 +52,9 @@ export default function App() {
           <Ratings />
         </ProductIdContext.Provider>
       </div>
+      {/*       <div className="bg-modal">
+        <div className="modal-content">Hello</div>
+      </div> */}
     </div>
   );
 }
