@@ -1,12 +1,9 @@
 .container {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 0.8em;
+  /* font-size: 0.8em; */
   display: flex;
   flex-direction: column;
 
   /* Placeholder CSS for illustrative layout only */
-  border: 3px solid green;
-  color: #6e7076;
   padding: 1em;
   /* justify-content: center;
   align-items: center; */

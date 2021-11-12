@@ -50,7 +50,7 @@ const BottomBar = function ({
       {questionsList.expanded ? (
         <button
           type="button"
-          className={styles.more_questions}
+          className="btn btn-secondary"
           onClick={handleMoreQClick}
         >
           COLLAPSE
@@ -58,7 +58,7 @@ const BottomBar = function ({
       ) : (
         <button
           type="button"
-          className={styles.more_questions}
+          className="btn btn-secondary"
           onClick={handleMoreQClick}
         >
           MORE ANSWERED QUESTIONS

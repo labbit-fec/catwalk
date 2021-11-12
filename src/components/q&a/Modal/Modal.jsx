@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { VscClose } from 'react-icons/vsc';
 import styles from './Modal.css';
 import ProductIdContext from '../../context/ProductIdContext';
 
@@ -108,38 +109,40 @@ const Modal = function ({ openModal, setOpenModal }) {
   const displayError = () => {
     if (error.type === 'incomplete') {
       return (
-        <span className={styles.error}>
-          Please complete all required fields!
-        </span>
+        <div className="text-danger">Please complete all required fields!</div>
       );
     }
-    return <span className={styles.error}>Please provide a valid email!</span>;
+    return <div className="text-danger">Please provide a valid email!</div>;
   };
 
   return (
-    <div className={styles.modal} data-testid="modal">
+    <div className="bg-modal" data-testid="modal">
       {openModal.type === 'question' ? (
-        <div className={styles.modal_inner}>
-          <div className={styles.headers}>
-            <h3>Ask Your Question</h3>
-            <h4>About Product #{productId}</h4>
-          </div>
-          <div className={styles.form_container}>
-            <label htmlFor="input_q_body">
-              <span className={styles.mandatory}>*</span>
-              Your Question:
+        <div className="modal-content">
+          {/* <div className={styles.headers}> */}
+          <h1>Ask Your Question</h1>
+          <h3>About Product #{productId}</h3>
+          {/* </div> */}
+          <button className="btn-close" type="button" onClick={handleClick}>
+            <VscClose />
+          </button>
+          <form className="modal-form">
+            <div className="form-field">
+              <label htmlFor="input_q_body">
+                <span className={styles.mandatory}>*</span>
+                Your question
+              </label>
+
               <textarea
-                type="text"
                 id="input_q_body"
                 data-testid="your-question"
-                className={styles.body}
                 maxLength="1000"
               />
-            </label>
-            <label htmlFor="q_name">
-              <span className={styles.mandatory}>*</span>
-              What is Your Nickname?
-              <div>
+            </div>
+            <div className="form-field">
+              <label htmlFor="q_name">
+                <span className={styles.mandatory}>*</span>
+                What is your nickname?
                 <input
                   type="text"
                   id="q_name"
@@ -147,115 +150,103 @@ const Modal = function ({ openModal, setOpenModal }) {
                   maxLength="60"
                   className={styles.input}
                 />
+              </label>
+              <div className="form-field-helper text-warning">
+                For privacy reasons, do not use your full name or email address.
               </div>
-            </label>
-            <span className={styles.message}>
-              For privacy reasons, do not use your full name or email address.
-            </span>
-            <label htmlFor="q_email">
-              <span className={styles.mandatory}>*</span>
-              Your Email:
+            </div>
+
+            <div className="form-field">
+              <label htmlFor="q_email">
+                <span className={styles.mandatory}>*</span>
+                Your Email:
+              </label>
               <div>
                 <input
-                  type="text"
+                  type="email"
                   id="q_email"
                   placeholder="Example: jack@email.com"
                   maxLength="60"
                   className={styles.input}
                 />
               </div>
-            </label>
-            <span className={styles.message}>
-              For authentication reasons, you will not be emailed.
-            </span>
-          </div>
+              <div className="form-field-helper text-warning">
+                For authentication reasons, you will not be emailed.
+              </div>
+            </div>
+          </form>
           {error.state ? displayError() : null}
-          <div className={styles.buttons}>
-            <button
-              className={styles.submit_button}
-              type="button"
-              onClick={handleQSubmit}
-            >
-              Submit Question
-            </button>
-            <button
-              className={styles.close_button}
-              type="button"
-              onClick={handleClick}
-            >
-              Close
-            </button>
-          </div>
+          <button
+            className="btn btn-primary"
+            type="button"
+            onClick={handleQSubmit}
+          >
+            Submit Question
+          </button>
         </div>
       ) : (
-        <div className={styles.modal_inner}>
-          <div className={styles.headers}>
-            <h3>Submit Your Answer</h3>
-            <h4>
-              #{productId}: {openModal.qBody}
-            </h4>
-          </div>
-          <div className={styles.form_container}>
-            <label htmlFor="input_a_body">
-              <span className={styles.mandatory}>*</span>
-              Your Answer:
+        <div className="modal-content">
+          <h1>Submit Your Answer</h1>
+          <h3>
+            #{productId}: {openModal.qBody}
+          </h3>
+          <button className="btn-close" type="button" onClick={handleClick}>
+            <VscClose />
+          </button>
+          <form className="modal-form">
+            <div className="form-field">
+              <label htmlFor="input_a_body">
+                <span className={styles.mandatory}>*</span>
+                Your answer
+              </label>
               <textarea
                 type="text"
                 id="input_a_body"
                 className={styles.body}
                 maxLength="1000"
               />
-            </label>
-            <label htmlFor="a_name">
-              <span className={styles.mandatory}>*</span>
-              What is Your Nickname?
-              <div>
-                <input
-                  type="text"
-                  maxLength="60"
-                  placeholder="jack543!"
-                  id="a_name"
-                  className={styles.input}
-                />
+            </div>
+            <div className="form-field">
+              <label htmlFor="a_name">
+                <span className={styles.mandatory}>*</span>
+                What is your nickname?
+              </label>
+              <input
+                type="text"
+                maxLength="60"
+                placeholder="jack543!"
+                id="a_name"
+                className={styles.input}
+              />
+              <div className="form-field-helper text-warning">
+                For privacy reasons, do not use your full name or email address.
               </div>
-            </label>
-            <span className={styles.message}>
-              For privacy reasons, do not use your full name or email address.
-            </span>
-            <label htmlFor="a_email">
-              Your Email:
-              <span className={styles.mandatory}>*</span>
-              <div>
-                <input
-                  type="text"
-                  maxLength="60"
-                  placeholder="Example: jack@email.com"
-                  id="a_email"
-                  className={styles.input}
-                />
+            </div>
+            <div className="form-field">
+              <label htmlFor="a_email">
+                Your email
+                <span className={styles.mandatory}>*</span>
+              </label>
+              <input
+                type="text"
+                maxLength="60"
+                placeholder="Example: jack@email.com"
+                id="a_email"
+                className={styles.input}
+              />
+              <div className="form-field-helper text-warning">
+                For authentication reasons, you will not be emailed.
               </div>
-            </label>
-            <span className={styles.message}>
-              For authentication reasons, you will not be emailed.
-            </span>
-          </div>
+            </div>
+          </form>
           {error.state ? displayError() : null}
-          <div className={styles.buttons}>
-            <button
-              className={styles.submit_button}
-              type="button"
-              onClick={handleASubmit}
-            >
-              Submit Answer
-            </button>
-            <button
-              className={styles.close_button}
-              type="button"
-              onClick={handleClick}
-            >
-              Close
-            </button>
-          </div>
+          <button
+            className="btn btn-primary"
+            type="button"
+            onClick={handleASubmit}
+          >
+            Submit Answer
+          </button>
         </div>
       )}
     </div>

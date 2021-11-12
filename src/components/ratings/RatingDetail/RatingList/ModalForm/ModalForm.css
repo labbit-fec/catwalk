@@ -32,15 +32,6 @@
   margin: 2em 0;
 }
 
-input {
-  height: 2.5em;
-  width: 100%;
-  max-width: 100%;
-  /* vertical-align: middle; */
-  font-size: 1.25em;
-  box-sizing: border-box;
-}
-
 .formPrompt {
   margin-bottom: 0.5em;
 }
@@ -49,26 +40,6 @@ input {
   font-size: 0.75em;
 }
 
-input[type='radio'] {
-  width: auto;
-  height: auto;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.radio {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
 .characteristic {
   margin: 1em 0;
-}
-
-textarea {
-  width: 100%;
-  resize: none;
-  font-family: inherit;
-  color: inherit;
 }

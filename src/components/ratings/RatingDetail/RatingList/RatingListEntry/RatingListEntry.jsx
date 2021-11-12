@@ -71,13 +71,14 @@ export default function RatingListEntry({ review }) {
     <div className={styles.content}>
       <div className={styles.ratingHeader}>
         <StarGraphic stars={review.rating} />
-        <div>{`${review.reviewer_name}, ${new Date(
-          review.date
-        ).toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-        })}`}</div>
+        <div>
+          <strong>{review.reviewer_name}</strong>,{' '}
+          {new Date(review.date).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })}
+        </div>
       </div>
       <div className={styles.ratingTitle}>{review.summary}</div>
       <div className={styles.ratingBody}>

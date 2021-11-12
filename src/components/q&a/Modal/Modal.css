@@ -1,15 +1,15 @@
-.modal{
-  position:fixed;
+.modal {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
 }
 
-.modal_inner{
+.modal_inner {
   border: solid;
   position: relative;
   justify-self: center;
@@ -21,91 +21,88 @@
   background-color: white;
 }
 
-.headers{
+.headers {
   display: flex;
   flex-direction: column;
   background: rgb(242, 234, 234);
   border-bottom: solid;
 }
-
-h3{
+/*
+h1 {
   align-self: center;
   justify-self: center;
 }
 
-h4{
+h3 {
   margin-top: -5px;
   align-self: center;
   justify-self: center;
-}
+} */
 
-.form_container{
+.form_container {
   padding: 10px;
   display: flex;
   flex-direction: column;
 }
 
-.mandatory{
+.mandatory {
   color: red;
 }
 
-.input_name{
+.input_name {
   margin-top: 10px;
 }
 
-.body{
+/* .body {
   height: 50px;
-}
+} */
 
-.input{
+/* .input {
   width: 50%;
   height: 3vh;
 }
 
-label{
+label {
   margin-top: 5px;
-}
+} */
 
-.message{
+.message {
   color: rgb(170, 170, 170);
 }
 
-.add_img{
+.add_img {
   margin-left: 10px;
   margin-bottom: 10px;
 }
 
-.error{
-  margin-left: 10px;
-  color: red;
+/* .buttons {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
 }
 
-.buttons{
- display: flex;
- flex-direction: row;
- margin-bottom: 15px;
-}
-
-.submit_button{
+.submit_button {
   margin-left: 10px;
   margin-top: 5px;
   height: 25px;
-  background-color: rgba(35, 35, 35, 1);
-  color: white;
+  background-color: var(--primary);
+  border: 1px solid var(--primary);
+  color: var(--primary-button-text);
   display: flex;
   align-items: center;
   align-content: center;
   cursor: pointer;
-}
-
-.close_button{
+} */
+/*
+.close_button {
   margin-left: 20px;
   margin-top: 5px;
   height: 25px;
-  background-color: rgba(35, 35, 35, 1);
-  color: white;
+  background-color: var(--secondary-button);
+  color: var(--text);
+  border: 1px solid var(--text);
   display: flex;
   align-items: center;
   align-content: center;
   cursor: pointer;
-}
+} */
