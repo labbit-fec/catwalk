@@ -4,6 +4,7 @@ import styles from './StyleSelector.css';
 import StylePicker from './StylePicker/StylePicker';
 import selectedStyleContext from '../context/SelectedStyleContext';
 
+// eslint-disable-next-line react/prop-types
 const StyleSelector = ({ styleData }) => {
   const { selectedStyleIndex } = useContext(selectedStyleContext);
 
@@ -12,7 +13,7 @@ const StyleSelector = ({ styleData }) => {
       Style Selector
       <div className={styles.title}>
         {'Style > '}
-        <div>{styleData[selectedStyleIndex].name}</div>
+        <div>{console.log(styleData[selectedStyleIndex], ' index ', selectedStyleIndex) || styleData[selectedStyleIndex].name}</div>
       </div>
       <StylePicker styleData={styleData} />
     </div>

@@ -38,6 +38,4 @@
 .selected {
   border-style: solid;
   border-color: black;
-  height: 25px;
-  width: auto;
 }
