@@ -175,6 +175,7 @@
 
 :global(.form-field) {
   margin-bottom: 2rem;
+  position: relative;
 }
 
 :global(.form-field label) {
@@ -246,4 +247,10 @@
 :global(.radio-option label) {
   font-weight: 400;
   margin: 0;
+}
+
+:global(.form-counter) {
+  text-align: right;
+  position: absolute;
+  right: 0;
 }

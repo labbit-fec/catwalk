@@ -44,10 +44,15 @@ export default function PhotoUpload({ updateImages }) {
 
   return (
     <div className="form-field">
-      <label>Upload your photos</label>
+      <label>
+        Upload your photos
+        <span className="form-field-helper form-counter">
+          {images.length} / 5
+        </span>
+      </label>
       <div style={{ marginLeft: '-0.625rem' }}>
         <label htmlFor="photos">
-          {images.length < 5 && (
+          {!uploaded && images.length < 5 && (
             <button
               type="button"
               className="btn btn-secondary"
@@ -83,13 +88,9 @@ export default function PhotoUpload({ updateImages }) {
       {images.length > 0 && (
         <RatingImages photos={images.map((url) => ({ url }))} />
       )}
-      {uploaded ? (
+      {uploaded && (
         <div className="form-field-helper text-success">
           Uploaded successfully
-        </div>
-      ) : (
-        <div className="form-field-helper text-warning">
-          Uploads remaining: {Math.max(5 - images.length, 0)}
         </div>
       )}
     </div>
