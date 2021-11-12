@@ -11,6 +11,46 @@ const Modal = function ({ openModal, setOpenModal }) {
     state: false,
     type: null,
   });
+  const [images, setImages] = useState([]);
+  const [imageFiles, setImageFiles] = useState([]);
+  const [uploaded, setUploaded] = useState(false);
+  const [publicImages, setPublicImages] = useState([]);
+
+  const changeHandler = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const newImages = [
+        ...images,
+        ...[...e.target.files].map((file) => URL.createObjectURL(file)),
+      ];
+
+      setImages(newImages);
+      setImageFiles([
+        ...imageFiles,
+        ...document.getElementById('qa-photo-upload').files,
+      ]);
+    }
+  };
+
+  const uploadImageFiles = () => {
+    const promises = [];
+    imageFiles.forEach((imageFile) => {
+      const data = new FormData();
+      data.append('file', imageFile);
+
+      promises.push(
+        axios.post('/api/reviews/uploads', data, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+      );
+    });
+
+    Promise.all(promises).then((results) => {
+      setUploaded(true);
+      setPublicImages(results.map((result) => result.data.data));
+    });
+  };
 
   const handleClick = () => {
     setOpenModal({
@@ -81,7 +121,7 @@ const Modal = function ({ openModal, setOpenModal }) {
               body: aBody,
               name,
               email,
-              photos: [],
+              photos: publicImages,
             },
           })
           .then(() => {
@@ -238,6 +278,54 @@ const Modal = function ({ openModal, setOpenModal }) {
                 For authentication reasons, you will not be emailed.
               </div>
             </div>
+          </form>
+          <form className="form-field">
+            <label>Upload your photos</label>
+            <div style={{ marginLeft: '-0.625rem' }}>
+              <label htmlFor="photos">
+                {images.length < 5 && (
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={() => {
+                      document.getElementById('qa-photo-upload').click();
+                      return false;
+                    }}
+                  >
+                    Add file
+                  </button>
+                )}
+                {!uploaded && images.length > 0 && (
+                  <button
+                    className="btn btn-secondary"
+                    type="button"
+                    onClick={uploadImageFiles}
+                  >
+                    Upload Photos
+                  </button>
+                )}
+              </label>
+            </div>
+            <input
+              type="file"
+              id="qa-photo-upload"
+              name="photos"
+              accept="image/*"
+              multiple
+              style={{ display: 'none' }}
+              onChange={changeHandler}
+            />
+            {/* this is where previews go!! */}
+            {uploaded ? (
+              <div className="form-field-helper text-success">
+                Uploaded successfully
+              </div>
+            ) : (
+              <div className="form-field-helper text-warning">
+                Uploads remaining: {Math.max(5 - images.length, 0)}
+              </div>
+            )}
+            {/* {images.length > 0 && images.map()} */}
           </form>
           {error.state ? displayError() : null}
           <button
