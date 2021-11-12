@@ -17,11 +17,17 @@ export default function Slider({ rating, percent, count }) {
   }
 
   return (
-    <div className={styles.container}>
+    <div
+      className={`${styles.container} ${
+        filtering
+          ? starsToShow[rating]
+            ? styles.selected
+            : styles.notSelected
+          : ''
+      }`}
+    >
       <div style={{ flex: 2 }} onClick={clickHandler}>
-        {`${rating} star${rating > 1 ? 's' : ''}: ${
-          filtering ? (starsToShow[rating] ? 'T' : 'F') : ''
-        }`}
+        {`${rating} star${rating > 1 ? 's' : ''}: `}
       </div>
       <div style={{ flex: 8 }} className={styles.bar}>
         <div style={{ flex: percent }} className={styles.shaded} />
