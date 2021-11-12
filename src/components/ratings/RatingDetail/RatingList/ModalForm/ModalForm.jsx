@@ -123,7 +123,7 @@ export default function ModalForm({ closeModalClickHandler }) {
               value={formData.name}
               onChange={updateFormDataByName}
             />
-            <div className="form-field-helper">
+            <div className="form-field-helper text-warning">
               For privacy reasons, do not use your full name or email.
             </div>
           </div>
@@ -143,7 +143,7 @@ export default function ModalForm({ closeModalClickHandler }) {
               value={formData.email}
               onChange={updateFormDataByName}
             />
-            <div className="form-field-helper">
+            <div className="form-field-helper text-warning">
               For authentication reasons, you will not be emailed.
             </div>
           </div>
@@ -192,37 +192,39 @@ export default function ModalForm({ closeModalClickHandler }) {
             Divider
 
           */}
-          <div className="form-field">
-            <div>How would you rate the following characteristics?</div>
-            {Object.keys(characteristics).map((characteristic) => (
-              <div>
-                <strong>{characteristic}</strong>
+          {Object.keys(characteristics).map((characteristic) => (
+            <div className="form-field">
+              <label>
+                How would you rate the <em>{characteristic.toLowerCase()}</em>{' '}
+                of the product?
+              </label>
+              <div className="radio-group">
                 {Object.keys(characteristics[characteristic].legend).map(
                   (score) => (
-                    <label
-                      htmlFor={`${characteristics[characteristic].id}-${score}`}
-                    >
-                      <div>
-                        <input
-                          type="radio"
-                          id={`${characteristics[characteristic].id}-${score}`}
-                          value={score}
-                          name={characteristics[characteristic].id}
-                          checked={
-                            formData.characteristics[
-                              characteristics[characteristic].id
-                            ] === Number(score)
-                          }
-                          onChange={updateCharacteristicFormData}
-                        />
-                        {`${score} - ${characteristics[characteristic].legend[score]}`}
-                      </div>
-                    </label>
+                    <div className="radio-option">
+                      <input
+                        type="radio"
+                        id={`${characteristics[characteristic].id}-${score}`}
+                        value={score}
+                        name={characteristics[characteristic].id}
+                        checked={
+                          formData.characteristics[
+                            characteristics[characteristic].id
+                          ] === Number(score)
+                        }
+                        onChange={updateCharacteristicFormData}
+                      />
+                      <label
+                        htmlFor={`${characteristics[characteristic].id}-${score}`}
+                      >
+                        {characteristics[characteristic].legend[score]}
+                      </label>
+                    </div>
                   )
                 )}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
           {/*
 
             Divider
@@ -230,7 +232,7 @@ export default function ModalForm({ closeModalClickHandler }) {
           */}
           <div className="form-field">
             <label htmlFor="summary">
-              <div>Review summary (up to 60 chars):</div>
+              <div>Review summary (up to 60 chars)</div>
               <input
                 type="text"
                 id="summary"
@@ -248,26 +250,30 @@ export default function ModalForm({ closeModalClickHandler }) {
 
           */}
           <div className="form-field">
-            <label htmlFor="body">
-              <div>Review body (50 - 1,000 characters):</div>
-              <textarea
-                id="body"
-                name="body"
-                placeholder="Why did you like the product or not?"
-                minLength="60"
-                maxLength="1000"
-                rows="18"
-                value={formData.body}
-                onChange={(e) => {
-                  updateFormDataByName(e);
-                  countBody(e);
-                }}
-              />
-            </label>
+            <label htmlFor="body">Review body (50 - 1,000 characters)</label>
+            <textarea
+              id="body"
+              name="body"
+              placeholder="Why did you like the product or not?"
+              minLength="60"
+              maxLength="1000"
+              rows="18"
+              value={formData.body}
+              onChange={(e) => {
+                updateFormDataByName(e);
+                countBody(e);
+              }}
+            />
             <div>
-              {bodyLength < 50
-                ? `Minimum required characters left: ${50 - bodyLength}`
-                : 'Minimum characters reached.'}
+              {bodyLength < 50 ? (
+                <div className="form-field-helper text-danger">{`Minimum required characters left: ${
+                  50 - bodyLength
+                }`}</div>
+              ) : (
+                <div className="form-field-helper text-success">
+                  Minimum characters reached.
+                </div>
+              )}
             </div>
           </div>
           {/*
