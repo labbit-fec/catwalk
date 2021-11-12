@@ -5,6 +5,7 @@ import RatingList from './RatingList/RatingList';
 
 export default function RatingDetail() {
   const [sortBy, setSortBy] = useState('newest');
+  const [reviewCount, setReviewCount] = useState(null);
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -15,8 +16,12 @@ export default function RatingDetail() {
 
   return (
     <div className={styles.content}>
-      <RatingCount sortBy={sortBy} handleChange={handleChange} />
-      <RatingList sortBy={sortBy} />
+      <RatingCount
+        reviewCount={reviewCount}
+        sortBy={sortBy}
+        handleChange={handleChange}
+      />
+      <RatingList setReviewCount={setReviewCount} sortBy={sortBy} />
     </div>
   );
 }

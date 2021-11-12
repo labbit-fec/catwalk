@@ -6,7 +6,9 @@ import styles from './Slider.css';
 export default function Slider({ characteristic, legend, average }) {
   return (
     <div className={styles.container}>
-      <div className={styles.sliderTitle}>{characteristic}</div>
+      <div className={styles.sliderTitle} style={{ fontWeight: '600' }}>
+        {characteristic}
+      </div>
       <div className={styles.thirds}>
         <div
           style={{ left: `calc(${100 * ((average - 1) / 4)}% - 0.5em)` }}

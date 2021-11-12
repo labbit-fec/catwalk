@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './RatingCount.css';
 
-export default function RatingCount({ sortBy, handleChange }) {
+export default function RatingCount({ sortBy, handleChange, reviewCount }) {
   return (
     <div className={styles.container}>
       <p>
         <strong>
           <label htmlFor="sort-select">
-            248 reviews, sorted by
+            {reviewCount} reviews, sorted by
             <span className={styles.customSelect}>
               <select
                 data-testid="select"

@@ -2,7 +2,18 @@
   display: flex;
   flex-direction: row;
   height: 1em;
-  margin-bottom: 1em;
+  /* margin-bottom: 0.5rem; */
+  padding: 0.5rem 0.5rem;
+  margin-left: -0.5rem;
+  cursor: pointer;
+}
+
+.rating {
+  /* text-decoration: underline; */
+}
+
+.rating:hover {
+  color: var(--secondary);
 }
 
 .bar {
@@ -17,4 +28,9 @@
 
 .unshaded {
   background-color: var(--light);
+}
+
+.selected {
+  background-color: #ebebeb;
+  font-weight: 600;
 }

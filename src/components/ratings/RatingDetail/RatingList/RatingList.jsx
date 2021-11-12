@@ -8,7 +8,7 @@ import StarFilterContext from '../../context/StarFilterContext';
 import ActionButtons from './ActionButtons/ActionButtons';
 import ModalForm from './ModalForm/ModalForm';
 
-export default function RatingList({ sortBy }) {
+export default function RatingList({ sortBy, setReviewCount }) {
   const [reviewList, setReviewList] = useState([]);
   const [showAll, setShowAll] = useState(false);
   const [filteredReviewList, setFilteredReviewList] = useState([]);
@@ -48,6 +48,7 @@ export default function RatingList({ sortBy }) {
       lastPage += 1;
     }
     setReviewList(newReviews);
+    setReviewCount(newReviews.length);
 
     // filter
     if (filtering) {
