@@ -25,6 +25,7 @@ export default function Sliders() {
 
   return (
     <div className={styles.container}>
+      <div className="form-field-helper">Filter reviews by rating</div>
       {ratings.reduce((memo, rating) => memo + rating.count, 0) > 0 &&
         ratings.map(({ rating, count, percent }) => (
           <Slider rating={rating} count={count} percent={percent} />

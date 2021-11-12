@@ -26,7 +26,7 @@ export default function Slider({ rating, percent, count }) {
           : ''
       }`}
     >
-      <div style={{ flex: 2 }} onClick={clickHandler}>
+      <div className={styles.rating} style={{ flex: 2 }} onClick={clickHandler}>
         {`${rating} star${rating > 1 ? 's' : ''}: `}
       </div>
       <div style={{ flex: 8 }} className={styles.bar}>
