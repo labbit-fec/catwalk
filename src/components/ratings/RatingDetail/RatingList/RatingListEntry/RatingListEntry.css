@@ -16,7 +16,7 @@
 }
 
 .response {
-  background-color: rgba(235, 235, 235, 1);
+  background-color: var(--light);
   padding: 1em;
   border-radius: 0.1em;
 }

@@ -14,7 +14,7 @@ export default function ActionButtons({
       {showMoreReviews && (
         <button
           type="button"
-          className={styles.actionButton}
+          className="btn btn-secondary"
           onClick={moreClickHandler}
         >
           More reviews
@@ -23,7 +23,7 @@ export default function ActionButtons({
       {showAddReviews && (
         <button
           type="button"
-          className={`${styles.actionButton} ${styles.addReviewButton}`}
+          className="btn btn-primary"
           onClick={addClickHandler}
         >
           <VscAdd />

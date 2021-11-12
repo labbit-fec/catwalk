@@ -43,42 +43,54 @@ export default function PhotoUpload({ updateImages }) {
   }
 
   return (
-    <div className={styles.formField}>
-      <div className={styles.formPrompt}>Upload your photos:</div>
-      {uploaded && <div className={styles.uploaded}>Uploaded successfully</div>}
-      {images.length < 5 && (
+    <div className="form-field">
+      <label>Upload your photos</label>
+      <div style={{ marginLeft: '-0.625rem' }}>
         <label htmlFor="photos">
-          <button
-            type="button"
-            onClick={() => {
-              document.getElementById('photoUploader').click();
-              return false;
-            }}
-          >
-            Add file
-          </button>
-          <input
-            type="file"
-            id="photoUploader"
-            name="photo"
-            accept="image/*"
-            onChange={changeHandler}
-            multiple
-            style={{ display: 'none' }}
-            onClick={() => {}}
-          />
+          {images.length < 5 && (
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={() => {
+                document.getElementById('photoUploader').click();
+                return false;
+              }}
+            >
+              Add file
+            </button>
+          )}
+          {!uploaded && images.length > 0 && (
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={uploadImageFiles}
+            >
+              Upload all
+            </button>
+          )}
         </label>
-      )}
+      </div>
+      <input
+        type="file"
+        id="photoUploader"
+        name="photo"
+        accept="image/*"
+        onChange={changeHandler}
+        multiple
+        style={{ display: 'none' }}
+        onClick={() => {}}
+      />
       {images.length > 0 && (
         <RatingImages photos={images.map((url) => ({ url }))} />
       )}
-      <div className={styles.formHelper}>
-        Uploads remaining: {Math.max(5 - images.length, 0)}
-      </div>
-      {!uploaded && images.length > 0 && (
-        <button type="button" onClick={uploadImageFiles}>
-          Upload all
-        </button>
+      {uploaded ? (
+        <div className="form-field-helper text-success">
+          Uploaded successfully
+        </div>
+      ) : (
+        <div className="form-field-helper text-warning">
+          Uploads remaining: {Math.max(5 - images.length, 0)}
+        </div>
       )}
     </div>
   );

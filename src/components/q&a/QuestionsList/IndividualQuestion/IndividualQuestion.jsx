@@ -70,7 +70,7 @@ const IndividualQuestion = function ({
           </div>
           <button
             type="button"
-            className={styles.more_answers}
+            className="btn btn-secondary"
             onClick={handleMoreAClick}
           >
             Collapse Answers
@@ -101,7 +101,7 @@ const IndividualQuestion = function ({
         </div>
         <button
           type="button"
-          className={styles.more_answers}
+          className="btn btn-secondary"
           onClick={handleMoreAClick}
         >
           See More Answers

@@ -12,9 +12,9 @@
 }
 
 .shaded {
-  background-color: green;
+  background-color: var(--secondary);
 }
 
 .unshaded {
-  background-color: rgba(235, 235, 235, 1);
+  background-color: var(--light);
 }
