@@ -19,7 +19,7 @@ export default function Slider({ rating, percent, count }) {
   return (
     <div className={styles.container}>
       <div style={{ flex: 2 }} onClick={clickHandler}>
-        {`${rating} stars: ${
+        {`${rating} star${rating > 1 ? 's' : ''}: ${
           filtering ? (starsToShow[rating] ? 'T' : 'F') : ''
         }`}
       </div>
