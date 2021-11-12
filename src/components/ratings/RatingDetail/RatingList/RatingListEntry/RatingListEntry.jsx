@@ -35,7 +35,7 @@ export default function RatingListEntry({ review }) {
         >
           Yes
         </button>
-        ({review.helpfulness})
+        &nbsp;({review.helpfulness})
       </div>
       <div>
         <button
