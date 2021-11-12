@@ -11,6 +11,7 @@ export default function ModalForm({ closeModalClickHandler }) {
   const { productId } = useContext(ProductIdContext);
   const [characteristics, setCharacteristics] = useState({});
   const [bodyLength, setBodyLength] = useState(0);
+  const [errors, setErrors] = useState({});
 
   const [formData, setFormData] = useState({
     productId,
@@ -41,6 +42,7 @@ export default function ModalForm({ closeModalClickHandler }) {
   useEffect(() => {
     getCharacteristics().then((response) => {
       setCharacteristics(response.data.characteristics);
+      console.log(response.data.characteristics);
     });
   }, [productId]);
 
@@ -58,6 +60,7 @@ export default function ModalForm({ closeModalClickHandler }) {
     const newFormData = { ...formData };
     newFormData.characteristics[event.target.name] = Number(event.target.value);
     setFormData(newFormData);
+    console.log(newFormData);
   }
 
   const updateImages = useCallback(
@@ -84,9 +87,67 @@ export default function ModalForm({ closeModalClickHandler }) {
 
   function submitForm(event) {
     event.preventDefault();
-    axios.post('/api/reviews/create', formData).then(() => {
-      closeModalClickHandler();
+
+    const newErrors = {};
+    // Overall rating not filled in
+    if (!formData.rating) {
+      newErrors.rating = 'Please provide an overall rating.';
+    }
+
+    // Name not filled in
+    if (formData.name.length === 0) {
+      newErrors.name = 'Please provide your nickname.';
+    }
+
+    // Email not in proper format
+    if (
+      !formData.email.match(
+        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+      )
+    ) {
+      newErrors.email = 'Please provide a valid email address.';
+    }
+
+    // Recommendation not provided
+    if (!formData.recommend) {
+      newErrors.recommend = 'Please make a selection.';
+    }
+
+    Object.keys(characteristics).forEach((characteristic) => {
+      const { id } = characteristics[characteristic];
+      if (!formData.characteristics[id]) {
+        if (!newErrors.characteristics) {
+          newErrors.characteristics = {};
+        }
+        newErrors.characteristics[
+          id
+        ] = `Please rate the ${characteristic.toLowerCase()} of the product.`;
+      }
     });
+
+    // No review body
+    if (formData.body.length === 0) {
+      newErrors.body = 'Please provide a body for your review.';
+    }
+
+    // Review body less than 50
+    if (formData.body.length < 50) {
+      newErrors.body = 'Please include at least 50 characters for your review.';
+    }
+
+    // Review body greater than 1000
+    if (formData.body.length > 1000) {
+      newErrors.body = 'Please keep your review to 1000 characters or less.';
+    }
+
+    setErrors(newErrors);
+    console.log(newErrors);
+
+    if (Object.keys(newErrors).length === 0) {
+      axios.post('/api/reviews/create', formData).then(() => {
+        closeModalClickHandler();
+      });
+    }
   }
 
   return (
@@ -102,20 +163,25 @@ export default function ModalForm({ closeModalClickHandler }) {
             <VscClose />
           </button>
         </span>
-        <form className="modal-form" onSubmit={submitForm}>
+        {Object.keys(errors).length > 0 && (
+          <div className="form-field">
+            <label className="text-danger">
+              There were errors in your form submission.
+            </label>
+          </div>
+        )}
+        <form className="modal-form" onSubmit={submitForm} noValidate>
           <div className="modal-form">
-            {/*
-
-              Divider
-
-            */}
             <div className="form-field">
-              <div>
-                <label>
-                  Overall rating <span className="text-danger">*</span>
-                </label>
-                <StarsInput updateStarData={updateStarData} />
-              </div>
+              <label>
+                Overall rating<span className="text-danger">*</span>
+              </label>
+              {errors.rating && (
+                <div className="form-field-helper text-danger">
+                  <strong>{errors.rating}</strong>
+                </div>
+              )}
+              <StarsInput updateStarData={updateStarData} />
             </div>
             {/*
 
@@ -132,6 +198,11 @@ export default function ModalForm({ closeModalClickHandler }) {
                   formData.name.length < charReqs.name.min ? 'text-danger' : ''
                 }`}
               >{`${formData.name.length} / ${charReqs.name.max}`}</span>
+              {errors.name && (
+                <div className="form-field-helper text-danger">
+                  <strong>{errors.name}</strong>
+                </div>
+              )}
               <input
                 type="text"
                 id="name"
@@ -162,6 +233,11 @@ export default function ModalForm({ closeModalClickHandler }) {
                     : ''
                 }`}
               >{`${formData.email.length} / ${charReqs.email.max}`}</span>
+              {errors.email && (
+                <div className="form-field-helper text-danger">
+                  <strong>{errors.email}</strong>
+                </div>
+              )}
               <input
                 type="email"
                 id="email"
@@ -185,6 +261,11 @@ export default function ModalForm({ closeModalClickHandler }) {
                 Would you recommend this product?
                 <span className="text-danger">*</span>
               </label>
+              {errors.recommend && (
+                <div className="form-field-helper text-danger">
+                  <strong>{errors.recommend}</strong>
+                </div>
+              )}
               <div className="radio-group">
                 <div className="radio-option">
                   <input
@@ -230,6 +311,20 @@ export default function ModalForm({ closeModalClickHandler }) {
                   of the product?
                   <span className="text-danger">*</span>
                 </label>
+                {errors.characteristics &&
+                  errors.characteristics[
+                    characteristics[characteristic].id
+                  ] && (
+                    <div className="form-field-helper text-danger">
+                      <strong>
+                        {
+                          errors.characteristics[
+                            characteristics[characteristic].id
+                          ]
+                        }
+                      </strong>
+                    </div>
+                  )}
                 <div className="radio-group">
                   {Object.keys(characteristics[characteristic].legend).map(
                     (score) => (
@@ -298,6 +393,11 @@ export default function ModalForm({ closeModalClickHandler }) {
                     : `${formData.body.length} / ${charReqs.body.max}`}
                 </span>
               </label>
+              {errors.body && (
+                <div className="form-field-helper text-danger">
+                  <strong>{errors.body}</strong>
+                </div>
+              )}
               <textarea
                 id="body"
                 name="body"
