@@ -112,7 +112,7 @@ const Modal = function ({ openModal, setOpenModal }) {
         <div className="text-danger">Please complete all required fields!</div>
       );
     }
-    return <span className={styles.error}>Please provide a valid email!</span>;
+    return <div className="text-danger">Please provide a valid email!</div>;
   };
 
   return (
