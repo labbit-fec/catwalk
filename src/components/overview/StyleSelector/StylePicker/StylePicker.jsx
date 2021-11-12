@@ -9,12 +9,14 @@ const StylePicker = ({ styleData }) => {
     useContext(selectedStyleContext);
 
   if (styleData[0].name !== undefined) {
-    styleData.forEach((currentStyle) => {
+    styleData.forEach((currentStyle, styleIndex) => {
       thumbnails.push(
         <img
           alt={`${currentStyle.name} style thumbnail`}
           src={currentStyle.photos[0].thumbnail_url}
-          className={styles.img}
+          className={
+            selectedStyleIndex === styleIndex ? styles.selected : styles.img
+          }
         />
       );
     });
