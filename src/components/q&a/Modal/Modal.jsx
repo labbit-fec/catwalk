@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { VscClose } from 'react-icons/vsc';
 import styles from './Modal.css';
 import ProductIdContext from '../../context/ProductIdContext';
+import RatingImages from './RatingImages/RatingImages';
 
 const Modal = function ({ openModal, setOpenModal, productName }) {
   const { productId } = useContext(ProductIdContext);
@@ -115,23 +116,30 @@ const Modal = function ({ openModal, setOpenModal, productName }) {
 
     if (aBody && name && email) {
       if (validateEmail(email)) {
-        axios
-          .post(`/api/qa/questions/${openModal.qId}/answers`, {
-            params: {
-              body: aBody,
-              name,
-              email,
-              photos: publicImages,
-            },
-          })
-          .then(() => {
-            console.log('Your answer was successfully posted!');
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        if (publicImages.length <= 5) {
+          axios
+            .post(`/api/qa/questions/${openModal.qId}/answers`, {
+              params: {
+                body: aBody,
+                name,
+                email,
+                photos: publicImages,
+              },
+            })
+            .then(() => {
+              console.log('Your answer was successfully posted!');
+            })
+            .catch((err) => {
+              console.log(err);
+            });
 
-        handleClick();
+          handleClick();
+        } else {
+          setError({
+            state: true,
+            type: 'photos',
+          });
+        }
       } else {
         setError({
           state: true,
@@ -152,7 +160,10 @@ const Modal = function ({ openModal, setOpenModal, productName }) {
         <div className="text-danger">Please complete all required fields!</div>
       );
     }
-    return <div className="text-danger">Please provide a valid email!</div>;
+    if (error.type === 'email') {
+      return <div className="text-danger">Please provide a valid email!</div>;
+    }
+    return <div className="text-danger">Exceeded maximum photo uploads!</div>;
   };
 
   return (
@@ -226,7 +237,7 @@ const Modal = function ({ openModal, setOpenModal, productName }) {
         </div>
       ) : (
         <div className="modal-content">
-          <h1>Submit your Answer</h1>
+          <h1>Submit your answer</h1>
           <h3>
             {productName}: {openModal.qBody}
           </h3>
@@ -316,6 +327,10 @@ const Modal = function ({ openModal, setOpenModal, productName }) {
               onChange={changeHandler}
             />
             {/* this is where previews go!! */}
+            {images.length > 0 && (
+              <RatingImages photos={images.map((url) => ({ url }))} />
+            )}
+            {/*  */}
             {uploaded ? (
               <div className="form-field-helper text-success">
                 Uploaded successfully
