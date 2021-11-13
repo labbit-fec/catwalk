@@ -19,6 +19,7 @@ export default function Slider({ rating, percent, count }) {
   return (
     <div
       className={`${styles.container} ${
+        // eslint-disable-next-line no-nested-ternary
         filtering
           ? starsToShow[rating]
             ? styles.selected

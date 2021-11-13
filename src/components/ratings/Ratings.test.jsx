@@ -1,43 +1,12 @@
 import React from 'react';
 
-import {
-  render,
-  getByRole,
-  getByText,
-  waitFor,
-  screen,
-  act,
-  within,
-} from '@testing-library/react';
+import { render, waitFor, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
-import {
-  beforeAll,
-  afterAll,
-  beforeEach,
-  afterEach,
-  test,
-  expect,
-  describe,
-} from '@jest/globals';
+import { beforeEach, test, expect, describe } from '@jest/globals';
 
 import Ratings from './Ratings';
 import ProductIdContext from '../context/ProductIdContext';
-import { app, port } from '../../../server';
-
-// import mswServer from '../../../mocks/front/mswServer';
-
-/* beforeAll(() => mswServer.listen());
-afterEach(() => mswServer.resetHandlers());
-afterAll(() => mswServer.close()); */
-
-/* afterAll(() => {
-  server.close();
-}); */
-
-/* beforeAll(() => {
-  app.listen(80, () => {});
-}); */
 
 beforeEach(() => {
   render(
@@ -105,8 +74,6 @@ describe('Review List Entries', () => {
   });
 
   test('Re-sorts review list when sort method is changed', async () => {
-    // https://testing-library.com/docs/ecosystem-user-event/#selectoptionselement-values-options
-
     const selector = await waitFor(() => screen.getByTestId('select'));
     userEvent.selectOptions(selector, 'helpful');
     expect(screen.getByRole('option', { name: 'Newest' }).selected).toBe(false);
@@ -134,17 +101,6 @@ describe('Review List Entries', () => {
     );
     expect(newFirstReviewSummary).toBeVisible();
   });
-
-  /* test('Reports a review', async () => {
-    const helpfulButton = await waitFor(
-      () => screen.getAllByRole('button', { name: 'Report' })[0]
-    );
-    userEvent.click(helpfulButton);
-    const helpfulText = await waitFor(() =>
-      screen.getByText('You have reported this review')
-    );
-    expect(helpfulText).toBeVisible();
-  }); */
 });
 
 describe('Modal Form', () => {
@@ -163,9 +119,6 @@ describe('Modal Form', () => {
   test('Dynamically counts the review body', async () => {
     const reviewBody = await waitFor(() =>
       screen.getByLabelText('Review body (50 - 1,000 characters):')
-    );
-    const reviewCounter = await waitFor(() =>
-      screen.getByText('Minimum required characters left: 50')
     );
 
     userEvent.type(reviewBody, 'This string has 30 characters.');
@@ -216,13 +169,4 @@ describe('Modal Form', () => {
     userEvent.click(option5);
     expect(option5.checked).toEqual(true);
   });
-
-  /*   test('Displays form heading', async () => {
-    const formHeading = await waitFor(() =>
-      screen.getByRole('heading', { level: 1, name: 'Add a review' })
-    );
-    expect(formHeading).toBeVisible();
-  }); */
-
-  // const radioYes = await waitFor(() => screen.getByLabelText('yes'));
 });

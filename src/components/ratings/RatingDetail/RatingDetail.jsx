@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import styles from './RatingDetail.css';
 import RatingCount from './RatingCount/RatingCount';
 import RatingList from './RatingList/RatingList';

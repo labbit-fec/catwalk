@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FaExpandAlt } from 'react-icons/fa';
 import styles from './RatingImages.css';
 
 export default function RatingImages({ photos }) {
@@ -9,7 +8,6 @@ export default function RatingImages({ photos }) {
       {photos.map((photo) => (
         <div className={styles.reviewImage}>
           <img src={photo.url} alt="review" />
-          {/* <FaExpandAlt /> */}
         </div>
       ))}
     </div>

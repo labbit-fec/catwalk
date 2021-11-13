@@ -4,7 +4,6 @@ import ProductIdContext from './context/ProductIdContext';
 import Overview from './overview/Overview';
 import QA from './q&a/QA';
 import Ratings from './ratings/Ratings';
-import Related from './related/Related';
 import styles from './App.css';
 
 export default function App() {
