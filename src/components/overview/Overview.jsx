@@ -53,7 +53,7 @@ const Overview = () => {
 
   return (
     <div className={styles.container}>
-      Product Overview
+      {/* Product Overview */}
       <div className={styles.context}>
         <StyleDataContext.Provider value={styleDataProvided}>
           <SelectedStyleContext.Provider value={styleProvidedValue}>

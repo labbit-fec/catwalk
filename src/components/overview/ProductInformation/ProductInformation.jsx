@@ -5,11 +5,10 @@ import StarGraphic from '../../ratings/RatingSummary/Stars/StarGraphic/StarGraph
 
 const ProductInformation = ({ product }) => (
   <div className={styles.container}>
-    Product Information
     <StarGraphic stars={4} />
     <div className={styles.category}>{product.category}</div>
     <h1 className={styles.title}>{product.name}</h1>
-    <div className={styles.price}>{product.default_price}</div>
+    <div className={styles.price}>{`$ ${product.default_price}`}</div>
   </div>
 );
 

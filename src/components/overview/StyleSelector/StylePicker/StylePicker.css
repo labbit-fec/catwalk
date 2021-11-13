@@ -3,6 +3,7 @@
   flex-direction: column;
   flex-wrap: nowrap;
   /* Placeholder CSS for illustrative layout only */
+  margin-top: 1rem;
   justify-content: flex-start;
   align-items: flex-start;
 }

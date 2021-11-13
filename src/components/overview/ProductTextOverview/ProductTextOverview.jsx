@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { VscPass, VscDash } from 'react-icons/vsc';
 import styles from './ProductTextOverview.css';
 
 const ProductTextOverview = ({ product }) => {
@@ -8,9 +9,10 @@ const ProductTextOverview = ({ product }) => {
   if (product.features !== undefined) {
     product.features.forEach((object, key) => {
       features.push(
-        <div>
+        <div className={styles.features}>
+          <VscPass className={styles.vsc} />{' '}
           <span key={key} className={styles.feature}>
-            {object.feature}
+            {`${object.feature}: `}
           </span>
           <span key={-key} className={styles.value}>
             {object.value}
@@ -22,8 +24,11 @@ const ProductTextOverview = ({ product }) => {
 
   return (
     <div className={styles.container}>
-      <div>{product.slogan}</div>
-      <div>{product.description}</div>
+      <div className={styles.left}>
+        <h4 className={styles.slogan}>{product.slogan}</h4>
+        <p className={styles.description}>{product.description}</p>
+      </div>
+      <div className={styles.verticalline} />
       <div>{features}</div>
     </div>
   );

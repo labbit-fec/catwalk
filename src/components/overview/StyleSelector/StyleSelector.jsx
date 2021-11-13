@@ -11,13 +11,12 @@ const StyleSelector = () => {
   console.log(styleData, ' index ', selectedStyleIndex);
   return (
     <div className={styles.container}>
-      Style Selector
       <div className={styles.title}>
-        {'Style > '}
+        {'Style >'} &nbsp;
         <div>
           {styleData[selectedStyleIndex] === undefined
             ? 'Placeholder Style'
-            : styleData[selectedStyleIndex].name}
+            : `${styleData[selectedStyleIndex].name}`}
         </div>
       </div>
       <StylePicker styleData={styleData} />

@@ -11,13 +11,13 @@
 }
 
 .category {
-
+  color: var(--text)
 }
 
 .title {
-
+  color: var(--primary)
 }
 
 .price {
-
+  color: var(--text);
 }
