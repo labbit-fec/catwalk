@@ -7,6 +7,7 @@ const AddToCart = () => {
   const { styleData } = useContext(styleDataContext);
   const { selectedStyleIndex } = useContext(selectedStyleContext);
   const [sizeOptions, setSizeOptions] = useState([]);
+  const [quantityOptions, setQuanitityOptions] = useState([]);
 
   useEffect(() => {
     const newSizeOptions = [];
@@ -15,7 +16,7 @@ const AddToCart = () => {
       const skusKeys = Object.keys(skus);
       skusKeys.forEach((sku) => {
         if (skus[sku].quantity > 0) {
-          newSizeOptions.push(<option value="small">{skus[sku].size}</option>);
+          newSizeOptions.push(<option value={sku}>{skus[sku].size}</option>);
         }
       });
       if (newSizeOptions.length === 0) {
@@ -27,17 +28,27 @@ const AddToCart = () => {
       }
     }
     setSizeOptions(newSizeOptions);
+    setQuanitityOptions([<option value="">-</option>]);
   }, [styleData, selectedStyleIndex]);
+
+  const onSizeSelect = (e) => {
+    const newQuantityOptions = [];
+    const { quantity } = styleData[selectedStyleIndex].skus[e.target.value];
+    for (let index = 1; index < 16 && index < quantity; index += 1) {
+      newQuantityOptions.push(<option value={index}>{index}</option>);
+    }
+    setQuanitityOptions(newQuantityOptions);
+  };
 
   return (
     <div className={styles.container}>
       Add To Cart
       <form>
         <div className={styles.row}>
-          <select name="size">{sizeOptions}</select>
-          <select name="quantity">
-            <option value="">-</option>
+          <select name="size" onChange={onSizeSelect}>
+            {sizeOptions}
           </select>
+          <select name="quantity">{quantityOptions}</select>
         </div>
         <button type="button">Add to Bag</button>
       </form>
