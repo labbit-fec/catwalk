@@ -1,25 +1,59 @@
-import React from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styles from './AddToCart.css';
+import selectedStyleContext from '../context/SelectedStyleContext';
+import styleDataContext from '../context/StyleDataContext';
 
-const AddToCart = () => (
-  <div className={styles.container}>
-    Add To Cart
-    <div className={styles.row}>
-      <select name="Size" id="pet-select">
-        <option value="">SELECT SIZE</option>
-        <option value="small">Small</option>
-        <option value="medium">Medium</option>
-        <option value="large">Large</option>
-      </select>
-      <select name="Quantity" id="pet-select">
-        <option value="">1</option>
-        <option value="small">2</option>
-        <option value="medium">3</option>
-        <option value="large">4</option>
-      </select>
+const AddToCart = () => {
+  const { styleData } = useContext(styleDataContext);
+  const { selectedStyleIndex } = useContext(selectedStyleContext);
+  const [sizeOptions, setSizeOptions] = useState([]);
+  const [quantityOptions, setQuanitityOptions] = useState([]);
+
+  useEffect(() => {
+    const newSizeOptions = [];
+    if (styleData[selectedStyleIndex] !== undefined) {
+      const { skus } = styleData[selectedStyleIndex];
+      const skusKeys = Object.keys(skus);
+      skusKeys.forEach((sku) => {
+        if (skus[sku].quantity > 0) {
+          newSizeOptions.push(<option value={sku}>{skus[sku].size}</option>);
+        }
+      });
+      if (newSizeOptions.length === 0) {
+        newSizeOptions.push(<option value="Out of Stock">Out of Stock</option>);
+      } else {
+        newSizeOptions.unshift(
+          <option value="select size">SELECT SIZE</option>
+        );
+      }
+    }
+    setSizeOptions(newSizeOptions);
+    setQuanitityOptions([<option value="">-</option>]);
+  }, [styleData, selectedStyleIndex]);
+
+  const onSizeSelect = (e) => {
+    const newQuantityOptions = [];
+    const { quantity } = styleData[selectedStyleIndex].skus[e.target.value];
+    for (let index = 1; index < 16 && index < quantity; index += 1) {
+      newQuantityOptions.push(<option value={index}>{index}</option>);
+    }
+    setQuanitityOptions(newQuantityOptions);
+  };
+
+  return (
+    <div className={styles.container}>
+      Add To Cart
+      <form>
+        <div className={styles.row}>
+          <select name="size" onChange={onSizeSelect}>
+            {sizeOptions}
+          </select>
+          <select name="quantity">{quantityOptions}</select>
+        </div>
+        <button type="button">Add to Bag</button>
+      </form>
     </div>
-    <button type="button">Add to Bag</button>
-  </div>
-);
+  );
+};
 
 export default AddToCart;

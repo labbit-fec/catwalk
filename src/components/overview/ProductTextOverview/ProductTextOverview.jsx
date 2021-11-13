@@ -9,8 +9,12 @@ const ProductTextOverview = ({ product }) => {
     product.features.forEach((object, key) => {
       features.push(
         <div>
-          <span key={key}>{object.feature}</span>
-          <span key={key}>{object.value}</span>
+          <span key={key} className={styles.feature}>
+            {object.feature}
+          </span>
+          <span key={-key} className={styles.value}>
+            {object.value}
+          </span>
         </div>
       );
     });

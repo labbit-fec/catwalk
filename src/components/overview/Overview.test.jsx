@@ -112,7 +112,6 @@ describe('Product Information Container', () => {
       expect(styleSelector).toBeVisible();
     });
   });
-<<<<<<< HEAD
 
   test('Displays Default Style name', async () => {
     const styleName = await waitFor(() => screen.getByText('Black'));
@@ -128,8 +127,6 @@ describe('Product Information Container', () => {
   });
 
 });
-=======
->>>>>>> c32f70f (Add tests for QA widget.)
 
   describe('Add to Cart Container', () => {
     test('Displays Add to Cart Container', async () => {

@@ -1,17 +1,60 @@
 .container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   /* Placeholder CSS for illustrative layout only */
   border: 3px solid black;
   color: black;
   font-weight: bold;
   justify-content: center;
   align-items: center;
-  width: 70%;
 }
 
-.img{
+.img {
   /* height: 40vh; */
-  width: 100%;
+  /* width: 100%; */
   /* size: 20vh; */
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+.thumbnails {
+  height: 25px;
+  width: auto;
+}
+
+.mainImg {
+  height: auto;
+  width: 60%;
+}
+
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.rightarrow {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.leftarrow {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.leftside {
+  position: relative;
+  top: 50%;
+  left: 10%;
+}
+
+.rightside {
+  position: relative;
+  top: 50%;
+  left: 90%;
 }

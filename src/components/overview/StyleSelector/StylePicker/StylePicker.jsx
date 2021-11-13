@@ -3,18 +3,33 @@ import PropTypes from 'prop-types';
 import styles from './StylePicker.css';
 import selectedStyleContext from '../../context/SelectedStyleContext';
 
+// eslint-disable-next-line react/prop-types
 const StylePicker = ({ styleData }) => {
   const thumbnails = [];
   const { selectedStyleIndex, setSelectedStyleIndex } =
     useContext(selectedStyleContext);
 
+  const handleStyleClick = (e) => {
+    e.preventDefault();
+    setSelectedStyleIndex(e.target.tabIndex);
+  };
+
   if (styleData[0].name !== undefined) {
-    styleData.forEach((currentStyle) => {
+    styleData.forEach((currentStyle, styleIndex) => {
       thumbnails.push(
         <img
           alt={`${currentStyle.name} style thumbnail`}
           src={currentStyle.photos[0].thumbnail_url}
-          className={styles.img}
+          className={
+            selectedStyleIndex === styleIndex
+              ? `${styles.selected} ${styles.img}`
+              : styles.img
+          }
+          onClick={handleStyleClick}
+          onKeyPress={handleStyleClick}
+          // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
+          role="button"
+          tabIndex={styleIndex}
         />
       );
     });
