@@ -5,7 +5,7 @@
   /* border: 3px solid black;
   color: black; */
   font-weight: bold;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   align-items: flex-start;
 }
 
@@ -16,6 +16,6 @@
   /* Placeholder CSS for illustrative layout only */
   color: var(--text);
   font-weight: bold;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: space-evenly;
+  /* align-items: flex-start; */
 }

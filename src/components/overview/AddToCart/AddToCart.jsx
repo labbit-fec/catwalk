@@ -49,9 +49,11 @@ const AddToCart = () => {
           </select>
           <select name="quantity">{quantityOptions}</select>
         </div>
-        <button type="button" className="btn btn-primary">
-          Add to Bag
-        </button>
+        <div className={styles.add}>
+          <button type="button" className="btn btn-primary">
+            Add to Bag
+          </button>
+        </div>
       </form>
     </div>
   );
