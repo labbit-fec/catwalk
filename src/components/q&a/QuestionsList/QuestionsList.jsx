@@ -114,12 +114,7 @@ const QuestionsList = function ({
       .catch((err) => {
         console.log(err);
       });
-
-    // return () => {
-    //   setAllQuestions([]);
-    //   setQuestions([]);
-    // };
-  }, []);
+  }, [productId]);
 
   return (
     <div className={styles.container} data-testid="question-list-container">

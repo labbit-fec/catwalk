@@ -14,7 +14,6 @@
   position: relative;
   justify-self: center;
   align-self: center;
-  /* padding: 32px; */
   margin-top: 40vh;
   width: 50%;
   max-width: 640px;
@@ -27,26 +26,11 @@
   background: rgb(242, 234, 234);
   border-bottom: solid;
 }
-/*
-h1 {
-  align-self: center;
-  justify-self: center;
-}
-
-h3 {
-  margin-top: -5px;
-  align-self: center;
-  justify-self: center;
-} */
 
 .form_container {
   padding: 10px;
   display: flex;
   flex-direction: column;
-}
-
-.mandatory {
-  color: red;
 }
 
 .input_name {

@@ -289,7 +289,6 @@ const Modal = function ({ openModal, setOpenModal, productName }) {
                 For authentication reasons, you will not be emailed.
               </div>
             </div>
-          </form>
           <form className="form-field">
             <label>Upload your photos</label>
             <div style={{ marginLeft: '-0.625rem' }}>
@@ -326,11 +325,9 @@ const Modal = function ({ openModal, setOpenModal, productName }) {
               style={{ display: 'none' }}
               onChange={changeHandler}
             />
-            {/* this is where previews go!! */}
             {images.length > 0 && (
               <RatingImages photos={images.map((url) => ({ url }))} />
             )}
-            {/*  */}
             {uploaded ? (
               <div className="form-field-helper text-success">
                 Uploaded successfully
@@ -340,7 +337,7 @@ const Modal = function ({ openModal, setOpenModal, productName }) {
                 Uploads remaining: {Math.max(5 - images.length, 0)}
               </div>
             )}
-            {/* {images.length > 0 && images.map()} */}
+          </form>
           </form>
           {error.state ? displayError() : null}
           <button
