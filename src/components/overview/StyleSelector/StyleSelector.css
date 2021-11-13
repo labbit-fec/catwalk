@@ -14,7 +14,7 @@
   flex-direction: row;
   flex-wrap: nowrap;
   /* Placeholder CSS for illustrative layout only */
-  color: #6e7076;
+  color: var(--text);
   font-weight: bold;
   justify-content: flex-start;
   align-items: flex-start;

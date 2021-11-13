@@ -11,7 +11,6 @@ const StyleSelector = () => {
   console.log(styleData, ' index ', selectedStyleIndex);
   return (
     <div className={styles.container}>
-      Style Selector
       <div className={styles.title}>
         {'Style > '}
         <div>

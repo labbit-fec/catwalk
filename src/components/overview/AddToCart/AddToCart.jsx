@@ -42,7 +42,6 @@ const AddToCart = () => {
 
   return (
     <div className={styles.container}>
-      Add To Cart
       <form>
         <div className={styles.row}>
           <select name="size" onChange={onSizeSelect}>
@@ -50,7 +49,9 @@ const AddToCart = () => {
           </select>
           <select name="quantity">{quantityOptions}</select>
         </div>
-        <button type="button">Add to Bag</button>
+        <button type="button" className="btn btn-primary">
+          Add to Bag
+        </button>
       </form>
     </div>
   );
