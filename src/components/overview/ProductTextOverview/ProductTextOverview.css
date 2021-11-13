@@ -2,9 +2,39 @@
   display: flex;
 
   /* Placeholder CSS for illustrative layout only */
-  border: 3px solid black;
   color: black;
-  font-weight: bold;
   justify-content: center;
   align-items: center;
+}
+
+.left {
+ width: 60%;
+}
+
+.description {
+  font-size: 10px;
+}
+
+.verticalline {
+  border-left: 4px solid var(--primary);
+  height: auto;
+  position: relative;
+  left: 60%;
+  margin-left: -3px;
+  top: 0;
+}
+
+.vsc {
+  color: var(--success)
+}
+.features {
+
+}
+
+.feature {
+
+}
+
+.value {
+
 }
