@@ -49,7 +49,7 @@ const Overview = () => {
       .catch((error) => {
         console.log('Error getting style details', error);
       });
-  }, []);
+  }, [productId]);
 
   return (
     <div className={styles.container}>
