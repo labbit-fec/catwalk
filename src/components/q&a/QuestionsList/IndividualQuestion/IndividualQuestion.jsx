@@ -150,6 +150,8 @@ const IndividualQuestion = function ({
       if (question.question_id === id) {
         // eslint-disable-next-line no-param-reassign
         question.question_helpfulness += 1;
+        // eslint-disable-next-line no-param-reassign
+        question.upvoted = true;
       }
     });
 
