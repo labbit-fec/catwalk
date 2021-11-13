@@ -35,7 +35,7 @@ const QA = function () {
       .catch((error) => {
         console.log('Error getting product details', error);
       });
-  }, []);
+  }, [productId]);
 
   return (
     <div className={styles.container}>
@@ -51,7 +51,6 @@ const QA = function () {
         <QuestionsList
           questions={questions}
           setQuestions={setQuestions}
-          allQuestions={allQuestions}
           setAllQuestions={setAllQuestions}
           questionsList={questionsList}
           setQuestionsList={setQuestionsList}

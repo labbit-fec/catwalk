@@ -107,6 +107,10 @@
   box-sizing: border-box;
 }
 
+.loading{
+  margin-top: 50px;
+}
+
 .content > div {
   margin: 1em;
   min-height: 200px;

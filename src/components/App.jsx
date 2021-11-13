@@ -9,8 +9,10 @@ import styles from './App.css';
 
 export default function App() {
   const [productId, setProductId] = useState(61618);
+  const [loading, setLoading] = useState(true);
+  const [load, setLoad] = useState(false);
 
-  useEffect(() => {
+  if (!load) {
     const getNameFromUrl = () => {
       const segments = window.location.pathname.split('/');
       return segments[2];
@@ -18,43 +20,41 @@ export default function App() {
 
     const productURLName = getNameFromUrl();
 
-    axios
-      .get('/products', {
-        params: {
-          name: productURLName,
-        },
-      })
-      .then((response) => {
-        setProductId(response.data.id);
-      })
-      .catch((error) => {
-        console.log('Error getting product', error);
-      });
-  }, []);
+    if (productURLName) {
+      axios
+        .get('/products', {
+          params: {
+            name: productURLName,
+          },
+        })
+        .then((response) => {
+          setProductId(response.data.id);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.log('Error getting product', error);
+        });
+    } else {
+      setLoading(false);
+    }
+
+    setLoad(true);
+  }
 
   return (
     <div className={styles.container}>
       <div className={styles.navBar}>Limitless</div>
-      <div className={styles.content}>
-        {/* <div id="style-guide">
-          <button type="button" className="btn btn-primary">
-            Button
-          </button>
-          <button type="button" className="btn btn-secondary">
-            Button
-          </button>
-        </div> */}
-        {/* Main Content of {productId} */}
-        <ProductIdContext.Provider value={{ productId, setProductId }}>
-          <Overview />
-          {/* <Related /> */}
-          <QA />
-          <Ratings />
-        </ProductIdContext.Provider>
-      </div>
-      {/*       <div className="bg-modal">
-        <div className="modal-content">Hello</div>
-      </div> */}
+      {loading ? (
+        <div className="loading">loading</div>
+      ) : (
+        <div className={styles.content}>
+          <ProductIdContext.Provider value={{ productId, setProductId }}>
+            <Overview />
+            <QA />
+            <Ratings />
+          </ProductIdContext.Provider>
+        </div>
+      )}
     </div>
   );
 }
