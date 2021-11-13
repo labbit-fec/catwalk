@@ -146,7 +146,7 @@
 :global(.modal-content) {
   width: 500px;
   min-height: 300px;
-  max-height: 700px;
+  max-height: 600px;
   background-color: white;
   border-radius: 4px;
   display: flex;
