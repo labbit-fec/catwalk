@@ -289,55 +289,55 @@ const Modal = function ({ openModal, setOpenModal, productName }) {
                 For authentication reasons, you will not be emailed.
               </div>
             </div>
-          <form className="form-field">
-            <label>Upload your photos</label>
-            <div style={{ marginLeft: '-0.625rem' }}>
-              <label htmlFor="photos">
-                {images.length < 5 && (
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    onClick={() => {
-                      document.getElementById('qa-photo-upload').click();
-                      return false;
-                    }}
-                  >
-                    Add file
-                  </button>
-                )}
-                {!uploaded && images.length > 0 && (
-                  <button
-                    className="btn btn-secondary"
-                    type="button"
-                    onClick={uploadImageFiles}
-                  >
-                    Upload Photos
-                  </button>
-                )}
-              </label>
-            </div>
-            <input
-              type="file"
-              id="qa-photo-upload"
-              name="photos"
-              accept="image/*"
-              multiple
-              style={{ display: 'none' }}
-              onChange={changeHandler}
-            />
-            {images.length > 0 && (
-              <RatingImages photos={images.map((url) => ({ url }))} />
-            )}
-            {uploaded ? (
-              <div className="form-field-helper text-success">
-                Uploaded successfully
+            <form className="form-field">
+              <label>Upload your photos</label>
+              <div style={{ marginLeft: '-0.625rem' }}>
+                <label htmlFor="photos">
+                  {images.length < 5 && (
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      onClick={() => {
+                        document.getElementById('qa-photo-upload').click();
+                        return false;
+                      }}
+                    >
+                      Add file
+                    </button>
+                  )}
+                  {!uploaded && images.length > 0 && (
+                    <button
+                      className="btn btn-secondary"
+                      type="button"
+                      onClick={uploadImageFiles}
+                    >
+                      Upload Photos
+                    </button>
+                  )}
+                </label>
               </div>
-            ) : (
-              <div className="form-field-helper text-warning">
-                Uploads remaining: {Math.max(5 - images.length, 0)}
-              </div>
-            )}
-          </form>
+              <input
+                type="file"
+                id="qa-photo-upload"
+                name="photos"
+                accept="image/*"
+                multiple
+                style={{ display: 'none' }}
+                onChange={changeHandler}
+              />
+              {images.length > 0 && (
+                <RatingImages photos={images.map((url) => ({ url }))} />
+              )}
+              {uploaded ? (
+                <div className="form-field-helper text-success">
+                  Uploaded successfully
+                </div>
+              ) : (
+                <div className="form-field-helper text-warning">
+                  Uploads remaining: {Math.max(5 - images.length, 0)}
+                </div>
+              )}
+            </form>
           </form>
           {error.state ? displayError() : null}
           <button
