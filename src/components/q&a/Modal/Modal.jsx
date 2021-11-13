@@ -5,7 +5,7 @@ import { VscClose } from 'react-icons/vsc';
 import styles from './Modal.css';
 import ProductIdContext from '../../context/ProductIdContext';
 
-const Modal = function ({ openModal, setOpenModal }) {
+const Modal = function ({ openModal, setOpenModal, productName }) {
   const { productId } = useContext(ProductIdContext);
   const [error, setError] = useState({
     state: false,
@@ -160,8 +160,8 @@ const Modal = function ({ openModal, setOpenModal }) {
       {openModal.type === 'question' ? (
         <div className="modal-content">
           {/* <div className={styles.headers}> */}
-          <h1>Ask Your Question</h1>
-          <h3>About Product #{productId}</h3>
+          <h1>Ask your question</h1>
+          <h3>About {productName}</h3>
           {/* </div> */}
           <button className="btn-close" type="button" onClick={handleClick}>
             <VscClose />
@@ -226,9 +226,9 @@ const Modal = function ({ openModal, setOpenModal }) {
         </div>
       ) : (
         <div className="modal-content">
-          <h1>Submit Your Answer</h1>
+          <h1>Submit your Answer</h1>
           <h3>
-            #{productId}: {openModal.qBody}
+            {productName}: {openModal.qBody}
           </h3>
           <button className="btn-close" type="button" onClick={handleClick}>
             <VscClose />
@@ -351,4 +351,5 @@ Modal.propTypes = {
     qId: PropTypes.number.isRequired,
   }).isRequired,
   setOpenModal: PropTypes.func.isRequired,
+  productName: PropTypes.string.isRequired,
 };

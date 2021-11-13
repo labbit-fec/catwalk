@@ -53,19 +53,6 @@ h3 {
   margin-top: 10px;
 }
 
-/* .body {
-  height: 50px;
-} */
-
-/* .input {
-  width: 50%;
-  height: 3vh;
-}
-
-label {
-  margin-top: 5px;
-} */
-
 .message {
   color: rgb(170, 170, 170);
 }
@@ -74,35 +61,3 @@ label {
   margin-left: 10px;
   margin-bottom: 10px;
 }
-
-/* .buttons {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 15px;
-}
-
-.submit_button {
-  margin-left: 10px;
-  margin-top: 5px;
-  height: 25px;
-  background-color: var(--primary);
-  border: 1px solid var(--primary);
-  color: var(--primary-button-text);
-  display: flex;
-  align-items: center;
-  align-content: center;
-  cursor: pointer;
-} */
-/*
-.close_button {
-  margin-left: 20px;
-  margin-top: 5px;
-  height: 25px;
-  background-color: var(--secondary-button);
-  color: var(--text);
-  border: 1px solid var(--text);
-  display: flex;
-  align-items: center;
-  align-content: center;
-  cursor: pointer;
-} */

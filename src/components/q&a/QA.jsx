@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
 import styles from './QA.css';
+import ProductIdContext from '../context/ProductIdContext';
 import Search from './Search/Search';
 import QuestionsList from './QuestionsList/QuestionsList';
 import Modal from './Modal/Modal';
 
 const QA = function () {
+  const { productId } = useContext(ProductIdContext);
   const [questions, setQuestions] = useState([]);
   const [allQuestions, setAllQuestions] = useState([]);
   const [questionsList, setQuestionsList] = useState({
@@ -17,6 +20,22 @@ const QA = function () {
     qBody: null,
     qId: null,
   });
+  const [productName, setProductName] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get('/api/overview/products/', {
+        params: {
+          productId: productId,
+        },
+      })
+      .then((response) => {
+        setProductName(response.data.name);
+      })
+      .catch((error) => {
+        console.log('Error getting product details', error);
+      });
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -40,7 +59,11 @@ const QA = function () {
         />
       </div>
       {openModal.state ? (
-        <Modal openModal={openModal} setOpenModal={setOpenModal} />
+        <Modal
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          productName={productName}
+        />
       ) : null}
     </div>
   );

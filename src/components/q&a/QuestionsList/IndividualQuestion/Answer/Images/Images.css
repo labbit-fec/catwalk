@@ -8,12 +8,10 @@
   max-height: 15%;
   max-width: 15%;
   margin-bottom: 15px;
-  border-radius: 5%;
-  /* border:2px solid #fff; */
   -moz-box-shadow: 10px 10px 5px #ccc;
   -webkit-box-shadow: 10px 10px 5px #ccc;
   box-shadow: 10px 10px 5px #ccc;
-  -moz-border-radius:25px;
-  -webkit-border-radius:25px;
-  border-radius:25px;
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+  border-radius:10px;
 }
