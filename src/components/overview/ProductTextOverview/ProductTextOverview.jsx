@@ -27,8 +27,8 @@ const ProductTextOverview = ({ product }) => {
       <div className={styles.left}>
         <h4 className={styles.slogan}>{product.slogan}</h4>
         <p className={styles.description}>{product.description}</p>
-        <div className={styles.verticalline} />
       </div>
+      <div className={styles.verticalline} />
       <div>{features}</div>
     </div>
   );

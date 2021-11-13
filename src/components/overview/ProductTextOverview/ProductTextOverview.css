@@ -16,11 +16,11 @@
 }
 
 .verticalline {
-  border-left: 4px solid var(--primary);
-  height: auto;
+  border-left: 2px solid var(--primary);
+  min-height: 50px;
+  height: 100%;
   position: relative;
-  left: 60%;
-  margin-left: -3px;
+  margin: 3%;
   top: 0;
 }
 
