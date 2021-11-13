@@ -1,0 +1,24 @@
+.reviewImages {
+  display: flex;
+  flex-direction: row;
+  height: 5em;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+}
+
+.reviewImage {
+  margin-right: 1rem;
+  display: flex;
+  position: relative;
+}
+
+.reviewImage svg {
+  position: absolute;
+  right: 5%;
+  top: 5%;
+}
+
+.reviewImage img {
+  border-radius: 0.5em;
+}

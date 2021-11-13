@@ -5,7 +5,13 @@
 }
 
 .img{
-  max-height: 25%;
-  width: 25%;
+  /* max-height: 15%; */
+  max-width: 15%;
   margin-bottom: 15px;
+  -moz-box-shadow: 10px 10px 5px #ccc;
+  -webkit-box-shadow: 10px 10px 5px #ccc;
+  box-shadow: 10px 10px 5px #ccc;
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+  border-radius:10px;
 }

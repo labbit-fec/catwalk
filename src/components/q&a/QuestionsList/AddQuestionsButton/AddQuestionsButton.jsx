@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './AddQuestionsButton.css';
+import { VscAdd } from 'react-icons/vsc';
 
 const AddQuestionsButton = function ({ setOpenModal }) {
   const handleAdd = () => {
@@ -17,7 +18,8 @@ const AddQuestionsButton = function ({ setOpenModal }) {
       data-testid="add-question"
       onClick={handleAdd}
     >
-      ADD A QUESTION +
+      <VscAdd />
+      &nbsp;ADD A QUESTION
     </button>
   );
 };
