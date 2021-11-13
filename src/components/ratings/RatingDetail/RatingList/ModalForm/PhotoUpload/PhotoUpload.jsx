@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import styles from './PhotoUpload.css';
+import PropTypes from 'prop-types';
 import RatingImages from '../../RatingListEntry/RatingImages/RatingImages';
 
 export default function PhotoUpload({ updateImages }) {
@@ -22,7 +22,6 @@ export default function PhotoUpload({ updateImages }) {
     });
 
     Promise.all(promises).then((results) => {
-      console.log(results);
       setUploaded(true);
       updateImages(results.map((result) => result.data.data));
     });
@@ -96,3 +95,7 @@ export default function PhotoUpload({ updateImages }) {
     </div>
   );
 }
+
+PhotoUpload.propTypes = {
+  updateImages: PropTypes.func.isRequired,
+};

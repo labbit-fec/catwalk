@@ -37,4 +37,5 @@ export default function RatingCount({ sortBy, handleChange, reviewCount }) {
 RatingCount.propTypes = {
   sortBy: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
+  reviewCount: PropTypes.number.isRequired,
 };

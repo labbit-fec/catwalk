@@ -32,4 +32,5 @@ export default function Slider({ characteristic, legend, average }) {
 Slider.propTypes = {
   characteristic: PropTypes.string.isRequired,
   average: PropTypes.number.isRequired,
+  legend: PropTypes.objectOf(PropTypes.objectOf(PropTypes.string)).isRequired,
 };

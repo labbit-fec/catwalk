@@ -2,7 +2,6 @@ import React, { useState, useCallback, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { VscClose } from 'react-icons/vsc';
-import styles from './ModalForm.css';
 import StarsInput from './StarsInput/StarsInput';
 import ProductIdContext from '../../../../context/ProductIdContext';
 import PhotoUpload from './PhotoUpload/PhotoUpload';
@@ -10,7 +9,6 @@ import PhotoUpload from './PhotoUpload/PhotoUpload';
 export default function ModalForm({ closeModalClickHandler }) {
   const { productId } = useContext(ProductIdContext);
   const [characteristics, setCharacteristics] = useState({});
-  const [bodyLength, setBodyLength] = useState(0);
   const [errors, setErrors] = useState({});
 
   const [formData, setFormData] = useState({
@@ -42,7 +40,6 @@ export default function ModalForm({ closeModalClickHandler }) {
   useEffect(() => {
     getCharacteristics().then((response) => {
       setCharacteristics(response.data.characteristics);
-      console.log(response.data.characteristics);
     });
   }, [productId]);
 
@@ -60,7 +57,6 @@ export default function ModalForm({ closeModalClickHandler }) {
     const newFormData = { ...formData };
     newFormData.characteristics[event.target.name] = Number(event.target.value);
     setFormData(newFormData);
-    console.log(newFormData);
   }
 
   const updateImages = useCallback(
@@ -80,10 +76,6 @@ export default function ModalForm({ closeModalClickHandler }) {
     },
     [formData, setFormData]
   );
-
-  function countBody(event) {
-    setBodyLength(event.target.value.length);
-  }
 
   function submitForm(event) {
     event.preventDefault();
@@ -141,7 +133,6 @@ export default function ModalForm({ closeModalClickHandler }) {
     }
 
     setErrors(newErrors);
-    console.log(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
       axios.post('/api/reviews/create', formData).then(() => {

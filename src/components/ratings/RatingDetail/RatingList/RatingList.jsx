@@ -9,7 +9,6 @@ import ActionButtons from './ActionButtons/ActionButtons';
 import ModalForm from './ModalForm/ModalForm';
 
 export default function RatingList({ sortBy, setReviewCount }) {
-  const [reviewList, setReviewList] = useState([]);
   const [showAll, setShowAll] = useState(false);
   const [filteredReviewList, setFilteredReviewList] = useState([]);
   const [visibleReviewList, setVisibleReviewList] = useState([]);
@@ -19,8 +18,7 @@ export default function RatingList({ sortBy, setReviewCount }) {
   const [showModal, setShowModal] = useState(false);
   const [showAddReviews, setShowAddReviews] = useState(true);
 
-  const { starsToShow, filtering, setStarFilter } =
-    useContext(StarFilterContext);
+  const { starsToShow, filtering } = useContext(StarFilterContext);
 
   function getMoreReviews(page, sort, count) {
     return axios.get('/api/reviews', {
@@ -33,7 +31,6 @@ export default function RatingList({ sortBy, setReviewCount }) {
     });
   }
 
-  // When the component is mounted, and whenver productId changes, load the first two reviews
   useEffect(async () => {
     let reviewsLoadedFromLastPage = 100;
     let lastPage = 0;
@@ -47,10 +44,9 @@ export default function RatingList({ sortBy, setReviewCount }) {
       reviewsLoadedFromLastPage = response.data.reviews.length;
       lastPage += 1;
     }
-    setReviewList(newReviews);
+    setFilteredReviewList(newReviews);
     setReviewCount(newReviews.length);
 
-    // filter
     if (filtering) {
       newReviews = newReviews.filter((review) => starsToShow[review.rating]);
     }
@@ -62,8 +58,6 @@ export default function RatingList({ sortBy, setReviewCount }) {
     }
 
     setVisibleReviewList(newReviews);
-
-    // setVisibleReviewList(newReviews.slice(0, 2));
   }, [productId, sortBy, starsToShow, filtering]);
 
   const moreClickHandler = useCallback(() => {
@@ -108,4 +102,5 @@ export default function RatingList({ sortBy, setReviewCount }) {
 
 RatingList.propTypes = {
   sortBy: PropTypes.string.isRequired,
+  setReviewCount: PropTypes.func.isRequired,
 };
