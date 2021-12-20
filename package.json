@@ -15,7 +15,7 @@
     "type": "git",
     "url": "git+https://github.com/labbit-fec/limitless.git"
   },
-  "author": "Adam Klingbaum, Kevin Goble, Jonathan Hirakawa",
+  "author": "Adam Klingbaum, Kevin Goble, Takahiro Hirakawa",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/labbit-fec/limitless/issues"
