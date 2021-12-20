@@ -1,20 +1,22 @@
 {
-  "name": "limitless",
+  "name": "catwalk",
   "version": "1.0.0",
-  "description": "",
+  "description": "Product detail module for an e-commerce web application",
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "react-dev": "webpack -d source-map --watch",
-    "server-dev": "nodemon server/index.js",
+    "start": "node server/index.js",
+    "server:dev": "nodemon server/index.js",
+    "build": "webpack --mode=production",
+    "react:dev": "webpack --watch --mode=development",
     "debug": "nodemon --inspect server/index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/labbit-fec/limitless.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Adam Klingbaum, Kevin Goble, Takahiro Hirakawa",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/labbit-fec/limitless/issues"
   },
@@ -46,7 +48,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.3.1",
     "jest-summary-reporter": "0.0.2",
-    "node-sass": "^4.14.0",
+    "node-sass": "^7.0.0",
     "nodemon": "^2.0.14",
     "postcss": "^8.3.11",
     "postcss-loader": "^6.2.0",
@@ -63,8 +65,6 @@
     "@google-cloud/storage": "^5.15.5",
     "axios": "^0.24.0",
     "express": "^4.17.1",
-    "firebase": "^9.3.0",
-    "forever": "^4.0.1",
     "msw": "^0.35.0",
     "multer": "^1.4.3",
     "prop-types": "^15.7.2",
