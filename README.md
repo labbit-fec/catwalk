@@ -10,7 +10,7 @@ Catwalk is the re-imagined product detail page of an e-commerce web application,
 
 - Tech lead: [Kevin Goble](https://github.com/Gobleizer)
 
-**Key features**
+**Key Features**
 
 1. Image gallery
 2. Product information
@@ -22,7 +22,7 @@ Catwalk is the re-imagined product detail page of an e-commerce web application,
 - Allows customer to view and submit rating and reviews for the selected product
 - Tech Lead: [Adam Klingbaum](https://github.com/adamklingbaum)
 
-**Key features**
+**Key Features**
 
 1. Write new review
 2. Reviews list
@@ -35,7 +35,7 @@ Catwalk is the re-imagined product detail page of an e-commerce web application,
 - Allows customer to view, ask and answer questions for the selected product
 - Tech Lead: [Takahiro Hirakawa](https://github.com/jonhirak)
 
-**Key features**
+**Key Features**
 
 1. View questions
 2. Search for a question
