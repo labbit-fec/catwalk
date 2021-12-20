@@ -1,1 +1,1 @@
-module.exports.TOKEN = 'Insert Github Token here';
+module.exports.TOKEN = 'Insert GitHub Token here';
