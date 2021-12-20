@@ -8,7 +8,7 @@ Catwalk is the re-imagined product detail page of an e-commerce web application,
 
 - Guides customer through selecting a specific style and size and adding it to their cart
 
-- Tech lead: [Kevin Goble](https://github.com/Gobleizer)
+- Tech Lead: [Kevin Goble](https://github.com/Gobleizer)
 
 **Key Features**
 
