@@ -1,17 +1,6 @@
 import React from 'react';
-import path from 'path';
 
-import {
-  render,
-  getByRole,
-  getByText,
-  getByPlaceholderText,
-  waitFor,
-  screen,
-  act,
-  within,
-  queryByTestId,
-} from '@testing-library/react';
+import { render, waitFor, screen, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import {
   beforeAll,
@@ -247,43 +236,4 @@ describe('Add a Question Modal', () => {
     );
     expect(emailError).toBeTruthy();
   });
-
-  // test('Allows question submission if all mandatory fields are completed and email passes validator.', async () => {
-  //   userEvent.click(screen.getByTestId('add-question'));
-
-  //   userEvent.type(screen.getByTestId('your-question'), 'Is this a test?');
-  //   userEvent.type(
-  //     screen.getByPlaceholderText('Example: jackson11!'),
-  //     'tester'
-  //   );
-  //   userEvent.type(
-  //     screen.getByPlaceholderText('Example: jack@email.com'),
-  //     'valid@email.com'
-  //   );
-
-  //   userEvent.click(screen.getByRole('button', { name: 'Submit Question' }));
-
-  // const qModal = await waitFor(() => screen.queryByTestId('modal'));
-  // expect(qModal).toBeNull();
-  // });
-
-  // afterAll(() => mswServer.listen());
 });
-
-// describe('Add a Question Modal', () => {
-//   test('Displays Add a Question Modal', async () => {
-//     userEvent.click(screen.getByTestId('add-answer'));
-//     const aModal = await waitFor(() => screen.getByText('Submit Your Answer'));
-//     expect(aModal).toBeVisible();
-//   });
-
-//   test('Does not allow answer submission if button is clicked with empty mandatory fields', async () => {
-//     userEvent.click(screen.getByTestId('add-answer'));
-//     userEvent.click(screen.getByRole('button', { name: 'Submit Answer' }));
-
-//     const incompleteError = await waitFor(() =>
-//       screen.getByText('Please complete all required fields!')
-//     );
-//     expect(incompleteError).toBeTruthy();
-//   });
-// });
