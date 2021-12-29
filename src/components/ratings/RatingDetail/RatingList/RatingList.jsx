@@ -12,8 +12,6 @@ export default function RatingList({ sortBy, setReviewCount }) {
   const [showAll, setShowAll] = useState(false);
   const [filteredReviewList, setFilteredReviewList] = useState([]);
   const [visibleReviewList, setVisibleReviewList] = useState([]);
-  // const [lastPageLoaded, setLastPageLoaded] = useState(0); // represents the last page that was
-  // const [moreReviews, setMoreReviews] = useState(false);
   const { productId } = useContext(ProductIdContext);
   const [showModal, setShowModal] = useState(false);
   const [showAddReviews, setShowAddReviews] = useState(true);
