@@ -17,7 +17,7 @@ const withProductDetails =
           setProduct(response.data);
         })
         .catch((error) => {
-          console.log('Error getting product details', error);
+          throw new Error('Error getting product details', error);
         });
     }, []);
     // allowed for HOC
