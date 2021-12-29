@@ -130,7 +130,7 @@ const Modal = function ({ openModal, setOpenModal, productName }) {
               console.log('Your answer was successfully posted!');
             })
             .catch((err) => {
-              console.log(err);
+              throw new Error(err);
             });
 
           handleClick();
