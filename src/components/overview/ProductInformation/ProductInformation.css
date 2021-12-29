@@ -2,8 +2,6 @@
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  /* Placeholder CSS for illustrative layout only */
-  /* border: 3px solid black; */
   color: #6e7076;
   font-weight: bold;
   justify-content: center;
@@ -11,11 +9,11 @@
 }
 
 .category {
-  color: var(--text)
+  color: var(--text);
 }
 
 .title {
-  color: var(--primary)
+  color: var(--primary);
 }
 
 .price {
