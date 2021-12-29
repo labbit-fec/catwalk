@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { VscPass, VscDash } from 'react-icons/vsc';
+import { VscPass } from 'react-icons/vsc';
 import styles from './ProductTextOverview.css';
 
 const ProductTextOverview = ({ product }) => {
