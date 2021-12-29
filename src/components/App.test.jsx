@@ -3,13 +3,6 @@ import React from 'react';
 
 import { cleanup, render, waitFor, screen, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
-// import {
-//   beforeEach,
-//   afterEach,
-//   test,
-//   expect,
-//   describe,
-// } from 'jest';
 import App from './App';
 import mswServer from '../../mocks/front/mswServer';
 
