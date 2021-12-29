@@ -31,7 +31,7 @@ export default function App() {
           setLoading(false);
         })
         .catch((error) => {
-          console.log('Error getting product', error);
+          throw new Error(error);
         });
     } else {
       setLoading(false);
