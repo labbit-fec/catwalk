@@ -1,15 +1,6 @@
 import React from 'react';
-import path from 'path';
 
-import {
-  render,
-  getByRole,
-  getByText,
-  waitFor,
-  screen,
-  act,
-  within,
-} from '@testing-library/react';
+import { render, waitFor, screen, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import {
   beforeAll,
@@ -49,7 +40,6 @@ describe('Image Gallery Container', () => {
 describe('Product Information Container', () => {
   test('Displays Product Information Container', async () => {
     expect(screen.getByText('Product Information')).toBeVisible();
-
 
     // This is my best example right now:
     test('Displays Product Title as h1 element from mock server response', async () => {
@@ -125,12 +115,11 @@ describe('Product Information Container', () => {
     expect(styleThumbnails.length).toEqual(6);
     expect(styleThumbnails[0]).toBeVisible();
   });
-
 });
 
-  describe('Add to Cart Container', () => {
-    test('Displays Add to Cart Container', async () => {
-      const addToCart = await waitFor(() => screen.getByText('Add To Cart'));
-      expect(addToCart).toBeVisible();
-    });
+describe('Add to Cart Container', () => {
+  test('Displays Add to Cart Container', async () => {
+    const addToCart = await waitFor(() => screen.getByText('Add To Cart'));
+    expect(addToCart).toBeVisible();
   });
+});
