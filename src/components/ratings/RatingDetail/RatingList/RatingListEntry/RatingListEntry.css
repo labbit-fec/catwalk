@@ -51,11 +51,6 @@
   cursor: default;
 }
 
-.report {
-  /* border-left: 1px solid rgba(35, 35, 35, 0.5); */
-  /* padding-left: 1em; */
-}
-
 .check {
   display: flex;
   align-items: center;
