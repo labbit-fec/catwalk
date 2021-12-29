@@ -8,7 +8,6 @@ import styleDataContext from '../context/StyleDataContext';
 const StyleSelector = () => {
   const { styleData } = useContext(styleDataContext);
   const { selectedStyleIndex } = useContext(selectedStyleContext);
-  console.log(styleData, ' index ', selectedStyleIndex);
   return (
     <div className={styles.container}>
       <div className={styles.title}>
