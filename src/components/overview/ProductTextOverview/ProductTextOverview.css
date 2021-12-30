@@ -1,14 +1,12 @@
 .container {
   display: flex;
-
-  /* Placeholder CSS for illustrative layout only */
   color: black;
   justify-content: center;
   align-items: center;
 }
 
 .left {
- width: 60%;
+  width: 60%;
 }
 
 .description {
@@ -25,16 +23,5 @@
 }
 
 .vsc {
-  color: var(--success)
-}
-.features {
-
-}
-
-.feature {
-
-}
-
-.value {
-
+  color: var(--success);
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './AddQuestionsButton.css';
 import { VscAdd } from 'react-icons/vsc';
 
 const AddQuestionsButton = function ({ setOpenModal }) {

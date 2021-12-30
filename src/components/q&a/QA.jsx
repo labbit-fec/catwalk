@@ -33,7 +33,7 @@ const QA = function () {
         setProductName(response.data.name);
       })
       .catch((error) => {
-        console.log('Error getting product details', error);
+        throw new Error(error);
       });
   }, [productId]);
 

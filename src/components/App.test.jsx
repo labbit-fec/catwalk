@@ -1,25 +1,8 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import path from 'path';
 
-import {
-  cleanup,
-  render,
-  getByRole,
-  getByText,
-  waitFor,
-  screen,
-  act,
-  within,
-} from '@testing-library/react';
+import { cleanup, render, waitFor, screen, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
-// import {
-//   beforeEach,
-//   afterEach,
-//   test,
-//   expect,
-//   describe,
-// } from 'jest';
 import App from './App';
 import mswServer from '../../mocks/front/mswServer';
 
@@ -33,9 +16,7 @@ beforeAll(() => {
 });
 
 test('Displays App Container', async () => {
-  const appContainer = await waitFor(() =>
-    screen.getByText('App Container')
-  );
+  const appContainer = await waitFor(() => screen.getByText('App Container'));
   expect(appContainer).toBeVisible();
 });
 

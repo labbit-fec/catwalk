@@ -47,13 +47,12 @@ const Overview = () => {
         setSelectedStyleIndex(findDefaultStyleIndex(response.data.results));
       })
       .catch((error) => {
-        console.log('Error getting style details', error);
+        throw new Error('Error getting style details', error);
       });
   }, [productId]);
 
   return (
     <div className={styles.container}>
-      {/* Product Overview */}
       <div className={styles.context}>
         <StyleDataContext.Provider value={styleDataProvided}>
           <SelectedStyleContext.Provider value={styleProvidedValue}>

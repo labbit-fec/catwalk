@@ -1,14 +1,14 @@
-.container{
+.container {
   display: flex;
   flex-direction: column;
 }
 
-.questions_list{
+.questions_list {
   max-height: 80vh;
   overflow: auto;
 }
 
-.add_button_container{
+.add_button_container {
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -17,8 +17,8 @@
 hr {
   border: 0;
   margin-bottom: 20px;
-  clear:both;
-  display:block;
+  clear: both;
+  display: block;
   width: 100%;
   background-color: grey;
   height: 1px;

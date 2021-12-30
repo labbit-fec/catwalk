@@ -49,7 +49,7 @@ const Answer = function ({
         handleHelpfulSuccess();
       })
       .catch((err) => {
-        console.log(err);
+        throw new Error(err);
       });
   };
 
@@ -68,7 +68,7 @@ const Answer = function ({
         handleReportSuccess();
       })
       .catch((err) => {
-        console.log(err);
+        throw new Error(err);
       });
   };
 

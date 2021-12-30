@@ -1,7 +1,6 @@
 .reviewImages {
   display: flex;
   flex-direction: row;
-  /* border: 1px solid black; */
   height: 5em;
   margin-top: 1rem;
   margin-bottom: 1rem;

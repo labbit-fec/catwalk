@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import ProductIdContext from './context/ProductIdContext';
 import Overview from './overview/Overview';
@@ -31,7 +31,7 @@ export default function App() {
           setLoading(false);
         })
         .catch((error) => {
-          console.log('Error getting product', error);
+          throw new Error(error);
         });
     } else {
       setLoading(false);

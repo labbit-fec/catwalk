@@ -137,10 +137,6 @@ const IndividualQuestion = function ({
       .catch((err) => {
         console.log(err);
       });
-
-    // return () => {
-    //   setSortedAnswers([]);
-    // };
   }, []);
 
   const handleSuccessfulUpvote = () => {
@@ -170,7 +166,7 @@ const IndividualQuestion = function ({
         handleSuccessfulUpvote();
       })
       .catch((err) => {
-        console.log(err);
+        throw new Error(err);
       });
   };
 

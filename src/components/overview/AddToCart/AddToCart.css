@@ -1,9 +1,6 @@
 .container {
   display: flex;
   flex-direction: column;
-  /* Placeholder CSS for illustrative layout only */
-  /* border: 3px solid black;
-  color: black; */
   font-weight: bold;
   justify-content: space-evenly;
   align-items: flex-start;
@@ -16,5 +13,5 @@
 }
 
 .add {
-  margin-top: .6rem;
+  margin-top: 0.6rem;
 }

@@ -1,7 +1,5 @@
 .container {
   display: flex;
-
-  /* Placeholder CSS for illustrative layout only */
   border: 3px solid indigo;
   color: indigo;
   font-weight: bold;
